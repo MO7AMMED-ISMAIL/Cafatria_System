@@ -52,7 +52,7 @@ class Table extends Database{
         }
     }
 
-    public function Select(array $columns, $condition){
+    public function Select(array $columns, $condition=1){
         $statement = "SELECT " . implode(",", $columns) . " FROM {$this->TbName} WHERE $condition";
 
         try {
@@ -60,13 +60,13 @@ class Table extends Database{
             if($selected->rowCount() <= 0){
                 throw new Exception("Empty Data Base");
             }
-//            return $selected;
             return $selected->fetchAll(\PDO::FETCH_ASSOC);
 
         } catch (PDOException $e){
             throw new Exception("PDO Error: " . $e->getMessage());
         }
     }
+
     public function SelectInnerJoinTable($tableName,array $firstTableColumns,array $secondTableColumns,$condition){
         $firstRequiredColumns=array();
         $secondRequiredColumns=array();
@@ -100,25 +100,7 @@ class Table extends Database{
         }
     }
 
-
 }
-
-//$db = new Table('users');
-//
-//
-//
-//echo "<pre>";
-//var_dump($db->Select(["username","email","password"],1));
-//echo "</pre>";
-// $db = new Table('admins');
-// //id	username	email	password
-// $array = [
-//     "username"=>"mohmaed isamil",
-//     "email"=>"mo7ismai@gmail.com",
-//     "password"=>"145563"
-// ];
-
-// $db->Update($array,'id',1);
 
 
 ?>
