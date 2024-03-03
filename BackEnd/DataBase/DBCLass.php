@@ -37,7 +37,7 @@ class Table extends Database{
         foreach ($data as $key => $val) {
             $cols[] = "$key = ?";
         }
-        $sql = "UPDATE {$this->TbName} SET " . implode(', ', $cols) . " WHERE $cond = ?";
+        $sql = "UPDATE {$this->TbName} SET " .implode(', ', $cols). " WHERE $cond = ?";
         
         try {
             $stmt = parent::connect()->prepare($sql);
@@ -51,8 +51,65 @@ class Table extends Database{
             throw new Exception("PDO Error: " . $e->getMessage());
         }
     }
+
+    public function Select(array $columns, $condition){
+        $statement = "SELECT " . implode(",", $columns) . " FROM {$this->TbName} WHERE $condition";
+
+        try {
+            $selected = parent::connect()->query($statement);
+            if($selected->rowCount() <= 0){
+                throw new Exception("Empty Data Base");
+            }
+//            return $selected;
+            return $selected->fetchAll(\PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e){
+            throw new Exception("PDO Error: " . $e->getMessage());
+        }
+    }
+    public function SelectInnerJoinTable($tableName,array $firstTableColumns,array $secondTableColumns,$condition){
+        $firstRequiredColumns=array();
+        $secondRequiredColumns=array();
+
+        //first elements
+        foreach ($firstTableColumns as $col){
+            $firstRequiredColumns[]="$tableName"."."."$col";
+        }
+        //second elements
+        foreach ($secondTableColumns as $col){
+            $secondRequiredColumns[]="$this->TbName"."."."$col";
+        }
+        $statement="SELECT ".implode(",",$firstRequiredColumns).",".implode(",",$secondRequiredColumns)." FROM $this->TbName inner join $tableName on $condition";
+        try {
+            $selected=parent::connect()->query($statement);
+            if(! $selected->rowCount()){
+                throw new Exception("returned Data From Inner Join Is Empty...");
+            }
+        }catch (PDOException $e){
+            throw new Exception("PDO Error: ". $e->getMessage() );
+        }
+
+    }
+
+    public function Delete($condition){
+        $statement="DELETE FROM $this->TbName where $condition";
+        try {
+            parent::connect()->query($statement);
+        }catch (PDOException $e){
+            throw new Exception("PDO Error: ".$e->getMessage());
+        }
+    }
+
+
 }
 
+//$db = new Table('users');
+//
+//
+//
+//echo "<pre>";
+//var_dump($db->Select(["username","email","password"],1));
+//echo "</pre>";
 // $db = new Table('admins');
 // //id	username	email	password
 // $array = [
@@ -62,5 +119,6 @@ class Table extends Database{
 // ];
 
 // $db->Update($array,'id',1);
+
 
 ?>
