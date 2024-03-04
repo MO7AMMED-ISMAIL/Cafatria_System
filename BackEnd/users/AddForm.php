@@ -1,9 +1,9 @@
 <?php
-    if(isset($_GET['add']) == 'Admin'){
+    if(isset($_GET['add']) == 'Users'){
         $_SESSION['token'] = bin2hex(random_bytes(32));
         $_SESSION['token_expire'] = time() + 3600 ;
     }else{
-        header("location: ../Admin.php");
+        header("location: ../user.php");
         exit();
     }
     
@@ -15,7 +15,7 @@
             <div class="text-center">
                 <h2 class="h4 text-gray-900 mb-4">Create New Admin</h2>
             </div>
-            <form action="Admins/add.php" method="post" class="user" enctype="multipart/form-data">
+            <form action="users/add.php" method="post" class="user" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="hidden" class="form-control form-control-user" name="token" value="<?=$_SESSION['token']?>">
                 </div>
@@ -29,13 +29,25 @@
                 <!-- email -->
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Email</span>
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="email">
+                    <input type="text" class="form-control" placeholder="Email...." aria-label="Username" aria-describedby="basic-addon1" name="email">
+                </div>
+
+                <!-- Room -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Room</span>
+                    <input type="number" class="form-control" placeholder="Room..." aria-label="Username" aria-describedby="basic-addon1" name="room">
+                </div>
+
+                <!-- EXT -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">EXT</span>
+                    <input type="number" class="form-control" placeholder="Etra number..." aria-label="Username" aria-describedby="basic-addon1" name="ext">
                 </div>
 
                 <!-- Password -->
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Password</span>
-                    <input type="password" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="pass">
+                    <input type="password" class="form-control" placeholder="Password.." aria-label="Username" aria-describedby="basic-addon1" name="pass">
                 </div>
 
                 <!-- image -->

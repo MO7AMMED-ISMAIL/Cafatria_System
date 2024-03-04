@@ -112,8 +112,9 @@ class Table extends Database{
     public function ValidateEmail($data){
         if(filter_var($data, FILTER_VALIDATE_EMAIL)){
             return $data;
-        }else{
-            return new Exception("is not valid Mail");
+        }
+        else{
+            throw new Exception("is not valid Mail");
         }
     }
 

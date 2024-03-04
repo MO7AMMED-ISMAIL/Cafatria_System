@@ -70,17 +70,16 @@
             <!-- End Admins -->
             
             <!-- Users -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true"
-                    aria-controls="collapseUtilities">
+            <li class="nav-item <?=$current == 'Users'? 'active':''?>">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#userTogle" aria-expanded="true" aria-controls="userTogle">
                     <i class="fa-solid fa-user"></i>
                     <span>Users</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div id="userTogle" class="collapse  <?=$current == 'Users'? 'show':''?> " aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item active" href="display-users.html">Display</a>
-                        <a class="collapse-item" href="add-user.html"><span style="font-weight:bold">+</span>Add</a>
+                        <a class="collapse-item <?=!isset($_GET['add'])== 'Users'?'active':''?>" href="user.php">Display</a>
+                        <a class="collapse-item <?=isset($_GET['add'])== 'Users'?'active':''?>" href="user.php?add=Users"><span style="font-weight:bold">+</span>Add</a>
                     </div>
                 </div>
             </li>
