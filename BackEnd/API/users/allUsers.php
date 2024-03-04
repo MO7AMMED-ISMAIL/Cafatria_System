@@ -13,6 +13,6 @@ $output = [
 
 $allData = $users->Select(['username', 'password','email','created_at']);
 
-print_r($allData);
-// json_encode($allData);
+echo json_encode($allData);
+
 ?>

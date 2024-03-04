@@ -67,7 +67,7 @@ class Table extends Database{
         }
     }
 
-    public function SelectInnerJoinTable($tableName,array $firstTableColumns,array $secondTableColumns,$condition){
+    public function SelectInnerJoinTable($tableName,array       $firstTableColumns,array $secondTableColumns,$condition){
         $firstRequiredColumns=array();
         $secondRequiredColumns=array();
 
@@ -89,7 +89,6 @@ class Table extends Database{
         }catch (PDOException $e){
             throw new Exception("PDO Error: ". $e->getMessage() );
         }
-
     }
 
     public function Delete($condition){
@@ -101,6 +100,66 @@ class Table extends Database{
         }
     }
 
+    public function inputData($data) { 
+        if(strlen($data) <= 0){
+            throw new Exception("The input {$data} is empty");
+        }
+        $data = trim($data);  
+        $data = stripslashes($data);  
+        $data = htmlspecialchars($data);  
+        return $data;  
+    }  
+
+    public function ValidateEmail($data){
+        if(filter_var($data, FILTER_VALIDATE_EMAIL)){
+            return $data;
+        }
+        else{
+            throw new Exception("is not valid Mail");
+        }
+    }
+
+    public function isValidUsername($username){
+        $pattern = '/^[a-zA-Z0-9_]{3,20}$/';
+        if (!preg_match($pattern, $username)) {
+            throw new Exception('Invalid username format.');
+        }else{
+            return $username;
+        }
+    }
+
+    function Upload($image , $dir="../uploads/"){
+        $dirFile = $dir;
+        $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+    
+        if (!empty($image['name'])) {
+            $fileName = basename($image["name"]);
+            $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+    
+            $newImage = uniqid() . "." . $fileType;
+            $targetFilePath = $dirFile . $newImage;
+    
+            // Check if file size is less than 1MB
+            if ($image['size'] < 5000000) {
+                // Check if file type is allowed
+                if (in_array($fileType, $allowTypes)) {
+                    // Move uploaded file to target directory
+                    if (move_uploaded_file($image["tmp_name"], $targetFilePath)) {
+                        return $newImage;
+                    } else {
+                        throw new Exception("Failed to upload image.");
+                    }
+                } else {
+                    throw new Exception("Please choose a valid image file.");
+                }
+            } else {
+                throw new Exception("File size is too large. Please upload a smaller file.");
+            }
+        } else {
+            throw new Exception("No file uploaded.");
+        }
+    }
+    
 }
 
 
