@@ -58,9 +58,9 @@ class Table extends Database{
         try {
             $selected = parent::connect()->query($statement);
             if($selected->rowCount() <= 0){
-                throw new Exception("Empty Data Base");
+                return false;
             }
-            return $selected->fetchAll(\PDO::FETCH_ASSOC);
+            return $selected;
 
         } catch (PDOException $e){
             throw new Exception("PDO Error: " . $e->getMessage());
@@ -85,6 +85,7 @@ class Table extends Database{
             if(! $selected->rowCount()){
                 throw new Exception("returned Data From Inner Join Is Empty...");
             }
+            return $selected;
         }catch (PDOException $e){
             throw new Exception("PDO Error: ". $e->getMessage() );
         }
