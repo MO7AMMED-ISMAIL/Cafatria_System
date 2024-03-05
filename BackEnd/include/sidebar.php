@@ -19,6 +19,14 @@
     <!--  font awesome -->
     <link rel="stylesheet" href="css/all.min.css"/>
 
+
+    <script>
+        function activate(parentElement) {
+
+            parentElement.classList.add("active"); // Add the "active" class to the element
+        }
+    </script>
+
 </head>
 
 <body id="page-top">
@@ -96,8 +104,9 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item active" href="display-users.html">Display</a>
-                        <a class="collapse-item" href="add-user.html"><span style="font-weight:bold">+</span>Add</a>
+                        <a class="collapse-item active"  href="./page/listProducts.php">Display</a>
+                        <a class="collapse-item" href="./AddProductForm.php"><span style="font-weight:bold">+</span>Add</a>
+
                     </div>
                 </div>
             </li>

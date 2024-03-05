@@ -1,48 +1,40 @@
 <?php
-require ("../DataBase/DBCLass.php");
+session_start();
+require("../DataBase/DBCLass.php");
 use DbClass\Table;
 
-$table= new Table("products");
+// Create a connection to the products table
+$table = new Table("products");
 $table->conn();
-$file=$_FILES["product_image"];
 
-$postData = [];
-if($_POST['category_id']=="default"){
-    header("Location:product.php");
-    setcookie("error","missing category");
-    setcookie("color","red");
+// Retrieve the uploaded file
+$file = $_FILES["product_image"];
+
+if ($_POST['category_id'] == "default") {
+//    setcookie("message", "missing category", time() + 3600, '/'); // Set cookie before redirection
+//    setcookie("color", "red", time() + 3600, '/');
+    $_SESSION["message"] = "missing category";
+    $_SESSION["color"] = "red";
+    header("Location: ../AddProductForm.php");
+    exit();
 }
 
-foreach ($_POST as $key => $value) {
-    $postData[$key] = $value;
-}
-
+// Move the uploaded file to the appropriate directory
 move_uploaded_file($file['tmp_name'], './product_images/' . $file['name']);
-$postData['picture']=$file['name'];
+
+$postData = $_POST;
+$postData['picture'] = $file['name'];
 
 $table->Create($postData);
 
-//successfully inserted
-header("Location:product.php");
-setcookie("success","successfully inserted");
-setcookie("color","green");
+
+//setcookie("message", "successfully inserted", time() + 3600, '/');
+//setcookie("color", "green", time() + 3600, '/');
+
+$_SESSION["message"] = "successfully inserted";
+$_SESSION["color"] = "green";
 
 
-
-
-
-
-
-
-
-
-//
-//echo "<pre>";
-//var_dump($_POST);
-//echo "</pre>";
-//
-//echo "<pre>";
-//var_dump($_FILES);
-//echo "</pre>";
-
+header("Location: ../AddProductForm.php");
+exit(); // Make sure to exit after redirection
 
