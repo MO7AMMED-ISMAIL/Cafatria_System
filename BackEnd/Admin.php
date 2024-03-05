@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if(!isset($_SESSION['id'])){
+        header("location: Auth/LoginForm.php");
+    }
     $current = 'Admins';
     $id = 1 ;
     include "include/sidebar.php";
@@ -17,7 +20,6 @@
         $AdminId = $_GET['edit'];
         $cond = "id = $AdminId";
         $SelAdmin = $admins->Select($col,$cond);
-        $SelAdmin = $SelAdmin[0];
         include "Admins/EditForm.php";
     }else{
         include "Admins/table.php";

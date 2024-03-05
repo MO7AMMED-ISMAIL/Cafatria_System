@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['id'])){
+        header("location: Auth/LoginForm.php");
+    }
     $current = 'index';
     include "include/sidebar.php";
     include "include/navbar.php";

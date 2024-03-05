@@ -59,8 +59,11 @@ class Table extends Database{
             $selected = parent::connect()->query($statement);
             if($selected->rowCount() <= 0){
                 throw new Exception("Empty Data Base");
+            }else if($selected->rowCount() == 1){
+                return $selected->fetch(\PDO::FETCH_ASSOC);
+            }else{
+                return $selected->fetchAll(\PDO::FETCH_ASSOC);
             }
-            return $selected->fetchAll(\PDO::FETCH_ASSOC);
 
         } catch (PDOException $e){
             throw new Exception("PDO Error: " . $e->getMessage());
