@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if(!isset($_SESSION['id'])){
+        header("location: Auth/LoginForm.php");
+    }
     $current = 'Users';
     $id = 1 ;
     include "include/sidebar.php";
@@ -26,7 +29,7 @@
         $userId = $_GET['edit'];
         $cond = "id = $userId";
         $SelUser = $users->Select($col,$cond);
-        $SelUser = $SelUser[0];
+        
         include "Users/EditForm.php";
     }else{
         include "Users/table.php";

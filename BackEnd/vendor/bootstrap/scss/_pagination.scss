@@ -53,7 +53,7 @@
   &.disabled .page-link {
     color: $pagination-disabled-color;
     pointer-events: none;
-    // Opinionated: remove the "hand" cursor set previously for .page-link
+    // Opinionated: remove the "hand" cursor set previously for .Product-link
     cursor: auto;
     background-color: $pagination-disabled-bg;
     border-color: $pagination-disabled-border-color;

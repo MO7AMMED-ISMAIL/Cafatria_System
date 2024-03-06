@@ -1,7 +1,7 @@
 <?php
 
 
-echo "<h3 style='margin-left: 60vmin; font-weight: bold; margin-bottom: 10vmin'>Add New Product</h3>";
+echo "<h3 style='margin-left: 60vmin; font-weight: bold; margin-bottom: 10vmin'>Update Product </h3>";
 
 if (isset($_SESSION["message"])){
     echo "<p style='color: {$_SESSION['color']} ;'>";
@@ -10,20 +10,31 @@ if (isset($_SESSION["message"])){
     unset($_SESSION["message"]);
     unset($_SESSION["color"]);
 }
+
+$productId = $_GET['edit'];
+$cond = "id = $productId";
+$SelectProduct = $table->Select(["*"],$cond);
+//echo "<pre>";
+//var_dump($selectedProduct);
+//echo "</pre>";
 ?>
 
-<form style="margin-left: 5vmin" action="page/AddProduct.php" method="post" enctype="multipart/form-data">
+<form style="margin-left: 5vmin" action="Product/update.php" method="post" enctype="multipart/form-data">
+    <div style="margin-top: 5vmin">
+        <label for="id">ID</label>
+        <input type="text" readonly name="id" id="id" value="<?=$selectedProduct['id']?>" required />
+    </div>
     <div style="margin-top: 5vmin">
         <label for="name">Product</label>
-        <input type="text" name="name" id="name" required />
+        <input type="text" name="name" id="name" required value="<?=$selectedProduct['name']?>" />
     </div>
     <div style="margin-top: 5vmin">
         <label for="description">Description</label>
-        <input type="text" name="description" id="description" required />
+        <input type="text" name="description" id="description" value="<?=$selectedProduct['description']?>" required />
     </div>
     <div style="margin-top: 5vmin">
         <label for="price">Price</label>
-        <input type="number" name="price" id="price" min="5" required />
+        <input type="number" name="price" id="price" min="5" required value="<?=$selectedProduct['price']?>" />
     </div>
     <div style="margin-top: 5vmin">
         <label for="category_id">Category:</label>

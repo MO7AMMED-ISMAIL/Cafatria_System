@@ -30,7 +30,7 @@
         // Function to handle the delete button click event
         function handleDelete(id) {
             // Redirect to the delete page with the product ID
-            window.location.href = "page/delete.php?id=" + id;
+            window.location.href = "Product/delete.php?id=" + id;
         }
     </script>
 </head>

@@ -5,13 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="acd679a4-d2f3-4397-9854-3db78ba43a9d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Auth/login.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auth/loginForm.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auth/logout.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auth/register.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Auth/registerForm.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/65e786f783477.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AddProductForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataBase/DBCLass.php" beforeDir="false" afterPath="$PROJECT_DIR$/DataBase/DBCLass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataBase/db.mysql" beforeDir="false" afterPath="$PROJECT_DIR$/DataBase/db.mysql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forgot-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/Auth/forgot-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/navbar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page/AddProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/page/AddProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page/listProducts.php" beforeDir="false" afterPath="$PROJECT_DIR$/page/listProducts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/page/AddProductForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/AddProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/Product/AddProduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/AddProductForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/Product/AddProductForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/Product/delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/editForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/Product/editForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/listProducts.php" beforeDir="false" afterPath="$PROJECT_DIR$/Product/listProducts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product_images/11182640_667555566683058_1849345997132473303_o.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Product/product_images/11182640_667555566683058_1849345997132473303_o.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product_images/1619372453378.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Product/product_images/1619372453378.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product_images/4aaf520c380383194398f26763e6b059.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Product/product_images/4aaf520c380383194398f26763e6b059.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product_images/687e97272f4c65606971bdf145f2cd0f.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Product/product_images/687e97272f4c65606971bdf145f2cd0f.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product_images/741569.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Product/product_images/741569.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product_images/a774c11efa2a50a6d24feb44b3aa5184773e0960.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/Product/product_images/a774c11efa2a50a6d24feb44b3aa5184773e0960.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product_images/breville-bdc650bss-grind-control-coffee-maker-tested-7f8270276f8c46eaaeee06cfcb475367.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Product/product_images/breville-bdc650bss-grind-control-coffee-maker-tested-7f8270276f8c46eaaeee06cfcb475367.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product_images/electrical-living-coffee-machines-2103.avif" beforeDir="false" afterPath="$PROJECT_DIR$/Product/product_images/electrical-living-coffee-machines-2103.avif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product_images/file.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Product/product_images/file.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product_images/file2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Product/product_images/file2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product_images/satoru-gojo-domain-expansion-jujutsu-kaisen-hd-wallpaper-uhdpaper.com-545@0@e.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Product/product_images/satoru-gojo-domain-expansion-jujutsu-kaisen-hd-wallpaper-uhdpaper.com-545@0@e.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/Product/update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/bootstrap/js/bootstrap.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bootstrap/js/bootstrap.bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/bootstrap/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bootstrap/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/bootstrap/scss/_pagination.scss" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bootstrap/scss/_pagination.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/bootstrap/scss/_reboot.scss" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bootstrap/scss/_reboot.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/jquery/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/jquery/jquery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/jquery/jquery.slim.js" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/jquery/jquery.slim.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,20 +67,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Product-Page&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/PHP_Project_ITI/BackEnd&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging Product-Page",
+    "last_opened_file_path": "C:/xampp/htdocs/PHP_Project_ITI/BackEnd",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -68,7 +103,7 @@
       <workItem from="1709576361419" duration="27814000" />
       <workItem from="1709618719769" duration="1359000" />
       <workItem from="1709638488518" duration="9141000" />
-      <workItem from="1709686240385" duration="6726000" />
+      <workItem from="1709686240385" duration="9437000" />
     </task>
     <servers />
   </component>

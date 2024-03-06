@@ -11,16 +11,15 @@ use DbClass\Table;
 $table = new Table("products");
 $table->conn();
 
-$selected=$table->Select(["*"]);
+$selected=$table->SelectInnerJoinTable("categories",["cat_name"],["*"],"categories.id=products.category_id");
 
 if(isset($_GET['add']) == 'product'){
-    include "page/AddProductForm.php";
+    include "Product/AddProductForm.php";
 }
 elseif(isset($_GET['edit'])){
-
-    include "page/editForm.php";
+    include "Product/editForm.php";
 }else{
-    include "page/listProducts.php";
+    include "Product/listProducts.php";
 }
 
 include "include/footer.php";

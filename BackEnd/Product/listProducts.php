@@ -18,14 +18,12 @@ echo "</thead>";
 echo "<tbody>";
 
 while ($row = $selected->fetch(PDO::FETCH_ASSOC)) {
-    //$innerJoinSelected=$table->SelectInnerJoinTable("categories",["name"],["id"],"categories.id=products.category_id and categories.id={} ");
-
     if ($row['status'] == "Available") {
         $color = "text-success font-weight-bold";
     }
     echo "<tr>";
     echo "<td>{$row['name']}</td>";
-    echo "<td>{$row['category_id']}</td>";
+    echo "<td>{$row['cat_name']}</td>";
     echo "<td class='$color'>{$row['status']}</td>";
     echo "<td>{$row['description']}</td>";
     echo "<td class='text-info'>{$row['price']} EGP</td>";
