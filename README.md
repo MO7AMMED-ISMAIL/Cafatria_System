@@ -6,7 +6,7 @@ Welcome to Cafeteria Management System, A Systme to manage the basic operations 
 - [Description](#Description)
 - [Features](#Features)
 - [File-Structure](#File-Strucutre)
-- [How-To-Use](#How-To-Use)
+- [How-To-Get-Started](#How-To-Get-Started)
 
 
 ## Description
