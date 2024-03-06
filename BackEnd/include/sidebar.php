@@ -25,6 +25,10 @@
         .dropdown-toggle::after {
             content: none; /* Remove the default arrow */
         }
+        td img{
+            width: 30px;
+            height: 30px;
+        }
     </style>
 </head>
 <body>
@@ -32,22 +36,25 @@
 <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-bg-info text-white offcanvas-md offcanvas-start">
             <a href="#" class="navbar-brand text-center">Cafateria</a><hr>
             <ul class="mynav nav nav-pills flex-column flex-grow-1 pe-3 mb-auto">
+                <!-- Index -->
                 <li class="nav-item mb-1">
-                    <a href="#" class="nav-link text-white active" aria-current="page" >
+                    <a href="index.php" class="nav-link text-white <?= $current == 'index'? 'active' : '' ?>" aria-current="page" >
+                        <i class="fa-regular fa-user"></i>
+                        Index
+                    </a>
+                </li>
+                <!-- Admins -->
+                <li class="nav-item mb-1">
+                    <a href="Admin.php" class="nav-link text-white <?= $current == 'Admin'? 'active' : '' ?>" aria-current="page" >
                         <i class="fa-regular fa-user"></i>
                         Admins
                     </a>
                 </li>
+                <!-- Users -->
                 <li class="nav-item mb-1">
-                    <a href="#" class="nav-link text-white" aria-current="page" >
+                    <a href="User.php" class="nav-link text-white <?= $current == 'User'? 'active' : '' ?>" aria-current="page" >
                         <i class="fa-regular fa-user"></i>
                         Users
-                    </a>
-                </li>
-                <li class="nav-item mb-1">
-                    <a href="#" class="nav-link text-white" aria-current="page" >
-                        <i class="fa-regular fa-user"></i>
-                        Admins
                     </a>
                 </li>
             </ul>

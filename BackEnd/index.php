@@ -1,4 +1,6 @@
-<?php 
+<?php
+    include "./DataBase/DBCLass.php";
+    use DbClass\Table;
     $current = "index";
     include "include/sidebar.php";
     include "include/navbar.php";
