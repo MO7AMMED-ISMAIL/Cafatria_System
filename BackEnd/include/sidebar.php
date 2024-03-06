@@ -19,6 +19,20 @@
     <!--  font awesome -->
     <link rel="stylesheet" href="css/all.min.css"/>
 
+
+    <script>
+        // Function to handle the update button click event
+        function handleUpdate(id) {
+            // Redirect to the update page with the product ID
+            window.location.href = "product.php?edit="+ id;
+        }
+
+        // Function to handle the delete button click event
+        function handleDelete(id) {
+            // Redirect to the delete page with the product ID
+            window.location.href = "Product/delete.php?id=" + id;
+        }
+    </script>
 </head>
 
 <body id="page-top">
@@ -87,17 +101,18 @@
             
 
             <!-- Product -->
-            <li class="nav-item">
+            <li class="nav-item <?=$current == 'product'? 'active':''?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true"
                     aria-controls="collapseUtilities">
                     <i class="fa-solid fa-user"></i>
                     <span>Product</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div id="collapseUtilities" class="collapse  <?=$current == 'product'? 'show':''?>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item active" href="display-users.html">Display</a>
-                        <a class="collapse-item" href="add-user.html"><span style="font-weight:bold">+</span>Add</a>
+                        <a class="collapse-item <?=!isset($_GET['add'])== 'product'?'active':''?>"  href="product.php">Display</a>
+                        <a class="collapse-item <?=isset($_GET['add'])== 'product'?'active':''?>" href="product.php?add='product'"><span style="font-weight:bold">+</span>Add</a>
+
                     </div>
                 </div>
             </li>
