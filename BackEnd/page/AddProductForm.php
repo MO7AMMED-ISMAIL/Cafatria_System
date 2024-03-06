@@ -1,7 +1,6 @@
 <?php
-session_start();
-include "include/sidebar.php";
-include "include/navbar.php";
+
+
 echo "<h3 style='margin-left: 60vmin; font-weight: bold; margin-bottom: 10vmin'>Add New Product</h3>";
 
 if (isset($_SESSION["message"])){
@@ -30,12 +29,6 @@ if (isset($_SESSION["message"])){
         <label for="category_id">Category:</label>
         <select id="category_id" name="category_id" required>
             <?php
-            require("DataBase/DBCLass.php");
-            use DbClass\Table;
-
-            $table = new Table("categories");
-            $table->conn();
-
             $selected = $table->Select(["name", "id"]);
             if (!$selected) {
                 echo "<option value='default'>";
@@ -66,7 +59,3 @@ if (isset($_SESSION["message"])){
     <button class="btn btn-success" type="submit">Save</button>
     <button class="btn btn-danger" type="reset">Reset</button>
 </form>
-
-<?php
-include "include/footer.php"
-?>

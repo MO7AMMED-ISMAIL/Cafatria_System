@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acd679a4-d2f3-4397-9854-3db78ba43a9d" name="Changes" comment="" />
+    <list default="true" id="acd679a4-d2f3-4397-9854-3db78ba43a9d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AddProductForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataBase/DBCLass.php" beforeDir="false" afterPath="$PROJECT_DIR$/DataBase/DBCLass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/sidebar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/AddProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/page/AddProduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/listProducts.php" beforeDir="false" afterPath="$PROJECT_DIR$/page/listProducts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/page/AddProductForm.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,7 +65,10 @@
       <workItem from="1709499380790" duration="1279000" />
       <workItem from="1709535444402" duration="641000" />
       <workItem from="1709555221592" duration="3860000" />
-      <workItem from="1709576361419" duration="27495000" />
+      <workItem from="1709576361419" duration="27814000" />
+      <workItem from="1709618719769" duration="1359000" />
+      <workItem from="1709638488518" duration="9141000" />
+      <workItem from="1709686240385" duration="6726000" />
     </task>
     <servers />
   </component>

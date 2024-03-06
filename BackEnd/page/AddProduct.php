@@ -15,7 +15,7 @@ if ($_POST['category_id'] == "default") {
 //    setcookie("color", "red", time() + 3600, '/');
     $_SESSION["message"] = "missing category";
     $_SESSION["color"] = "red";
-    header("Location: ../AddProductForm.php");
+    header("Location: ../product.php");
     exit();
 }
 
@@ -35,6 +35,6 @@ $_SESSION["message"] = "successfully inserted";
 $_SESSION["color"] = "green";
 
 
-header("Location: ../AddProductForm.php");
+header("Location: ../product.php");
 exit(); // Make sure to exit after redirection
 

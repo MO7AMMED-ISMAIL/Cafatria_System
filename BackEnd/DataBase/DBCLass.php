@@ -43,6 +43,9 @@ class Table extends Database{
             $stmt = parent::connect()->prepare($sql);
             $params = array_merge(array_values($data), [$value]);
             $success = $stmt->execute($params);
+//            echo $sql;
+//            echo "<br>";
+//            echo $params;
             if (!$success) {
                 throw new Exception("Failed to execute query.");
             }
@@ -67,7 +70,7 @@ class Table extends Database{
         }
     }
 
-    public function SelectInnerJoinTable($tableName,array       $firstTableColumns,array $secondTableColumns,$condition){
+    public function SelectInnerJoinTable($tableName,array $firstTableColumns,array $secondTableColumns,$condition){
         $firstRequiredColumns=array();
         $secondRequiredColumns=array();
 
@@ -80,6 +83,7 @@ class Table extends Database{
             $secondRequiredColumns[]="$this->TbName"."."."$col";
         }
         $statement="SELECT ".implode(",",$firstRequiredColumns).",".implode(",",$secondRequiredColumns)." FROM $this->TbName inner join $tableName on $condition";
+       // echo $statement;
         try {
             $selected=parent::connect()->query($statement);
             if(! $selected->rowCount()){
