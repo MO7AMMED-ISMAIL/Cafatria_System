@@ -109,7 +109,7 @@ Follow these steps to set up and run the project on your local machine:
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/your-project.git
+    git clone https://github.com/your-username/PHP_Project_ITI.git
     ```
 
 2. **Move the project files:**
@@ -126,4 +126,4 @@ Follow these steps to set up and run the project on your local machine:
 
 ### Usage
 
-Once the project is set up and running, you can access it in your web browser by navigating to [http://localhost/your-project](http://localhost/PHP_Project_ITI/BackEnd).
+Once the project is set up and running, you can access it in your web browser by navigating to [http://localhost/PHP_Project_ITI](http://localhost/PHP_Project_ITI/BackEnd).
