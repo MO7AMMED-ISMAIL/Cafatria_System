@@ -10,7 +10,7 @@
     <div class="row">
             <!-- Users -->
             <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow ">
+                <div class="card shadow border-left-primary shadow ">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2 text-center">
@@ -23,7 +23,7 @@
             </div>
             <!-- Admims -->
             <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow ">
+                <div class="card shadow border-left-primary shadow ">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2 text-center">
@@ -36,7 +36,7 @@
             </div>
             <!-- Orders -->
             <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow ">
+                <div class="card shadow border-left-primary shadow ">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2 text-center">
@@ -49,7 +49,7 @@
             </div>
             <!-- Checks -->
             <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow ">
+                <div class="card shadow border-left-primary shadow ">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2 text-center">

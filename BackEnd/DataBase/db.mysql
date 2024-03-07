@@ -1,5 +1,5 @@
-CREATE DATABASE Cafeteria;
-USE Cafeteria;
+CREATE DATABASE cafeteria;
+USE cafeteria;
 
 CREATE TABLE users (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

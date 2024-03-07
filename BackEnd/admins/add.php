@@ -1,5 +1,5 @@
 <?php 
-include "../Database/DBCLass.php";
+include "../DataBase/DBCLass.php";
 use DbClass\Table;
 session_start();
 $admins = new Table('admins');
@@ -31,11 +31,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             'profile_picture'=>$img,
         ];
         $admins->Create($DataInsert);
-        header("location: ../Admin.php");
+
+        header("location: ./admin.php");
         exit();
     }catch(Exception $e){
         $_SESSION['err'] = $e->getMessage();
-        header("location: ../Admin.php?add=Admin");
+        header("location: ./admin.php?add=Admin");
         exit();
     }
 }

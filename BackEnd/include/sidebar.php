@@ -32,8 +32,8 @@
     </style>
 </head>
 <body>
-<div class="container-fluid p-0 d-flex h-100">
-<div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-bg-info text-white offcanvas-md offcanvas-start">
+    <div class="container-fluid p-0 d-flex h-100">
+        <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-bg-info text-white offcanvas-md offcanvas-start">
             <a href="#" class="navbar-brand text-center">Cafateria</a><hr>
             <ul class="mynav nav nav-pills flex-column flex-grow-1 pe-3 mb-auto">
                 <!-- Index -->
@@ -45,17 +45,34 @@
                 </li>
                 <!-- Admins -->
                 <li class="nav-item mb-1">
-                    <a href="Admin.php" class="nav-link text-white <?= $current == 'Admin'? 'active' : '' ?>" aria-current="page" >
+                    <a href="admin.php" class="nav-link text-white <?= $current == 'Admin'? 'active' : '' ?>" aria-current="page" >
                         <i class="fa-regular fa-user"></i>
                         Admins
                     </a>
                 </li>
                 <!-- Users -->
                 <li class="nav-item mb-1">
-                    <a href="User.php" class="nav-link text-white <?= $current == 'User'? 'active' : '' ?>" aria-current="page" >
+                    <a href="" class="nav-link text-white <?= $current == 'User'? 'active' : '' ?>" aria-current="page" >
                         <i class="fa-regular fa-user"></i>
                         Users
                     </a>
                 </li>
+
+                <!-- Orders -->
+                <li class="nav-item mb-1">
+                    <a href="order.php" class="nav-link text-white <?= $current == 'Order'? 'active' : '' ?>" aria-current="page" >
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Orders
+                    </a>
+                </li>
+
+                <!-- Checks -->
+                <li class="nav-item mb-1">
+                    <a href="order.php" class="nav-link text-white <?= $current == 'Order'? 'active' : '' ?>" aria-current="page" >
+                        <i class="fa-regular fa-credit-card"></i>
+                        Checkout Order
+                    </a>
+                </li>
+
             </ul>
         </div>

@@ -1,5 +1,5 @@
 <?php
-include "../database/DBClass.php";
+include "../DataBase/DBCLass.php";
 use DbClass\Table;
 
 
