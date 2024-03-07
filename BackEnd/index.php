@@ -34,6 +34,20 @@
                     </div>
                 </div>
             </div>
+
+        <!-- Products -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card shadow border-left-primary shadow ">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-center">
+                            <h3 class="mb-1 names">Products-><span>&nbsp;4</span></h3>
+                            <p><a class="users mt-3" href="products.php">View Details</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
             <!-- Orders -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card shadow border-left-primary shadow ">

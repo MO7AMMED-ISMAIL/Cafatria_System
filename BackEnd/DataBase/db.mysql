@@ -25,8 +25,8 @@ CREATE TABLE admins (
 
 CREATE TABLE categories (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    cat_name VARCHAR(50) NOT NULL,
-    description TEXT NULL,
+    category_name VARCHAR(50) NOT NULL,
+    category_description TEXT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE products (
     category_id INT UNSIGNED NOT NULL,
     status ENUM('Available', 'Not Available') DEFAULT 'Available',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES categories(id)
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
 
 CREATE TABLE carts (
