@@ -1,5 +1,5 @@
 <?php
-include "../database/DBClass.php";
+include "../DataBase/DBCLass.php";
 use DbClass\Table;
 session_start();
 $update = new Table('admins'); 
@@ -31,11 +31,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             "profile_picture"=>$img
         ];
         $updat = $update->Update($DataUpdate,'id',$id);
-        header("location: ../Admin.php");
+        header("location: ../admin.php");
         exit();
     }catch(Exception $e){
         $_SESSION['err'] = $e->getMessage();
-        header("Location: ../Admin.php?edit=$id");
+        header("Location: ../admin.php?edit=$id");
         exit();
     }
     
