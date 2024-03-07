@@ -37,6 +37,8 @@
             console.log(orderDetails);
             function createOrderListItem(productId) {
                 const listItem = document.createElement('div');
+                let dd = JSON.stringify(orderDetails);
+                console.log(dd);
                 listItem.innerHTML = `
                     <div class="card mb-3">
                         <div class="card-body">
@@ -49,12 +51,14 @@
                             <input type="hidden" name="price['${productId}']" value="${orderDetails[productId].price}">
                             <input type="hidden" name="product_total_price['${productId}']" value="${orderDetails[productId].price * orderDetails[productId].quantity}">
                             <input type="hidden" name="order_total_price" value="${totalPrice.toFixed(2)}">
+                            
+                            <input type="hidden" name="order1" value='${JSON.stringify(orderDetails)}'>>
                         </div>
                     </div>
                 `;
                 orderContainer.appendChild(listItem);
             }
-
+console.log(orderDetails);
             function updateTotalPrice() {
                 totalPrice = Object.values(orderDetails).reduce((acc, item) => acc + item.quantity * item.price, 0);
                 document.getElementById('totalPrice').innerText = `Total Price: $${totalPrice.toFixed(2)}`;

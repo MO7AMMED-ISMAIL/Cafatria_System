@@ -61,7 +61,7 @@
             <div class="col-4">
                 <form action="orders/add.php" method="post">
                     <div class="card shadow" style="min-height: 60vh;">
-                    <h5 class="card-header text-center">Order Details</h5>
+                    <h5 class="card-header text-center">Order Details</h5>0
                         <div class="card-body">
                             <input type="hidden" class="form-control" name="user_id" value="1">
                             <div id="orderContainer" ></div>
