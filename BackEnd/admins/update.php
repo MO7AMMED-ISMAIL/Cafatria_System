@@ -2,7 +2,7 @@
 include "../DataBase/DBCLass.php";
 use DbClass\Table;
 session_start();
-$update = new Table('admins'); 
+$update = new Table('admins');
 
 // print_r($_POST);
 // die();
