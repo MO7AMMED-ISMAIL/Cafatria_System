@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(!isset($_SESSION['Admin_id'])){
+    if(!isset($_SESSION['id'])){
         header("location: Auth/LoginForm.php");
     }
     include "./DataBase/DBCLass.php";

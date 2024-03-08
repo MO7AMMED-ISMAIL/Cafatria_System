@@ -3,10 +3,10 @@
     $_SESSION['token'] = bin2hex(random_bytes(32));
     $_SESSION['token_expire'] = time() + 3600;
 
-    // if(isset($_SESSION['id'])){
-    //     header("location: ../index.php");
-    //     exit();
-    // }
+    if(isset($_SESSION['id'])){
+        header("location: ../index.php");
+        exit();
+    }
 ?>
 <head>
     <title>Admin</title>
