@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['Admin_id'])){
+        header("location: Auth/LoginForm.php");
+    }
     include "./DataBase/DBCLass.php";
     use DbClass\Table;
     $current = "index";

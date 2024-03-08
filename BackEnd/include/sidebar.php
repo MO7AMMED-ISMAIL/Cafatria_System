@@ -60,7 +60,7 @@
 
                 <!-- Orders -->
                 <li class="nav-item mb-1">
-                    <a href="order.php" class="nav-link text-white <?= $current == 'Order'? 'active' : '' ?>" aria-current="page" >
+                    <a href="order.php" class="nav-link text-white <?= $current == 'orders'? 'active' : '' ?>" aria-current="page" >
                         <i class="fa-solid fa-cart-shopping"></i>
                         Orders
                     </a>
@@ -75,7 +75,7 @@
 
                 <!-- Checks -->
                 <li class="nav-item mb-1">
-                    <a href="order.php" class="nav-link text-white <?= $current == 'Order'? 'active' : '' ?>" aria-current="page" >
+                    <a href="order.php" class="nav-link text-white <?= $current == 'checks'? 'active' : '' ?>" aria-current="page" >
                         <i class="fa-regular fa-credit-card"></i>
                         Checkout Order
                     </a>

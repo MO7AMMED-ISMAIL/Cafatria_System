@@ -23,7 +23,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $email = $admins->ValidateEmail($_POST['email']);
         $img = $admins->Upload($_FILES['img']);
         $password = $admins->inputData($_POST['pass']);
-
+        if(strlen($_POST['pass']) < 8){
+            throw new Exception("Password must be at least 8 characters");
+        }
         $DataInsert = [
             'username'=>$username,
             'password'=>$password,

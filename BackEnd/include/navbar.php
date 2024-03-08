@@ -39,8 +39,8 @@
                         <li><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             Profile</a></li>
                         <li><div class="dropdown-divider"></div></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Logout</a></li>
+                        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalId"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Logout</button></li>
                     </ul>
                 </li>
             </ul>

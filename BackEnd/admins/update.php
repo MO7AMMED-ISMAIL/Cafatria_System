@@ -20,6 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     
     //validation
     try{
+        
         $id = $update->inputData($_POST['id']);
         $username = $update->isValidUsername($_POST['username']);
         $email = $update->ValidateEmail($_POST['email']);

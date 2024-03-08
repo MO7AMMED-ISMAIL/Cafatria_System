@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if(!isset($_SESSION['Admin_id'])){
+        header("location: Auth/LoginForm.php");
+    }
     $current = 'orders';
     $id = 1 ;
     include "include/sidebar.php";

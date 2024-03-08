@@ -1,8 +1,8 @@
 <?php
     session_start();
-    // if(!isset($_SESSION['Admin_id'])){
-    //     header("location: Auth/LoginForm.php");
-    // }
+    if(!isset($_SESSION['Admin_id'])){
+        header("location: Auth/LoginForm.php");
+    }
     $current = 'Admin';
     $id = 1 ;
     include "include/sidebar.php";
@@ -10,9 +10,13 @@
     include "DataBase/DBCLass.php";
     use DbClass\Table;
 
-    $admins = new Table('admins');
-    $col = ['id','username','email','profile_picture','created_at'];
-    $result = $admins->Select($col);
+    try{
+        $admins = new Table('admins');
+        $col = ['id','username','email','profile_picture','created_at'];
+        $result = $admins->Select($col);
+    }catch(Exception $e){
+        $result = [];
+    }
 
     if(isset($_GET['add']) == 'Admin'){
         include "admins/addForm.php";

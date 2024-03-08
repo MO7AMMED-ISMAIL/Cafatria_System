@@ -79,6 +79,7 @@ class Table extends Database{
     public function Select(array $columns, $condition=1){
         $statement = "SELECT " . implode(",", $columns) . " FROM {$this->TbName} WHERE $condition";
 
+
         try {
             $selected = parent::connect()->query($statement);
             /*if($selected->rowCount() <= 0){
