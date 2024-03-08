@@ -66,6 +66,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item mb-1">
+                    <a href="products.php" class="nav-link text-white <?= $current == 'products'? 'active' : '' ?>" aria-current="page" >
+                        <i class="fa-solid fa-store"></i>
+                        Products
+                    </a>
+                </li>
+
                 <!-- Checks -->
                 <li class="nav-item mb-1">
                     <a href="order.php" class="nav-link text-white <?= $current == 'Order'? 'active' : '' ?>" aria-current="page" >
