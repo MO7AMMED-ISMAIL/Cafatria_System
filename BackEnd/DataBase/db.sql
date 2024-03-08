@@ -6,7 +6,7 @@ CREATE TABLE users (
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    room_number VARCHAR(100) NOT NULL,
+    room_number ENUM ('Cafeteria', 'Room One (R1)', 'Room Two (R2)', 'Room Three (R3)', 'Room Four (R4)') DEFAULT 'Cafeteria',
     extra_data VARCHAR(255) NULL,
     profile_picture VARCHAR(255) NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -50,7 +50,7 @@ CREATE TABLE orders (
     total_price_after_tax FLOAT NOT NULL,
     status ENUM('Processing', 'Out For Delivery', 'Done', 'Cancelled') DEFAULT 'Processing',
     notes TEXT NULL,
-    room_number VARCHAR(100) NOT NULL,
+    room_number ENUM ('Cafeteria', 'Room One (R1)', 'Room Two (R2)', 'Room Three (R3)', 'Room Four (R4)') DEFAULT 'Cafeteria',
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -81,10 +81,10 @@ CREATE TABLE `notifications` (
 );
 
 -- Insert data into the 'users' table
-INSERT INTO users (username, email, password, room_number, extra_data, profile_picture)
+INSERT INTO users (username, email, password, extra_data, profile_picture)
 VALUES
-    ('john_doe', 'user1@gmail.com', '123456', '101', 'Some extra data', 'user.png'),
-    ('jane_smith', 'user2@gmail.com', '123456', '202', 'Additional info', 'user.png');
+    ('john_doe', 'user1@gmail.com', '123456', 'Some extra data', 'user.png'),
+    ('jane_smith', 'user2@gmail.com', '123456', 'Additional info', 'user.png');
 
 -- Insert data into the 'admins' table
 INSERT INTO admins (username, email, password, profile_picture)
@@ -107,10 +107,10 @@ VALUES
     ('Chocolate Cake', 'Rich and moist cake', 5.0, 'default.png', 3, 'Available');
 
 -- Insert data into the 'orders' table
-INSERT INTO orders (user_id, total_price, total_price_after_tax, room_number, status, notes)
+INSERT INTO orders (user_id, total_price, total_price_after_tax, status, notes)
 VALUES
-    (1, 8.0, 8.8, '101', 'Done', 'Special instructions for the order'),
-    (2, 3.5, 3.85, '202', 'Processing', NULL);
+    (1, 8.0, 8.8, 'Done', 'Special instructions for the order'),
+    (2, 3.5, 3.85, 'Processing', NULL);
 
 -- Insert data into the 'order_items' table
 INSERT INTO order_items (order_id, product_id, product_price, quantity, total_price)
