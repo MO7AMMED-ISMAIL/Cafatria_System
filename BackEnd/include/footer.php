@@ -1,25 +1,27 @@
     </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const orderContainer = document.getElementById('orderContainer');
             const productCards = document.querySelectorAll('.product_card');
-            const orderDetails = {};
+            const orderItems = {};
             let totalPrice = 0;
 
             function handleProductClick(event) {
-                const productId = event.currentTarget.dataset.id;
-                const productName = event.currentTarget.querySelector('.card-title').innerText;
-                const productPrice = parseFloat(event.currentTarget.dataset.price); // Convert price to a number
+                const productId = event.currentTarget.dataset.productId;
+                const productPrice = parseFloat(event.currentTarget.dataset.productPrice);
+                const productName = event.currentTarget.dataset.productName;
 
-                if (orderDetails[productId]) {
-                    orderDetails[productId].quantity += 1;
+                if (orderItems[productId]) {
+                    orderItems[productId].quantity += 1;
                 } else {
-                    orderDetails[productId] = {
-                        name: productName,
-                        price: productPrice,
-                        quantity: 1
+                    orderItems[productId] = {
+                        product_name: productName,
+                        product_id: productId,
+                        product_price: productPrice,
+                        quantity: 1,
                     };
                 }
 
@@ -29,62 +31,64 @@
 
             function updateOrderList() {
                 orderContainer.innerHTML = '';
-                for (const productId in orderDetails) {
+                for (const productId in orderItems) {
                     createOrderListItem(productId);
                 }
             }
 
-            console.log(orderDetails);
+            console.log(orderItems);
             function createOrderListItem(productId) {
                 const listItem = document.createElement('div');
-                let dd = JSON.stringify(orderDetails);
-                console.log(dd);
                 listItem.innerHTML = `
                     <div class="card mb-3">
                         <div class="card-body">
-                            <div class="m-1">${orderDetails[productId].name} - <span class="badge text-bg-secondary">${orderDetails[productId].quantity} x $${orderDetails[productId].price}</span></div>
+                            <div class="m-1">${orderItems[productId].product_name} - <span class="badge text-bg-secondary">${orderItems[productId].quantity} x $${orderItems[productId].product_price}</span></div>
                             <button class="col-2 btn btn-sm btn-danger m-1" onclick="decreaseQuantity('${productId}')">-</button>
-                            <input type="text" name="quantity['${productId}']" class="col-2 form-control d-inline text-center" style="width: 15%" id="quantity_${productId}" value="${orderDetails[productId].quantity}" />
+                            <input type="text" name="quantity['${productId}']" class="col-2 form-control d-inline text-center" style="width: 15%" id="quantity_${productId}" value="${orderItems[productId].quantity}" />
                             <button class="col-2 btn btn-sm btn-success m-1" onclick="increaseQuantity('${productId}')">+</button>
                             <button class="col-2 btn btn-sm btn-warning m-1" onclick="removeProduct('${productId}')">x</button>
-                            <input type="hidden" name="product_id['${productId}']" value="${productId}">
-                            <input type="hidden" name="price['${productId}']" value="${orderDetails[productId].price}">
-                            <input type="hidden" name="product_total_price['${productId}']" value="${orderDetails[productId].price * orderDetails[productId].quantity}">
                             <input type="hidden" name="order_total_price" value="${totalPrice.toFixed(2)}">
                             
-                            <input type="hidden" name="order1" value='${JSON.stringify(orderDetails)}'>>
+                            <input type="hidden" name="orderItems" value='${JSON.stringify(orderItems)}'>
                         </div>
                     </div>
                 `;
                 orderContainer.appendChild(listItem);
             }
-console.log(orderDetails);
+            console.log(orderItems);
+            /*<input type="hidden" name="product_id['${productId}']" value="${productId}">
+            <input type="hidden" name="price['${productId}']" value="${orderItems[productId].price}">
+            <input type="hidden" name="product_total_price['${productId}']" value="${orderItems[productId].price * orderItems[productId].quantity}">
+            */
             function updateTotalPrice() {
-                totalPrice = Object.values(orderDetails).reduce((acc, item) => acc + item.quantity * item.price, 0);
+                totalPrice = Object.values(orderItems).reduce((acc, item) => acc + item.quantity * item.product_price, 0);
                 document.getElementById('totalPrice').innerText = `Total Price: $${totalPrice.toFixed(2)}`;
             }
 
             window.increaseQuantity = function (productId) {
-                if (orderDetails[productId]) {
-                    orderDetails[productId].quantity += 1;
+                if (orderItems[productId]) {
+                    orderItems[productId].quantity += 1;
                     updateOrderList();
+                    updateTotalPrice();
                 }
             };
 
             window.decreaseQuantity = function (productId) {
-                if (orderDetails[productId]) {
-                    orderDetails[productId].quantity -= 1;
-                    if (orderDetails[productId].quantity === 0) {
-                        delete orderDetails[productId];
+                if (orderItems[productId]) {
+                    orderItems[productId].quantity -= 1;
+                    if (orderItems[productId].quantity === 0) {
+                        delete orderItems[productId];
                     }
                     updateOrderList();
+                    updateTotalPrice();
                 }
             };
 
             window.removeProduct = function (productId) {
-                if (orderDetails[productId]) {
-                    delete orderDetails[productId];
+                if (orderItems[productId]) {
+                    delete orderItems[productId];
                     updateOrderList();
+                    updateTotalPrice();
                 }
             };
 

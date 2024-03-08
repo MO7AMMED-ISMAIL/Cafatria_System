@@ -1,5 +1,11 @@
 <div class="container-fluid">
     <!-- DataTales Example -->
+    <?php
+    if(isset($_SESSION['success'])){
+        echo "<div class='row mx-1 px-4 alert alert-success' role='alert' id='success'>".$_SESSION['success']."</div>";
+        unset($_SESSION['success']);
+    }
+    ?>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row justify-content-between align-items-center">
@@ -22,22 +28,31 @@
                 </thead>
                 <tbody>
                 <?php
-                foreach($result as $order){
-                    ?>
-                    <tr>
-                        <td><?=$id++?></td>
-                        <td><?=$order['user_id']?></td>
-                        <td><?=$order['total_price']?></td>
-                        <td><?=$order['room_number']?></td>
-                        <td><?=$order['status']?></td>
-                        <td><?=$order['order_date']?></td>
-                        <td>
-                            <?php if ($order['status'] == 'Processing') {?>
-                                <a class="btn btn-danger" href="orders/delete.php?order_id=<?=$order['id']?>">Cancel</a>
-                            <?php }?>
+                if (!empty($result)) {
+                    foreach($result as $order){
+                        ?>
+                        <tr>
+                            <td><?=$id++?></td>
+                            <td><?=$order['user_id']?></td>
+                            <td><?=$order['total_price']?></td>
+                            <td><?=$order['room_number']?></td>
+                            <td><?=$order['status']?></td>
+                            <td><?=$order['order_date']?></td>
+                            <td>
+                                <?php if ($order['status'] == 'Processing') {?>
+                                    <a class="btn btn-danger" href="orders/delete.php?order_id=<?=$order['id']?>">Cancel</a>
+                                <?php }?>
+                            </td>
+                        </tr>
+                    <?php }
+                } else { ?>
+                    <tr class="text-center">
+                        <td colspan="9">
+                            <img src="./uploads/no-data.gif" alt="" style="width: 80%; height: 50vh;">
                         </td>
                     </tr>
-                <?php }?>
+
+                <?php } ?>
                 </tbody>
             </table>
         </div>

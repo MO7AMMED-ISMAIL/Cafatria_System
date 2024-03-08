@@ -13,8 +13,9 @@
     $col = [
         'id',
         'user_id',
-        'cart_id',
         'total_price',
+        'tax',
+        'total_price_after_tax',
         'status',
         'notes',
         'room_number',

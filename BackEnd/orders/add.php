@@ -4,11 +4,10 @@
     session_start();
 
     $orders = new Table('orders');
-    $carts = new Table('carts');
-    $cart_items = new Table('cart_items ');
+    $order_items = new Table('order_items');
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
-        /*if(!isset($_POST['token']) || !isset($_SESSION['token'])){
+        if(!isset($_POST['token']) || !isset($_SESSION['token'])){
             exit('Token is not set');
             include "../404.html";
         }
@@ -19,47 +18,46 @@
                 include "../404.html";
             }
             unset($_SESSION['token']);
-        }*/
-        echo "<pre>";
-        var_dump($_POST);echo "</pre>";
+        }
+
         try{
-            $user_id = $carts->inputData($_POST['user_id']);
+            $user_id = $orders->inputData($_POST['user_id']);
             $total_price = $orders->inputData($_POST['order_total_price']);
+            $tax = 0.1;
+            $notes = $orders->inputData($_POST['notes']);
+            $room_number = $orders->inputData($_POST['room_number']);
 
-            $cartData = [
+            $orderData = [
                 'user_id' => $user_id,
-                'total_price' => $total_price
+                'total_price' => $total_price,
+                'total_price_after_tax' => $tax * $total_price,
+                'notes' => $notes,
+                'room_number' => $room_number
             ];
 
-            $cartCreated = $carts->Create($cartData);
-            $cartId = $carts->connect()->lastInsertId();
-//            $cart_id = $cartCreated['cart_id'];
-//            $product_id = $cart_items->inputData($_POST['product_id']);
-//            $quantity = $cart_items->inputData($_POST['quantity']);
-//            $price = $cart_items->inputData($_POST['pro']);
-//            $total_price = $cart_items->inputData($_POST['total_price']);
-//            $email = $orders->ValidateEmail($_POST['email']);
-//
-//            $room_number = $orders->inputData($_POST['room_number']);
-//            $notes = $orders->inputData($_POST['notes']);
+            $createdOrderId = $orders->CreateAndReturnIndex($orderData);
+            var_dump($createdOrderId);
 
-            $cartItemsData = [
-                'cart_id' => $cartId,
-                'product_id'=> [$_POST['product_id']],
-                'price'=> [$_POST['product_id']],
-                'quantity'=> [$_POST['quantity']],
-                'total_price' => [$_POST['product_total_price']],
-            ];
+            $orderItemsJSON = $_POST["orderItems"];
+            $orderItems = json_decode($orderItemsJSON, true);
 
-//            $orderData = [
-//
-//                'name'=>$name,
-//                'email'=>$email,
-//                'room_number'=>$room,
-//                'extra_Number'=>$ext
-//            ];
-//            $orders->Create($orderData);
-//            header("location: ../order.php");
+            echo "<pre>";
+            var_dump($orderItems);
+            echo "</pre>";
+            foreach ($orderItems as $order) {
+                $orderItemData = [
+                    'order_id'      => $createdOrderId,
+                    'product_id'    => $order['product_id'],
+                    'product_price' => $order['product_price'],
+                    'quantity'      => $order['quantity'],
+                    'total_price'   => $order['quantity'] * $order['product_price'],
+                ];
+
+                $order_items->Create($orderItemData);
+            }
+            $_SESSION['success'] = 'Order added successfully';
+
+            header("location: ../order.php");
             exit();
         }catch(Exception $e){
             $_SESSION['err'] = $e->getMessage();

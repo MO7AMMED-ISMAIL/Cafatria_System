@@ -3,7 +3,7 @@ include "../DataBase/DBCLass.php";
 use DbClass\Table;
 
 if(!isset($_GET['order_id'])){
-    header("location: ../order.php");
+    header("location: ./order.php");
 }
 
 try{

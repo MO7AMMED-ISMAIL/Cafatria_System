@@ -32,6 +32,27 @@ class Table extends Database{
         }
     }
 
+    public function CreateAndReturnIndex(array $values){
+        $keys = implode(',', array_keys($values));
+        $placeholders = rtrim(str_repeat('?,', count($values)), ',');
+        $sql = "INSERT INTO {$this->TbName} ({$keys}) VALUES ({$placeholders})";
+
+        try {
+            $conn = parent::connect();
+            $stmt = $conn->prepare($sql);
+            $success = $stmt->execute(array_values($values));
+
+            if (!$success) {
+                throw new Exception("Failed to execute query.");
+            }
+
+            // Return the last inserted ID
+            return $conn->lastInsertId();
+        } catch (PDOException $e) {
+            throw new Exception("PDO Error: " . $e->getMessage());
+        }
+    }
+
     public function Update(array $data, $cond, $value) {
         $cols = array();
         foreach ($data as $key => $val) {
@@ -60,12 +81,15 @@ class Table extends Database{
 
         try {
             $selected = parent::connect()->query($statement);
-            if($selected->rowCount() <= 0){
+            /*if($selected->rowCount() <= 0){
                 throw new Exception("Empty Data Base");
             }else if($selected->rowCount() == 1){
                 return $selected->fetch(\PDO::FETCH_ASSOC);
             }else{
                 return $selected->fetchAll(\PDO::FETCH_ASSOC);
+            }*/
+            if(isset($_GET['edit']) && $selected->rowCount() == 1){
+                return $selected->fetch(\PDO::FETCH_ASSOC);
             }
             return $selected->fetchAll(\PDO::FETCH_ASSOC);
 
