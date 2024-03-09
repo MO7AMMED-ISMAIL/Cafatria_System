@@ -35,7 +35,7 @@
                 'room_number' => $room_number
             ];
 
-            $createdOrderId = $orders->CreateAndReturnIndex($orderData);
+            $createdOrderId = $orders->Create($orderData);
             var_dump($createdOrderId);
 
             $orderItemsJSON = $_POST["orderItems"];
