@@ -1,3 +1,13 @@
+<?php
+    use DbClass\Table;
+    $newTable = new Table('admins');
+    $adminId = $_SESSION['id'];
+    $col = ['id', 'username', 'profile_picture','email'];
+    $cond = " id = '$adminId'";
+    $currentAdmin = $newTable->Select($col,$cond);
+    $currentAdmin = $currentAdmin[0];
+?>
+
 <div id="body_content" class="bg-light flex-fill">
     <!-- bars button of offcanvas-->
     <div class="p-2 d-md-none d-flex text-white bg-info">

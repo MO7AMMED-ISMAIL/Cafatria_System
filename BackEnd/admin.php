@@ -3,12 +3,12 @@
     if(!isset($_SESSION['id'])){
         header("location: Auth/LoginForm.php");
     }
+    include "DataBase/DBCLass.php";
+    use DbClass\Table;
     $current = 'Admin';
     $id = 1 ;
     include "include/sidebar.php";
     include "include/navbar.php";
-    include "DataBase/DBCLass.php";
-    use DbClass\Table;
 
     try{
         $admins = new Table('admins');

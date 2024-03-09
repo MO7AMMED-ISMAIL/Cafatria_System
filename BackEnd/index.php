@@ -7,11 +7,6 @@
     use DbClass\Table;
     $current = "index";
     $admins = new Table('admins');
-    $adminId = $_SESSION['id'];
-    $col = ['id', 'username', 'profile_picture','email'];
-    $cond = " id = '$adminId'";
-    $currentAdmin = $admins->Select($col,$cond);
-    $currentAdmin = $currentAdmin[0];
     include "include/sidebar.php";
     include "include/navbar.php";
 ?>
