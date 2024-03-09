@@ -64,9 +64,9 @@ class Table extends Database{
             $stmt = parent::connect()->prepare($sql);
             $params = array_merge(array_values($data), [$value]);
             $success = $stmt->execute($params);
-//            echo $sql;
-//            echo "<br>";
-//            echo $params;
+        //            echo $sql;
+        //            echo "<br>";
+        //            echo $params;
             if (!$success) {
                 throw new Exception("Failed to execute query.");
             }
@@ -190,6 +190,17 @@ class Table extends Database{
             }
         } else {
             throw new Exception("No file uploaded.");
+        }
+    }
+
+    public function rowCount($tableName){
+        $sql = "Select COUNT(*) as count from $tableName ";
+        try{
+            $stmt = parent::connect()->query($sql);
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $result['count'];
+        }catch(Exception $e){
+            throw new Exception("Not Found Table Name");
         }
     }
     
