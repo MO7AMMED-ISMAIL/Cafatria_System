@@ -5,13 +5,13 @@
     }
     $current = 'orders';
     $id = 1 ;
-    include "include/sidebar.php";
-    include "include/navbar.php";
     include "DataBase/DBCLass.php";
     use DbClass\Table;
     $orders = new Table('orders');
     $users = new Table('users');
     $products = new Table('products');
+    include "include/sidebar.php";
+    include "include/navbar.php";
 
     $col = [
         'id',
