@@ -57,13 +57,7 @@ class Table extends Database{
         $statement = "SELECT " . implode(",", $columns) . " FROM {$this->TbName} WHERE $condition";
         try {
             $selected = parent::connect()->query($statement);
-            if($selected->rowCount() <= 0){
-                return [];
-            }else if($selected->rowCount() == 1){
-                return $selected->fetch(\PDO::FETCH_ASSOC);
-            }else{
-                return $selected->fetchAll(\PDO::FETCH_ASSOC);
-            }
+            return $selected->fetchAll(\PDO::FETCH_ASSOC);
         } catch (PDOException $e){
             throw new Exception("PDO Error: " . $e->getMessage());
         }
@@ -94,7 +88,7 @@ class Table extends Database{
             $secondRequiredColumns[]="$this->TbName"."."."$col";
         }
         $statement="SELECT ".implode(",",$firstRequiredColumns).",".implode(",",$secondRequiredColumns)." FROM $this->TbName inner join $tableName on $condition";
-       // echo $statement;
+        // echo $statement;
         try {
             $selected=parent::connect()->query($statement);
             if(! $selected->rowCount()){

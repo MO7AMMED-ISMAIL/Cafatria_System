@@ -9,7 +9,6 @@ use DbClass\Table;
 
 $table = new Table("products");
 $table->conn();
-
 $selected=$table->SelectInnerJoinTable("categories",["category_name"],["*"],"categories.id=products.category_id");
 
 if(isset($_GET['add']) == 'product'){

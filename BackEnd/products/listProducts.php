@@ -7,7 +7,7 @@ if (isset($_SESSION["message"])) {
     echo "<div class='alert alert-dismissible fade show' style='color: $messageColor;' role='alert'>
             $message
             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-          </div>";
+        </div>";
 }
 ?>
 
@@ -39,10 +39,10 @@ if (isset($_SESSION["message"])) {
                 echo "<td style='color: #0a930a; font-weight: bold'>{$row['price']}$</td>";
                 echo "<td>
                             <div class='btn-group' role='group'>
-                                <a href='products.php?edit=1' class='btn btn-outline-primary'>Update</a>
-                                <a href='#' class='btn btn-outline-danger'>Delete</a>
+                                <a href='products.php?edit=1' class='btn btn-outline-primary m-1'>Update</a>
+                                <a href='#' class='btn btn-outline-danger m-1'>Delete</a>
                             </div>
-                          </td>";
+                    </td>";
                 echo "</tr>";
             }
             ?>
