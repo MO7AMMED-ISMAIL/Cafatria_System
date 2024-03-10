@@ -65,11 +65,18 @@
                         Orders
                     </a>
                 </li>
-
+                <!-- Product -->
                 <li class="nav-item mb-1">
                     <a href="products.php" class="nav-link text-white <?= $current == 'products'? 'active' : '' ?>" aria-current="page" >
                         <i class="fa-solid fa-store"></i>
                         Products
+                    </a>
+                </li>
+                <!-- Category -->
+                <li class="nav-item mb-1">
+                    <a href="categories.php" class="nav-link text-white <?= $current == 'categories'? 'active' : '' ?>" aria-current="page" >
+                        <i class="fa-solid fa-list"></i>
+                        categories
                     </a>
                 </li>
 
