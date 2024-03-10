@@ -23,8 +23,7 @@
     }
     elseif(isset($_GET['edit'])){
         $AdminId = $_GET['edit'];
-        $cond = "id = '$AdminId'";
-        $SelAdmin = $admins->Select($col,$cond);
+        $SelAdmin = $admins->FindById('id',$AdminId);
         include "admins/editForm.php";
     }else{
         include "admins/table.php";

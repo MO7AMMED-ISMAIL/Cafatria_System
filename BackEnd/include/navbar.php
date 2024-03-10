@@ -4,8 +4,7 @@
     $adminId = $_SESSION['id'];
     $col = ['id', 'username', 'profile_picture','email'];
     $cond = " id = '$adminId'";
-    $currentAdmin = $newTable->Select($col,$cond);
-    //$currentAdmin = $currentAdmin[0];
+    $currentAdmin = $newTable->FindById('id',$_SESSION['id']);
 ?>
 
 <div id="body_content" class="bg-light flex-fill">

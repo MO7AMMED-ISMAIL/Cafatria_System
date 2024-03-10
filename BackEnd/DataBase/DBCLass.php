@@ -27,7 +27,7 @@ class Table extends Database{
             if (!$success) {
                 throw new Exception("Failed to execute query.");
             }
-            return $this->conn->lastInsertId();
+            return parent::connect()->lastInsertId();
         } catch (PDOException $e) {
             throw new Exception("PDO Error: " . $e->getMessage());
         }
@@ -44,9 +44,6 @@ class Table extends Database{
             $stmt = parent::connect()->prepare($sql);
             $params = array_merge(array_values($data), [$value]);
             $success = $stmt->execute($params);
-        //            echo $sql;
-        //            echo "<br>";
-        //            echo $params;
             if (!$success) {
                 throw new Exception("Failed to execute query.");
             }
@@ -58,24 +55,23 @@ class Table extends Database{
 
     public function Select(array $columns, $condition=1){
         $statement = "SELECT " . implode(",", $columns) . " FROM {$this->TbName} WHERE $condition";
-
-
         try {
             $selected = parent::connect()->query($statement);
-            /*if($selected->rowCount() <= 0){
-                throw new Exception("Empty Data Base");
-            }else if($selected->rowCount() == 1){
-                return $selected->fetch(\PDO::FETCH_ASSOC);
-            }else{
-                return $selected->fetchAll(\PDO::FETCH_ASSOC);
-            }*/
-            if(isset($_GET['edit']) && $selected->rowCount() == 1){
-                return $selected->fetch(\PDO::FETCH_ASSOC);
-            }
             return $selected->fetchAll(\PDO::FETCH_ASSOC);
-
         } catch (PDOException $e){
             throw new Exception("PDO Error: " . $e->getMessage());
+        }
+    }
+
+    public function FindById($cond,$value){
+        $sql = "SELECT * FROM {$this->TbName} WHERE $cond = :val";
+        $Sel = parent::connect()->prepare($sql);
+        $Sel->execute(['val' => $value]);
+        if($Sel->rowCount() > 0){
+            $result = $Sel->fetch();
+            return $result;
+        }else{
+            throw new Exception("is not Found");
         }
     }
 
@@ -92,7 +88,7 @@ class Table extends Database{
             $secondRequiredColumns[]="$this->TbName"."."."$col";
         }
         $statement="SELECT ".implode(",",$firstRequiredColumns).",".implode(",",$secondRequiredColumns)." FROM $this->TbName inner join $tableName on $condition";
-       // echo $statement;
+        // echo $statement;
         try {
             $selected=parent::connect()->query($statement);
             if(! $selected->rowCount()){
