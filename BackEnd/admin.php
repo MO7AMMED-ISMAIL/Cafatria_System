@@ -5,13 +5,13 @@
     }
     include "DataBase/DBCLass.php";
     use DbClass\Table;
+    $admins = new Table('admins');
     $current = 'Admin';
     $id = 1 ;
     include "include/sidebar.php";
     include "include/navbar.php";
 
     try{
-        $admins = new Table('admins');
         $col = ['id','username','email','profile_picture','created_at'];
         $result = $admins->Select($col);
     }catch(Exception $e){

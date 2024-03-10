@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         exit();
     }catch(Exception $e){
         $_SESSION['err'] = $e->getMessage();
-        header("location: ./admin.php?add=Admin");
+        header("location: ../admin.php?add=Admin");
         exit();
     }
 }

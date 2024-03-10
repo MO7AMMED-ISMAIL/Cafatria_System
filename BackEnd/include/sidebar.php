@@ -52,7 +52,7 @@
                 </li>
                 <!-- Users -->
                 <li class="nav-item mb-1">
-                    <a href="" class="nav-link text-white <?= $current == 'User'? 'active' : '' ?>" aria-current="page" >
+                    <a href="users.php" class="nav-link text-white <?= $current == 'User'? 'active' : '' ?>" aria-current="page" >
                         <i class="fa-regular fa-user"></i>
                         Users
                     </a>

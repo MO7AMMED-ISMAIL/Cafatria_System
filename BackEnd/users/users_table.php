@@ -13,20 +13,27 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
+                                            <th>ID</th>
                                             <th>Name</th>
-                                            <th>Room</th>
+                                            <th>Email</th>
                                             <th>Img</th>
-                                            <th>Ext</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php foreach ($users as $user): ?>
                                         <tr>
-                                            <td><?= $user['username'] ?></td>
-                                            <td><?= $user['room_number'] ?></td>
-                                            <td><img src="uploads/<?= $user['profile_picture'] ?>" style="max-width:50px; max-height:50px;"></td>
-                                            <td><?= $user['extra_data'] ?></td>
+                                            <td><?=$id++?></td>
+                                            <td>
+                                                <?= $user['username'] ?>
+                                            </td>
+                                            <td>
+                                                <?= $user['email'] ?>
+                                            </td>
+                                            <td>
+                                                <img src="uploads/<?= $user['profile_picture'] ?>" style="max-width:50px; max-height:50px;">
+                                            </td>
+
                                             <td>
                                                 <a href='users/view.php?id=<?= $user['id'] ?>' class='btn btn-primary btn-sm'>View</a>
                                                 <a href="?edit=<?=$user['id']?>" class='btn btn-warning btn-sm'>Edit</a>
