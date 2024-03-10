@@ -1,5 +1,5 @@
 <?php
-echo "<h4 class='display-5 text-center mb-5'>Add New Product</h4>";
+echo "<h4 class='display-6 text-center mb-5' style='font-weight: bolder'>Add New Product</h4>";
 ?>
 
 <form class="container mt-5 needs-validation" style="overflow: scroll" action="products/AddProduct.php" method="post" enctype="multipart/form-data" novalidate>
@@ -30,21 +30,20 @@ echo "<h4 class='display-5 text-center mb-5'>Add New Product</h4>";
             <div class="input-group">
                 <select id="category_id" name="category_id" class="form-select" required>
                     <?php
-                    $selected = $table->Select(["name", "id"]);
 
-                    if (empty($selected)) {
+                    if (empty($cat_selected)) {
                         echo "<option value='default' disabled>";
                         echo "default";
                         echo "</option>";
                     } else {
-                        if (!is_array($selected)) {
+                        if (!is_array($cat_selected)) {
                             // Only one row returned, so convert it to an array
-                            $selected = [$selected];
+                            $cat_selected = [$cat_selected];
                         }
 
-                        foreach ($selected as $row) {
+                        foreach ($cat_selected as $row) {
                             echo "<option value='{$row['id']}'>";
-                            echo $row['name'];
+                            echo $row['category_name'];
                             echo "</option>";
                         }
                     }
@@ -76,7 +75,7 @@ echo "<h4 class='display-5 text-center mb-5'>Add New Product</h4>";
             </div>
         </div>
     </div>
-    <button class="btn btn-success me-2" type="submit">Save</button>
+    <button class="btn btn-success me-2" type="submit">Add</button>
     <button class="btn btn-danger" type="reset">Reset</button>
 </form>
 

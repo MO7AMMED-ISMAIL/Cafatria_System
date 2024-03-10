@@ -1,9 +1,19 @@
 <?php
-echo "<h4 class='display-5 text-center mb-5'>Edit Product</h4>";
+$productId = $_GET['edit'];
+$cond = "id = $productId";
+$SelectProduct = $table->Select(["*"],$cond);
+echo "<h4 class='display-6 text-center mb-5' style='font-weight: bolder'>Edit Product</h4>";
 ?>
 
-<form class="container mt-5 needs-validation" style="overflow: scroll" action="products/AddProduct.php" method="post" enctype="multipart/form-data" novalidate>
+
+
+<form class="container mt-5 needs-validation" style="overflow: scroll" action="products/update.php" method="post" enctype="multipart/form-data" novalidate>
+
     <div class="row">
+        <div class="col-6 offset-3 mb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="text" value="<?=$SelectProduct['id'];?>" name="id" class="form-control" id="id" readonly>
+        </div>
         <div class="col-md-6 mb-3">
             <label for="name" class="form-label">Product</label>
             <input type="text" name="name" class="form-control" id="name" required>
@@ -30,21 +40,19 @@ echo "<h4 class='display-5 text-center mb-5'>Edit Product</h4>";
             <div class="input-group">
                 <select id="category_id" name="category_id" class="form-select" required>
                     <?php
-                    $selected = $table->Select(["name", "id"]);
-
-                    if (empty($selected)) {
+                    if (empty($cat_selected)) {
                         echo "<option value='default' disabled>";
                         echo "default";
                         echo "</option>";
                     } else {
-                        if (!is_array($selected)) {
+                        if (!is_array($cat_selected)) {
                             // Only one row returned, so convert it to an array
-                            $selected = [$selected];
+                            $cat_selected = [$cat_selected];
                         }
 
-                        foreach ($selected as $row) {
+                        foreach ($cat_selected as $row) {
                             echo "<option value='{$row['id']}'>";
-                            echo $row['name'];
+                            echo $row['category_name'];
                             echo "</option>";
                         }
                     }
