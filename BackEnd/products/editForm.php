@@ -1,26 +1,36 @@
 <?php
-echo "<h4 class='display-5 text-center mb-5'>Edit Product</h4>";
+$productId = $_GET['edit'];
+$cond = "id = $productId";
+$SelectProduct = $table->Select(["*"],$cond);
+echo "<h4 class='display-6 text-center mb-5' style='font-weight: bolder'>Edit Product</h4>";
 ?>
 
-<form class="container mt-5 needs-validation" style="overflow: scroll" action="products/AddProduct.php" method="post" enctype="multipart/form-data" novalidate>
+
+
+<form class="container mt-5 needs-validation" style="overflow: scroll" action="products/update.php" method="post" enctype="multipart/form-data" novalidate>
+
     <div class="row">
+        <div class="col-6 offset-3 mb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="text" name="id" value="<?=$SelectProduct[0]['id']?>" class="form-control" id="id" readonly>
+        </div>
         <div class="col-md-6 mb-3">
             <label for="name" class="form-label">Product</label>
-            <input type="text" name="name" class="form-control" id="name" required>
+            <input type="text" name="name" class="form-control" value="<?=$SelectProduct[0]['name']?>" id="name" required>
             <div class="invalid-feedback">
                 Please provide a product name.
             </div>
         </div>
         <div class="col-md-6 mb-3">
             <label for="description" class="form-label">Description</label>
-            <input type="text" name="description" class="form-control" id="description">
+            <input type="text" name="description" class="form-control" value="<?=$SelectProduct[0]['description']?>" id="description">
             <!-- No validation for description field -->
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="price" class="form-label">Price</label>
-            <input type="number" name="price" class="form-control" id="price" min="5" required>
+            <input type="number" name="price" class="form-control" id="price" min="5" value="<?=$SelectProduct[0]['price']?>" required>
             <div class="invalid-feedback">
                 Please enter a price greater than or equal to 5.
             </div>
@@ -30,21 +40,19 @@ echo "<h4 class='display-5 text-center mb-5'>Edit Product</h4>";
             <div class="input-group">
                 <select id="category_id" name="category_id" class="form-select" required>
                     <?php
-                    $selected = $table->Select(["name", "id"]);
-
-                    if (empty($selected)) {
+                    if (empty($cat_selected)) {
                         echo "<option value='default' disabled>";
                         echo "default";
                         echo "</option>";
                     } else {
-                        if (!is_array($selected)) {
+                        if (!is_array($cat_selected)) {
                             // Only one row returned, so convert it to an array
-                            $selected = [$selected];
+                            $cat_selected = [$cat_selected];
                         }
 
-                        foreach ($selected as $row) {
+                        foreach ($cat_selected as $row) {
                             echo "<option value='{$row['id']}'>";
-                            echo $row['name'];
+                            echo $row['category_name'];
                             echo "</option>";
                         }
                     }
@@ -69,8 +77,8 @@ echo "<h4 class='display-5 text-center mb-5'>Edit Product</h4>";
             </div>
         </div>
         <div class="col-md-6">
-            <label for="product_image" class="form-label">Product Picture</label>
-            <input type="file" name="product_image" class="form-control" id="product_image" required>
+            <label for="picture" class="form-label">Product Picture</label>
+            <input type="file" name="picture" class="form-control" id="picture" value="<?=$SelectProduct[0]['picture']?>" required>
             <div class="invalid-feedback">
                 Please select a product image.
             </div>

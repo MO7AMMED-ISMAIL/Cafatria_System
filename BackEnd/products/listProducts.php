@@ -39,8 +39,8 @@ if (isset($_SESSION["message"])) {
                 echo "<td style='color: #0a930a; font-weight: bold'>{$row['price']}$</td>";
                 echo "<td>
                             <div class='btn-group' role='group'>
-                                <a href='products.php?edit=1' class='btn btn-outline-primary m-1'>Update</a>
-                                <a href='#' class='btn btn-outline-danger m-1'>Delete</a>
+                                <a href='products.php?edit={$row['id']}' class='btn btn-outline-primary'>Update</a>
+                                <a href='products/delete.php?id={$row['id']}' class='btn btn-outline-danger'>Delete</a>
                             </div>
                     </td>";
                 echo "</tr>";
