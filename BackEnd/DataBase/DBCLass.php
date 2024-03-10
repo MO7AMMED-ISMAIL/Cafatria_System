@@ -26,27 +26,6 @@ class Table extends Database{
             if (!$success) {
                 throw new Exception("Failed to execute query.");
             }
-            return true;
-        } catch (PDOException $e) {
-            throw new Exception("PDO Error: " . $e->getMessage());
-        }
-    }
-
-    public function CreateAndReturnIndex(array $values){
-        $keys = implode(',', array_keys($values));
-        $placeholders = rtrim(str_repeat('?,', count($values)), ',');
-        $sql = "INSERT INTO {$this->TbName} ({$keys}) VALUES ({$placeholders})";
-
-        try {
-            $conn = parent::connect();
-            $stmt = $conn->prepare($sql);
-            $success = $stmt->execute(array_values($values));
-
-            if (!$success) {
-                throw new Exception("Failed to execute query.");
-            }
-
-            // Return the last inserted ID
             return $conn->lastInsertId();
         } catch (PDOException $e) {
             throw new Exception("PDO Error: " . $e->getMessage());
