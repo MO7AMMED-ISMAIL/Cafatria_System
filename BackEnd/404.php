@@ -15,7 +15,7 @@
     <div class="container-fluid">
         <div class="d-flex flex-column justify-content-center align-items-center vh-100">
 		<div class="text-center">
-	            <img src="./uploads/404.png" alt="" class="img-fluid" width="100%" height="100%">
+            <img src="./uploads/404.png" alt="" class="img-fluid" width="100%" height="100%">
 		</div>
 		<div class="text-center">
                     <p class="fs-3"> <span class="text-danger">Opps!</span> Page not found.</p>

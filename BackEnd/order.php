@@ -21,7 +21,6 @@
         'total_price_after_tax',
         'status',
         'notes',
-        'room_number',
         'order_date'
     ];
 
