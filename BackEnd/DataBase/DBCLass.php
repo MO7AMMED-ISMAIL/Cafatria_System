@@ -7,8 +7,9 @@ use PDOException;
 
 class Table extends Database{
     public $TbName;
+    private $conn;
     public function conn(){
-        $conn = parent::connect();
+        $this->conn = parent::connect();
     }
 
     public function __construct($tableName){
@@ -43,9 +44,6 @@ class Table extends Database{
             $stmt = parent::connect()->prepare($sql);
             $params = array_merge(array_values($data), [$value]);
             $success = $stmt->execute($params);
-        //            echo $sql;
-        //            echo "<br>";
-        //            echo $params;
             if (!$success) {
                 throw new Exception("Failed to execute query.");
             }
