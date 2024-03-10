@@ -7,8 +7,9 @@ use PDOException;
 
 class Table extends Database{
     public $TbName;
+    private $conn;
     public function conn(){
-        $conn = parent::connect();
+        $this->conn = parent::connect();
     }
 
     public function __construct($tableName){
@@ -26,7 +27,7 @@ class Table extends Database{
             if (!$success) {
                 throw new Exception("Failed to execute query.");
             }
-            return $conn->lastInsertId();
+            return $this->conn->lastInsertId();
         } catch (PDOException $e) {
             throw new Exception("PDO Error: " . $e->getMessage());
         }
