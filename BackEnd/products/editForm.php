@@ -12,25 +12,25 @@ echo "<h4 class='display-6 text-center mb-5' style='font-weight: bolder'>Edit Pr
     <div class="row">
         <div class="col-6 offset-3 mb-3">
             <label for="id" class="form-label">ID</label>
-            <input type="text" value="<?=$SelectProduct['id'];?>" name="id" class="form-control" id="id" readonly>
+            <input type="text" name="id" value="<?=$SelectProduct[0]['id']?>" class="form-control" id="id" readonly>
         </div>
         <div class="col-md-6 mb-3">
             <label for="name" class="form-label">Product</label>
-            <input type="text" name="name" class="form-control" id="name" required>
+            <input type="text" name="name" class="form-control" value="<?=$SelectProduct[0]['name']?>" id="name" required>
             <div class="invalid-feedback">
                 Please provide a product name.
             </div>
         </div>
         <div class="col-md-6 mb-3">
             <label for="description" class="form-label">Description</label>
-            <input type="text" name="description" class="form-control" id="description">
+            <input type="text" name="description" class="form-control" value="<?=$SelectProduct[0]['description']?>" id="description">
             <!-- No validation for description field -->
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="price" class="form-label">Price</label>
-            <input type="number" name="price" class="form-control" id="price" min="5" required>
+            <input type="number" name="price" class="form-control" id="price" min="5" value="<?=$SelectProduct[0]['price']?>" required>
             <div class="invalid-feedback">
                 Please enter a price greater than or equal to 5.
             </div>
@@ -77,8 +77,8 @@ echo "<h4 class='display-6 text-center mb-5' style='font-weight: bolder'>Edit Pr
             </div>
         </div>
         <div class="col-md-6">
-            <label for="product_image" class="form-label">Product Picture</label>
-            <input type="file" name="product_image" class="form-control" id="product_image" required>
+            <label for="picture" class="form-label">Product Picture</label>
+            <input type="file" name="picture" class="form-control" id="picture" value="<?=$SelectProduct[0]['picture']?>" required>
             <div class="invalid-feedback">
                 Please select a product image.
             </div>
