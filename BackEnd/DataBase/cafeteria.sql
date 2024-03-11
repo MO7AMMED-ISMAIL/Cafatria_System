@@ -114,7 +114,7 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `user_id`, `total_price`, `tax`, `total_price_after_tax`, `status`, `notes`, `room_id`, `order_date`) VALUES
 (1, 1, 8, 0.1, 8.8, 'Done', 'Special instructions for the order', 1, '2024-03-11 06:47:04'),
-(2, 2, 8, 0.1, 8.8, '', 'Special instructions for the order', 2, '2024-03-11 06:47:04'),
+(2, 2, 8, 0.1, 8.8, 'Cancelled', 'Special instructions for the order', 2, '2024-03-11 06:47:04'),
 (3, 2, 3.5, 0.1, 3.85, 'Processing', NULL, 3, '2024-03-11 06:47:04');
 
 -- --------------------------------------------------------

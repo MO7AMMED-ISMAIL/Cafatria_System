@@ -134,7 +134,7 @@ VALUES
 INSERT INTO orders (user_id, total_price, total_price_after_tax, status, notes, room_id)
 VALUES
     (1, 8.0, 8.8, 'Done', 'Special instructions for the order', 1),
-    (2, 8.0, 8.8, 'Canceled', 'Special instructions for the order', 2),
+    (2, 8.0, 8.8, 'Cancelled', 'Special instructions for the order', 2),
     (2, 3.5, 3.85, 'Processing', NULL, 3);
 
 -- Insert data into the 'order_items' table
