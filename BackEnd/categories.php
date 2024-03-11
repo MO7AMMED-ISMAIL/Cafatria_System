@@ -11,7 +11,7 @@ $table = new Table("categories");
 $table->conn();
 $selected=$table->Select(["*"]);
 
-if(isset($_GET['add']) == 'category'){
+if(isset($_GET['add'])){
    include "categories/AddCategoryForm.php";
 }
 elseif(isset($_GET['edit'])){

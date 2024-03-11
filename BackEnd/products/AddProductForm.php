@@ -29,26 +29,29 @@ echo "<h2 class='text-center mb-5'>Add New Product</h2>";
         </div>
         <div class="col-md-6 mb-3">
             <label for="category_id" class="form-label">Category:</label>
-            <select id="category_id" name="category_id" class="form-select" required>
-                <?php
-                if (empty($cat_selected)) {
-                    echo "<option value='default' disabled>";
-                    echo "default";
-                    echo "</option>";
-                } else {
-                    if (!is_array($cat_selected)) {
-                        // Only one row returned, so convert it to an array
-                        $cat_selected = [$cat_selected];
-                    }
-
-                    foreach ($cat_selected as $row) {
-                        echo "<option value='{$row['id']}'>";
-                        echo $row['category_name'];
+            <div class="input-group">
+                <select id="category_id" name="category_id" class="form-select" required>
+                    <?php
+                    if (empty($cat_selected)) {
+                        echo "<option value='default' disabled>";
+                        echo "default";
                         echo "</option>";
+                    } else {
+                        if (!is_array($cat_selected)) {
+                            // Only one row returned, so convert it to an array
+                            $cat_selected = [$cat_selected];
+                        }
+
+                        foreach ($cat_selected as $row) {
+                            echo "<option value='{$row['id']}'>";
+                            echo $row['category_name'];
+                            echo "</option>";
+                        }
                     }
-                }
-                ?>
-            </select>
+                    ?>
+                </select>
+                <a class="btn btn-primary" href="categories.php?add=product" id="addCategoryBtn">Add Category</a>
+            </div>
             <div class="invalid-feedback">
                 Please select a category.
             </div>
@@ -75,7 +78,7 @@ echo "<h2 class='text-center mb-5'>Add New Product</h2>";
     </div>
     <div class="d-flex justify-content-end">
         <button class="btn btn-success me-2" type="submit">Add Product</button>
-        <button class="btn btn-danger" type="reset">Reset</button>
+        <button class="btn btn-secondary" type="reset">Reset</button>
     </div>
 </form>
 

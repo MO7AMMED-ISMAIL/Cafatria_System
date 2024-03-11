@@ -2,7 +2,7 @@
 echo "<h2 class='text-center mb-5'>Add New Category</h2>";
 ?>
 
-<form class="container mt-5 needs-validation" action="categories/AddCategory.php" method="post" enctype="multipart/form-data" novalidate>
+<form class="container mt-5 needs-validation" action="categories/AddCategory.php?from=<?=$_GET['from']?>" method="post" enctype="multipart/form-data" novalidate>
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="name" class="form-label">Product</label>
