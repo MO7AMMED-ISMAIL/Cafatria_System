@@ -11,7 +11,7 @@ $table->conn();
 $file = $_FILES["product_image"];
 
 
-move_uploaded_file($file['tmp_name'], './product_images/' . $file['name']);
+move_uploaded_file($file['tmp_name'], '../uploads/' . $file['name']);
 
 
 $postData=[];
