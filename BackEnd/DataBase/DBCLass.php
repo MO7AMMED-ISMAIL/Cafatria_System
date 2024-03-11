@@ -111,7 +111,7 @@ class Table extends Database{
 
     public function inputData($data) { 
         if(strlen($data) <= 0){
-            throw new Exception("The input {$data} is empty");
+            throw new Exception("The input is empty");
         }
         $data = trim($data);  
         $data = stripslashes($data);  

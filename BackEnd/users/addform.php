@@ -1,9 +1,8 @@
 <?php
-    if(isset($_GET['add']) == 'Admin'){
+    if(isset($_GET['add'])){
         $_SESSION['token'] = bin2hex(random_bytes(32));
         $_SESSION['token_expire'] = time() + 3600 ;
     }else{
-        header("location: ./users.php");
         exit();
     }
 ?>
@@ -34,6 +33,21 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Password</span>
                     <input type="password" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1" name="pass">
+                </div>
+
+                <!-- Rooms -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Room</span>
+                    <select class="form-select"  name="room">
+                        <option>Choose The Rooms</option>
+                        <?php
+                            foreach ($rooms as $room){
+                        ?>
+                        <option value="<?= $room['id']?>">
+                            <?= $room['room_number']?>
+                        </option>
+                        <?php }?>
+                    </select>
                 </div>
 
                 <!-- image -->

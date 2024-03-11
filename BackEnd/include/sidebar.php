@@ -65,6 +65,7 @@
                         Orders
                     </a>
                 </li>
+
                 <!-- Product -->
                 <li class="nav-item mb-1">
                     <a href="products.php" class="nav-link text-white <?= $current == 'products'? 'active' : '' ?>" aria-current="page" >
@@ -72,6 +73,7 @@
                         Products
                     </a>
                 </li>
+
                 <!-- Category -->
                 <li class="nav-item mb-1">
                     <a href="categories.php" class="nav-link text-white <?= $current == 'categories'? 'active' : '' ?>" aria-current="page" >
@@ -88,5 +90,12 @@
                     </a>
                 </li>
 
+                <!-- Room -->
+                <li class="nav-item mb-1">
+                    <a href="room.php" class="nav-link text-white <?= $current == 'Room'? 'active' : '' ?>" aria-current="page" >
+                        <i class="fa-solid fa-person-shelter"></i>
+                        Cafetria Room
+                    </a>
+                </li>
             </ul>
         </div>

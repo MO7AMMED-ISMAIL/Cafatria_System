@@ -7,18 +7,21 @@ $id = 1 ;
 include "DataBase/DBCLass.php";
 use DbClass\Table;
 $table = new Table('users');
-
+$room = new Table('rooms');
 include "include/sidebar.php";
 include "include/navbar.php";
 
 try {
     $users = $table->Select(['*']);
+    $rooms = $room->Select(['*']);
+    
 } catch (Exception $e) {
     $users=[];
 }
 
 // Handle different actions based on GET parameters
-if (isset($_GET['add'] )== 'User') {
+if (isset($_GET['add'] )) {
+    
     include "users/addform.php";
 } elseif(isset($_GET['edit'])){
     $userId = $_GET['edit'];
