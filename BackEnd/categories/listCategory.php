@@ -30,7 +30,7 @@ if (isset($_SESSION["message"])) {
         <tbody id="categoryTableBody">
           <?php
 
-          foreach ($selected as $rows){
+          foreach ($selected as $idx=> $rows){
               echo "<tr>";
               foreach ($rows as $key=>$value){
                   echo "<td class='text-center' scope='col'>";
@@ -38,8 +38,8 @@ if (isset($_SESSION["message"])) {
                   echo "</td>";
               }
               echo "<td class='d-flex justify-content-around'>
-                    <a class='btn btn-outline-primary'>Update</a>
-                    <a class='btn btn-outline-danger'>Delete</a>
+                    <a href='categories.php?edit=1' class='btn btn-outline-primary'>Update</a>
+                    <a href='categories/delete.php?id={$selected[$idx]['id']}' class='btn btn-outline-danger'>Delete</a>
                     </td>";
               echo "</tr>";
           }

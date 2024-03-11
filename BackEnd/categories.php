@@ -10,12 +10,14 @@ use DbClass\Table;
 $table = new Table("categories");
 $table->conn();
 $selected=$table->Select(["*"]);
+$selected=$selected->fetchAll(PDO::FETCH_ASSOC);
 
 if(isset($_GET['add'])){
+   $_SESSION['from']=$_GET['add'];
    include "categories/AddCategoryForm.php";
 }
 elseif(isset($_GET['edit'])){
-   echo "edit";
+   include "categories/editCategory.php";
 }else{
    include "categories/listCategory.php";
 }

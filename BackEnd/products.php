@@ -16,7 +16,7 @@ $selected=$table->SelectInnerJoinTable("categories",["category_name"],["*"],"cat
 $category_table=new Table("categories");
 $category_table->conn();
 $cat_selected = $category_table->Select(["category_name", "id"]);
-
+$cat_selected=$cat_selected->fetchAll(PDO::FETCH_ASSOC);
 
 if(isset($_GET['add']) == 'product'){
     echo"<div class='container'>";
