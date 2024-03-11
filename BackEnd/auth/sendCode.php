@@ -27,6 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $col = ['email'];
         $cond = "email = '$email'";
         $result = $admins->Select($col,$cond);
+        $result = $result->fetch(\PDO::FETCH_ASSOC);
         if(count($result) == 0){
             throw new Exception("The Email is not found");
         }

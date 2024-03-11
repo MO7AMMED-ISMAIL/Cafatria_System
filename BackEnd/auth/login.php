@@ -24,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $col = ['id','email', 'password'];
         $cod = "email='$email' AND password='$password'";
         $admin = $admins->Select($col,$cod);
-        $admin = $admin[0];
+        $admin = $admin->fetch(\PDO::FETCH_ASSOC);
         $_SESSION['id'] = $admin['id'];
         header("location: ../index.php");
         exit();
