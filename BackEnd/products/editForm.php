@@ -2,6 +2,7 @@
 $productId = $_GET['edit'];
 $cond = "id = $productId";
 $SelectProduct = $table->Select(["*"],$cond);
+$SelectProduct=$SelectProduct->fetchAll(PDO::FETCH_ASSOC);
 echo "<h4 class='display-6 text-center mb-5' style='font-weight: bolder'>Edit Product</h4>";
 ?>
 

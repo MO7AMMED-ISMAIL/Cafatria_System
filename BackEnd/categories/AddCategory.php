@@ -12,9 +12,10 @@ $table->conn();
 
 $table->Create($_POST);
 
+//successfully created
 if ($from=="product"){
     header("Location:../products.php?add=product");
 }
-
-//successfully created
-header("Location:../categories.php?add=category");
+else {
+    header("Location:../categories.php?add=category");
+}
