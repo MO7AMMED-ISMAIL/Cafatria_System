@@ -12,12 +12,12 @@ $table->conn();
 $selected=$table->Select(["*"]);
 
 if(isset($_GET['add']) == 'category'){
-   echo "add";
+   include "categories/AddCategoryForm.php";
 }
 elseif(isset($_GET['edit'])){
    echo "edit";
 }else{
-   echo "list";
+   include "categories/listCategory.php";
 }
 
 include "include/footer.php";

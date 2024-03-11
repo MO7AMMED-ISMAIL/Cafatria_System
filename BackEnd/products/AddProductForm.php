@@ -1,56 +1,54 @@
 <?php
-echo "<h4 class='display-6 text-center mb-5' style='font-weight: bolder'>Add New Product</h4>";
+echo "<h2 class='text-center mb-5'>Add New Product</h2>";
 ?>
 
-<form class="container mt-5 needs-validation" style="overflow: scroll" action="products/AddProduct.php" method="post" enctype="multipart/form-data" novalidate>
+<form class="container mt-5 needs-validation" action="products/AddProduct.php" method="post" enctype="multipart/form-data" novalidate>
     <div class="row">
         <div class="col-md-6 mb-3">
-            <label for="name" class="form-label">Product</label>
+            <label for="name" class="form-label">Product Name</label>
             <input type="text" name="name" class="form-control" id="name" required>
             <div class="invalid-feedback">
                 Please provide a product name.
             </div>
         </div>
         <div class="col-md-6 mb-3">
-            <label for="description" class="form-label">Description</label>
-            <input type="text" name="description" class="form-control" id="description">
-            <!-- No validation for description field -->
+            <label for="description" class="form-label">Description (Optional)</label>
+            <textarea name="description" class="form-control" id="description" rows="3"></textarea>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 mb-3">
             <label for="price" class="form-label">Price</label>
-            <input type="number" name="price" class="form-control" id="price" min="5" required>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" name="price" class="form-control" id="price" min="5" required>
+            </div>
             <div class="invalid-feedback">
                 Please enter a price greater than or equal to 5.
             </div>
         </div>
         <div class="col-md-6 mb-3">
             <label for="category_id" class="form-label">Category:</label>
-            <div class="input-group">
-                <select id="category_id" name="category_id" class="form-select" required>
-                    <?php
-
-                    if (empty($cat_selected)) {
-                        echo "<option value='default' disabled>";
-                        echo "default";
-                        echo "</option>";
-                    } else {
-                        if (!is_array($cat_selected)) {
-                            // Only one row returned, so convert it to an array
-                            $cat_selected = [$cat_selected];
-                        }
-
-                        foreach ($cat_selected as $row) {
-                            echo "<option value='{$row['id']}'>";
-                            echo $row['category_name'];
-                            echo "</option>";
-                        }
+            <select id="category_id" name="category_id" class="form-select" required>
+                <?php
+                if (empty($cat_selected)) {
+                    echo "<option value='default' disabled>";
+                    echo "default";
+                    echo "</option>";
+                } else {
+                    if (!is_array($cat_selected)) {
+                        // Only one row returned, so convert it to an array
+                        $cat_selected = [$cat_selected];
                     }
-                    ?>
-                </select>
-                <button class="btn btn-primary" type="button" id="addCategoryBtn">Add Category</button>
-            </div>
+
+                    foreach ($cat_selected as $row) {
+                        echo "<option value='{$row['id']}'>";
+                        echo $row['category_name'];
+                        echo "</option>";
+                    }
+                }
+                ?>
+            </select>
             <div class="invalid-feedback">
                 Please select a category.
             </div>
@@ -75,42 +73,26 @@ echo "<h4 class='display-6 text-center mb-5' style='font-weight: bolder'>Add New
             </div>
         </div>
     </div>
-    <button class="btn btn-success me-2" type="submit">Add</button>
-    <button class="btn btn-danger" type="reset">Reset</button>
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-success me-2" type="submit">Add Product</button>
+        <button class="btn btn-danger" type="reset">Reset</button>
+    </div>
 </form>
 
 <script>
-    // Custom validation for fields excluding description
-    (function () {
+    // Simplified validation for all fields using Bootstrap's built-in validation
+    (function() {
         'use strict';
-
         var forms = document.querySelectorAll('.needs-validation');
-
         Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
+            .forEach(function(form) {
+                form.addEventListener('submit', function(event) {
                     if (!form.checkValidity()) {
                         event.preventDefault();
                         event.stopPropagation();
                     }
-
-                    // Validate only non-description fields
-                    var descriptionField = document.getElementById('description');
-                    if (!descriptionField.value) {
-                        descriptionField.classList.remove('is-valid');
-                        descriptionField.classList.add('is-invalid');
-                    } else {
-                        descriptionField.classList.remove('is-invalid');
-                        descriptionField.classList.add('is-valid');
-                    }
-
                     form.classList.add('was-validated');
                 }, false);
             });
-
-        // Add Category Button Click Event
-        document.getElementById('addCategoryBtn').addEventListener('click', function() {
-            // Your code to handle adding a new category goes here
-        });
     })();
 </script>
