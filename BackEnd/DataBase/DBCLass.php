@@ -57,7 +57,7 @@ class Table extends Database{
         $statement = "SELECT " . implode(",", $columns) . " FROM {$this->TbName} WHERE $condition";
         try {
             $selected = parent::connect()->query($statement);
-            return $selected->fetchAll(\PDO::FETCH_ASSOC);
+            return $selected;
         } catch (PDOException $e){
             throw new Exception("PDO Error: " . $e->getMessage());
         }

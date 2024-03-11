@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         ];
         $admins->Create($DataInsert);
 
-        header("location: ./admin.php");
+        header("location: ../admin.php");
         exit();
     }catch(Exception $e){
         $_SESSION['err'] = $e->getMessage();
