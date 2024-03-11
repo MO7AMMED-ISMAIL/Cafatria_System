@@ -35,7 +35,7 @@
                             <td><?=$id++?></td>
                             <td><?=$order['user_id']?></td>
                             <td><?=$order['total_price']?></td>
-                            <td><?=$order['room_number']?></td>
+                            <td><?=$order['room_id']?></td>
                             <td><?=$order['status']?></td>
                             <td><?=$order['order_date']?></td>
                             <td>

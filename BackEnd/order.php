@@ -21,7 +21,8 @@
         'total_price_after_tax',
         'status',
         'notes',
-        'order_date'
+        'order_date',
+        'room_id'
     ];
 
     $result = $orders->Select($col);

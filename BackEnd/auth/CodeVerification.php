@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     if($_SESSION['code'] == $code){
         unset($_SESSION['checkCode']);
-        header("Location: ./resetPassword.php");
+        header("Location: ./resetPassword.php?reset");
     }else{
         $_SESSION['checkCode'] = "The code you entered is not valid";
         header("Location: ./checkCodeForm.php");
