@@ -14,6 +14,6 @@ if(isset($_GET['id'])) {
         echo "Error: " . $e->getMessage();
     }
 } else {
-    echo "User ID is not provided.";
+    header("Location: ../404.php");
 }
 ?>

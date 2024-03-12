@@ -1,3 +1,9 @@
+<?php
+    if(!isset($_SESSION['id'])){
+        header("location: ../404.php");
+    }
+?>
+
 <div class="container-fluid">
     <!-- DataTales Example -->
     <?php

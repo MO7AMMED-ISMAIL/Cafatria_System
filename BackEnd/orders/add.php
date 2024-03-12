@@ -64,5 +64,7 @@
             header("location: ../order.php?add=Orders");
             exit();
         }
+    }else{
+        header("Location: ../404.php");
     }
 ?>

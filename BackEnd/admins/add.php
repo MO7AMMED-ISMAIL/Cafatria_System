@@ -41,6 +41,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         header("location: ../users.php?add=User");
         exit();
     }
+}else{
+    header("location: ../404.php");
 }
 
 ?>

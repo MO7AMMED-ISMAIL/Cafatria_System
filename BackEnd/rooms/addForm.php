@@ -3,8 +3,7 @@
         $_SESSION['token'] = bin2hex(random_bytes(32));
         $_SESSION['token_expire'] = time() + 3600 ;
     }else{
-        header("location: ./room.php");
-        exit();
+        header("Location: ../404.php");
     }
     
 ?>

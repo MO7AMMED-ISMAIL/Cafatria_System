@@ -38,5 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
         header("Location: ../users.php?edit=$id");
         exit();
     }
+}else{
+    header("Location: ../404.php");
 }
 ?>

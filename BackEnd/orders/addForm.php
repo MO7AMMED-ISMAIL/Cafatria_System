@@ -1,9 +1,9 @@
 <?php
-    if(isset($_GET['add']) == 'orders'){
+    if(isset($_GET['add'])){
         $_SESSION['token'] = bin2hex(random_bytes(32));
         $_SESSION['token_expire'] = time() + 3600 ;
     }else{
-        header("location: ../order.php");
+        header("location: ../404.php");
         exit();
     }
 ?>

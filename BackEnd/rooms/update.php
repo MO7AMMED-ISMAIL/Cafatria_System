@@ -36,6 +36,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         exit();
     }
     
+}else{
+    header("Location: ../404.php");
 }
 
 
