@@ -10,12 +10,10 @@
     $orders = new Table('orders');
     $users = new Table('users');
     $products = new Table('products');
-    $rooms = new Table('rooms');
-    $users = new Table('users');
     include "include/sidebar.php";
     include "include/navbar.php";
 
-    /*$col = [
+    $col = [
         'id',
         'user_id',
         'total_price',
@@ -24,11 +22,10 @@
         'status',
         'notes',
         'order_date'
-    ];*/
+    ];
 
-    $result = $orders->Select(['*']);
+    $result = $orders->Select($col);
     $users_result = $users->Select(['id', 'username']);
-    $rooms_result = $rooms->Select(['id', 'room_number']);
     $products_result = $products->Select(['id', 'name', 'price', 'picture']);
 
     

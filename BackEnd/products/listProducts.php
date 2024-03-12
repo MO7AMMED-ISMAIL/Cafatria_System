@@ -13,8 +13,8 @@ if (isset($_SESSION["message"])) {
 
 
 <div class="container">
-    <h3 class="text-center text-dark" style="font-weight: bolder">Products</h3>
-    <a class="btn btn-success mt-3 mb-4 text-decoration-none text-white" href="./products.php?add=product">Add New Product</a>
+    <h3 class="text-center display-6 text-dark" style="font-weight: bolder">Products List</h3>
+    <a class="btn btn-primary mt-1 mb-2 text-decoration-none col offset-10 text-white" href="./products.php?add=product">Add Product</a>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>

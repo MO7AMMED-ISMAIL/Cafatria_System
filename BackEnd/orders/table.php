@@ -20,7 +20,7 @@
                     <th>ID</th>
                     <th>Username</th>
                     <th>Total Price</th>
-                    <th>room Number</th>
+                    <th>Room Number</th>
                     <th>Status</th>
                     <th>Order Date</th>
                     <th>Action</th>
@@ -34,22 +34,13 @@
                         <tr>
                             <td><?=$id++?></td>
                             <td><?=$order['user_id']?></td>
-                            <td><?=$order['total_price']?> $</td>
-                            <td><?=$order['room_id']?></td>
-                            <td>
-                                <?php if($order['status'] == 'Done') {?>
-                                    <span class="badge text-bg-success"><?=$order['status']?></span>
-                                <?php } elseif ($order['status'] == 'Processing'){ ?>
-                                    <span class="badge text-bg-warning"><?=$order['status']?></span>
-
-                                <?php } else { ?>
-                                    <span class="badge text-bg-danger"><?=$order['status']?></span>
-                                <?php } ?>
-                            </td>
+                            <td><?=$order['total_price']?></td>
+                            <td><?=$order['room_number']?></td>
+                            <td><?=$order['status']?></td>
                             <td><?=$order['order_date']?></td>
                             <td>
                                 <?php if ($order['status'] == 'Processing') {?>
-                                    <a class="btn btn-outline-danger" href="orders/delete.php?order_id=<?=$order['id']?>">Cancel</a>
+                                    <a class="btn btn-danger" href="orders/delete.php?order_id=<?=$order['id']?>">Cancel</a>
                                 <?php }?>
                             </td>
                         </tr>

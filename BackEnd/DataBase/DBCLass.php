@@ -57,7 +57,7 @@ class Table extends Database{
         $statement = "SELECT " . implode(",", $columns) . " FROM {$this->TbName} WHERE $condition";
         try {
             $selected = parent::connect()->query($statement);
-            return $selected->fetchAll(\PDO::FETCH_ASSOC);
+            return $selected;
         } catch (PDOException $e){
             throw new Exception("PDO Error: " . $e->getMessage());
         }
@@ -111,7 +111,7 @@ class Table extends Database{
 
     public function inputData($data) { 
         if(strlen($data) <= 0){
-            throw new Exception("The input {$data} is empty");
+            throw new Exception("The input is empty");
         }
         $data = trim($data);  
         $data = stripslashes($data);  
