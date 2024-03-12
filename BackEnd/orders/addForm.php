@@ -66,15 +66,13 @@
                                 </select>
                             </div>
 
-                            <!-- Room -->
+                            <!-- room -->
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Room</span>
-                                <select class="form-control form-select" name="room_number" aria-label="Select room number">
-                                    <option disabled>Select Room Number</option>
-                                    <?php
-                                    $rooms = ['Cafeteria', 'Room One (R1)', 'Room Two (R2)', 'Room Three (R3)', 'Room Four (R4)'];
-                                    foreach($rooms as $room) {?>
-                                        <option value="<?=$room?>"><?=$room?></option>
+                                <span class="input-group-text" id="basic-addon1">room</span>
+                                <select class="form-control form-select" name="room" aria-label="Select room number">
+                                    <option disabled>Select room Number</option>
+                                    <?php foreach($rooms_result as $room) {?>
+                                        <option value="<?=$room['id']?>"><?=$room['id']?></option>
                                     <?php }?>
                                 </select>
                             </div>

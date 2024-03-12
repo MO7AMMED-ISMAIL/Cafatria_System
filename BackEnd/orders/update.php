@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $id = $update->inputData($_POST['id']);
         $username = $update->isValidUsername($_POST['username']);
         $email = $update->ValidateEmail($_POST['email']);
-        $room = $update->inputData($_POST['room']);
+        $room_id = $update->inputData($_POST['room_id']);
         $ext = $update->inputData($_POST['ext']);
         $img = $update->Upload($_FILES['img']);
         //update
@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             'password'=>$password,
             'email'=>$email,
             'profile_picture'=>$img,
-            'room_number'=>$room,
+            'room_id'=>$room_id,
             'extra_Number'=>$ext
         ];
         $updat = $update->Update($DataUpdate,'id',$id);
