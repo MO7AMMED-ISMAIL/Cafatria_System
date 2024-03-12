@@ -25,6 +25,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $cod = "email='$email' AND password='$password'";
         $admin = $admins->Select($col,$cod);
         $admin = $admin->fetch(\PDO::FETCH_ASSOC);
+        if(empty($admin)){
+            throw new Exception("");
+        }
         $_SESSION['id'] = $admin['id'];
         header("location: ../index.php");
         exit();
