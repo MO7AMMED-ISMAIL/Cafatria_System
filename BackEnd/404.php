@@ -22,7 +22,7 @@
                     <p class="lead">
                         The page you’re looking for doesn’t exist.
                     </p>
-                    <a href="index.php" class="btn btn-primary w-75">Go Home</a>
+                    <a href="./index.php" class="btn btn-primary w-75">Go Home</a>
                 </div>
 
         </div>

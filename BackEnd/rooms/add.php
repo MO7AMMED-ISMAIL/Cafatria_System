@@ -34,6 +34,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         header("location: ../room.php?add=Room");
         exit();
     }
+}else{
+    header("Location: ../404.php");
 }
 
 ?>

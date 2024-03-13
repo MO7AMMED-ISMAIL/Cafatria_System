@@ -4,7 +4,7 @@ use DbClass\Table;
 
 
 if(!isset($_GET['id'])){
-    header("location: ../admin.php");
+    header("location: ../404.php");
 }
 
 try{
@@ -13,7 +13,7 @@ try{
     $delAdmin->Delete("id = $id");
     header("location: ../admin.php");
 }catch(Exception $e){
-    header("location: ../404.html");
+    header("location: ../404.php");
 }
 
 ?>

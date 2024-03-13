@@ -1,3 +1,10 @@
+<?php
+    if(!isset($_SESSION['id'])){
+        if(!isset($_SESSION['id'])){
+        header("location: ../404.php");
+    }
+}
+?>
 <div class="container text-black"> <!-- Set the text color to black -->
         <h1 class="text-center mb-5">All Users</h1> <!-- Display "All Users" at the top of the page -->
         <div class="row justify-content-center">

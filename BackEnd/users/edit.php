@@ -4,6 +4,8 @@
         $id = $_GET['edit'];
         $_SESSION['token'] = bin2hex(random_bytes(32));
         $_SESSION['token_expire'] = time() + 3600 ;
+    }else{
+        header("Location: ../404.php");
     }
 ?>
     <div class="container mt-5">

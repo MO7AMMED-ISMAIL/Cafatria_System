@@ -180,45 +180,18 @@ class Table extends Database{
         }
     }
 
+    public function UserOrders($userId){
+        $sql = "SELECT DISTINCT o.status, o.order_date, o.tax, ot.quantity, p.name, p.picture, p.price  FROM $this->TbName AS o 
+        JOIN order_items AS ot ON o.id = ot.order_id
+        JOIN products AS p ON ot.product_id = p.id
+        WHERE o.user_id = '$userId' ";
 
-
-
-
-
-
-
-
-
-    public function getOrderDetails($order_id) {
-        // Prepare the SQL statement
-        $statement  = `SELECT
-                    orders.*,
-                    products.name AS product_name,
-                    order_items.id AS item_id,
-                    order_items.product_id,
-                    order_items.product_price,
-                    order_items.quantity,
-                    order_items.total_price AS item_total_price,
-                    order_items.created_at
-                FROM
-                    orders
-                JOIN
-                    order_items ON orders.id = order_items.order_id
-                JOIN
-                    products ON order_items.product_id = products.id -- Joining with the 'products' table
-                WHERE
-                    orders.id = $order_id`;
-        // echo $statement;
-        try {
-            $selected=parent::connect()->query($statement);
-            if(! $selected->rowCount()){
-                throw new Exception("returned Data From Inner Join Is Empty...");
-            }
-            return $selected;
-        }catch (PDOException $e){
-            throw new Exception("PDO Error: ". $e->getMessage() );
-        }
+        $stmt = parent::connect()->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $results;
     }
+    
 }
 
 

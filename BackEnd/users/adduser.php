@@ -44,5 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['err'] = $e->getMessage();
         header("Location: ../users.php?add=User");
     }
+}else{
+    header("Location: ../404.php");
 }
 ?>

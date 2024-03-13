@@ -16,12 +16,10 @@
     include "../BackEnd/DataBase/DBCLass.php";
     use DbClass\Table;
     $orders = new Table('orders');
-    $order_item = new Table('orders_items');
-    $products = new Table('products');
-    /// join with tow table order && order_items
-    $UserOrder = $orders->Select(['*'],"user_id = 3");
-    $UserOrder = $UserOrder->fetchAll(\PDO::FETCH_ASSOC);
-    
+    $userOrder = $orders->UserOrders(4);
+    $totalAmount = 0;
+    // print_r($userOrder);
+    // die();
 ?>
 
 <body>
@@ -29,7 +27,6 @@
         <section class="main-padding">
             <div class="container py-5">
                 <h1>My Orders</h1>
-
                 <form action="" method="GET">
                     <div class="row">
                         <div class="col-sm-6">
@@ -66,50 +63,54 @@
                         </thead>
                         <tbody id="orderTableBody">
                             <?php
-                                foreach($UserOrder as $order){
+                                foreach($userOrder as $order){
                             ?>
                             <tr class="order">
                                 <td>
-                                    <span><?= $order["order_date"]?></span>
+                                    <span><?=$order['order_date']?></span>
                                     <i class="fa fa-plus-square mx-5"></i>
                                 </td>
 
                                 <td class="Processing">
                                     <i class="btn btn-warning"></i>
-                                    <?= $order["status"]?>
+                                    <?=$order['status']?>
                                 </td>
                                 <td>
                                     <span>
-                                        <?= 
-                                        $order['total_price']*$order["tax"]
+                                        <?php
+                                        $totalAmount += $order['price'] * $order['quantity']; 
+                                        echo $order['price'] * $order['quantity'];
                                         ?>
                                     </span> EGP
+                                    
                                 </td>
                                 <td>
                                     <?php
-                                        if($order["status"] == 'Processing'){
+                                        if($order['status'] == "Processing"){
                                     ?>
                                         <a href='#' class='cancel btn btn-danger'>Cancel</a>
                                     <?php }?>
                                 </td>
                             </tr>
+
                             <tr class="cart-item details-hidden">
                                 <td>
                                     <div class="cart-item-details">
                                         <div class="cart-item-info d-flex justify-content-center">
                                             <div class="card shadow position-relative align-items-center mb-3"
                                                 style="width: 15rem;">
-                                                <img class="card-img-top" src="image_url_here" alt="Product Name">
+                                                <img class="card-img-top" src="<?=$order['picture']?>" alt="Product Name">
                                                 <div class="card-body text-center">
-                                                    <h5 class="card-title">Product Name</h5>
+                                                    <h5 class="card-title">
+                                                        <?=$order['name']?>
+                                                    </h5>
                                                     <p class="card-text">
                                                         <span
                                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                                                            50.00 EGP</span><br>
-                                                        Quantity: 2<br>
-                                                        Total: 100.00 EGP
+                                                            <?=$order['price']?>EGP</span><br>
+                                                        Quantity: <?=$order['quantity']?><br>
+                                                        Total: <?=$order['price'] * $order['quantity']?> EGP
                                                     </p>
-                                                    
                                                 </div>
                                                 
                                             </div>
@@ -117,21 +118,21 @@
                                     </div>
                                 </td>
 
+                                <!-- end for each UserOrder-->
                             </tr>
-                            <!-- end for each UserOrder-->
-                            <?php }?>
+                            <?php } ?>
+                            
                         </tbody>
                     </table>
 
                     <div class="total-price">
                         <h3>Total</h3>
-                        <h4>EGP <span id="totalAmount">0.00</span></h4>
+                        <h4>EGP <span id="totalAmount">0.00 </span></h4>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-   
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

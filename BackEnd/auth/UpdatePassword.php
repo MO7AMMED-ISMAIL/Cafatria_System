@@ -41,5 +41,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         header("Location: ./resetPassword.php");
         exit();
     }
+}else{
+    header("Location: ../404.php");
 }
 ?>

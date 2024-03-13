@@ -74,6 +74,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         header("Location: ./forgotPassword.php");
         exit();
     }
+}else{
+    header("Location: ../404.php");
 }
 
 ?>

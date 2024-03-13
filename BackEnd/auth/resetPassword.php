@@ -5,8 +5,8 @@ if(isset($_GET['reset'])){
     $_SESSION['token'] = bin2hex(random_bytes(32));
     $_SESSION['token_expire'] = time() + 3600;
 }else{
-    exit("Page is Not Found");
-    header("Location: 404.php");
+    header("Location: ../404.php");
+    exit();
 }
 ?>
 

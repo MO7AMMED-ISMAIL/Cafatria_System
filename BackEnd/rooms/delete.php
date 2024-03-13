@@ -4,7 +4,7 @@ use DbClass\Table;
 
 
 if(!isset($_GET['id'])){
-    header("location: ../admin.php");
+    header("Location: ../404.php");
 }
 
 try{

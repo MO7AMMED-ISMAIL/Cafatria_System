@@ -1,6 +1,8 @@
 <?php
-// Start the session
 session_start();
+if(!isset($_SESSION['id'])){
+    header("location: Auth/LoginForm.php");
+}
 $current ='User';
 $id = 1 ;
 

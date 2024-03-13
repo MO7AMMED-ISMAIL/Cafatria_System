@@ -3,7 +3,7 @@ include "../DataBase/DBCLass.php";
 use DbClass\Table;
 
 if(!isset($_GET['order_id'])){
-    header("location: ./order.php");
+    header("location: ../404.php");
 }
 
 try{
@@ -13,7 +13,7 @@ try{
     $delUser->Delete("id = $id");
     header("location: ../order.php");
 }catch(Exception $e){
-    header("location: ../404.html");
+    header("location: ../404.php");
 }
 
 ?>
