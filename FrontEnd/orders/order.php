@@ -152,22 +152,5 @@
 
 </body>
 
-<!--
-        public function UserOrdersByDate($userId, $start, $end) {
-        $sql = "SELECT DISTINCT o.id, o.status, o.order_date, o.tax, ot.quantity, p.name, p.picture, p.price  
-                FROM $this->TbName AS o 
-                JOIN order_items AS ot ON o.id = ot.order_id
-                JOIN products AS p ON ot.product_id = p.id
-                WHERE o.user_id = '$userId' AND o.order_date BETWEEN '$start' AND '$end'";
-
-        $stmt = parent::connect()->prepare($sql);
-        $stmt->execute();
-        $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        return $results;
-    }
-
-  
-}
--->
 
 </html>
