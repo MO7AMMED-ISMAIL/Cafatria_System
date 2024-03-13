@@ -68,11 +68,11 @@
 
                             <!-- room -->
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">room</span>
+                                <span class="input-group-text" id="basic-addon1">Room</span>
                                 <select class="form-control form-select" name="room" aria-label="Select room number">
                                     <option disabled>Select room Number</option>
                                     <?php foreach($rooms_result as $room) {?>
-                                        <option value="<?=$room['id']?>"><?=$room['id']?></option>
+                                        <option value="<?=$room['id']?>"><?=$room['room_number']?></option>
                                     <?php }?>
                                 </select>
                             </div>
