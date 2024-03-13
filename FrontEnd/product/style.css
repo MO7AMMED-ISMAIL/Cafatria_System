@@ -13,7 +13,7 @@
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000; /* Ensure the navigation bar appears above other content */
+    z-index: 1000; 
 }
 
 @keyframes zoomBackground {
@@ -306,12 +306,12 @@ margin-left: 5px;
 
 
 .about {
-    width:99vw; /* Set width to 100% of viewport width */
+    width:99vw; 
     height:90vh;
     background-image: url("images/footer.jpg");
     background-size: cover;
-    padding:10%; /* Reset padding to ensure full width */
-    margin: 0; /* Reset margin to ensure full width */
+    padding:10%; 
+    margin: 0; 
     position: absolute;
     right:0.1%;
 }

@@ -8,8 +8,8 @@ if(isset($_SESSION['email'])) {
     $user_id = $_SESSION['user_id']; 
 } else {
     
-//    header('Location: login.php');
-//    exit();
+    header('Location: login.php');
+    exit();
 }
 
 
@@ -18,7 +18,7 @@ use DbClass\Table;
 
 $orderTable = new Table('orders');
 
-// the latest order for the user
+//latest order for the user
 $latestOrderQuery = $orderTable->Select(['*'], 'user_id = ' . $user_id . ' ORDER BY order_date DESC LIMIT 1');
 $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
@@ -142,7 +142,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link text-light" href="#Myproduct" style="width:100%;">My Product</a>
+                      <a class="nav-link text-light" href="order.php" style="width:100%;">My 0rder</a>
                      </li>
 
                  </ul>
@@ -173,7 +173,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
         <li><a href="#Home">Home</a></li>
         <li><a href="#Latestorder">Latest Order</a></li>
         <li><a href="#productSection">Product</a></li>
-        <li><a href="#Myproduct">My Product</a></li>
+        <li><a href="order.php">My 0rder</a></li>
     </ul>
    
     <button id="navClose" class="btn btn-outline-light mb-2 ml-2">Close</button>
@@ -196,14 +196,14 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
         <div class="row">
             <div class="card-deck" style="width:100%;">
                 <?php 
-                // if latest order exists
+                
             if ($latestOrder) {
                 // order items for the latest order
                  $orderItemsTable = new Table('order_items');
                  $orderItemsQuery = $orderItemsTable->Select(['product_id', 'product_price'], 'order_id = ' . $latestOrder['id']);
                  $orderItems = $orderItemsQuery->fetchAll(PDO::FETCH_ASSOC);
 
-                 // Display order items
+                
                  foreach ($orderItems as $item) {
                  // product details for each order item
                      $productTable = new Table('products');
@@ -329,7 +329,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
             <input type="text" class="form-control" id="totalPrice" name="totalPrice" readonly>
         </div>
 
-        <!-- input for user_id -->
         <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 
         <div class="form-group">
