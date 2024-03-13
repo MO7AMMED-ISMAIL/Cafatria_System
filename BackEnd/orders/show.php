@@ -25,16 +25,16 @@
                                 <?php $product = $products->FindById('id',$orderItem['product_id']);
                                 if ($product) {?>
                                     <div class="col product_card">
-                                        <div class="card shadow position-relative" style="height:180px">
+                                        <div class="card shadow position-relative" style="height:200px">
                                             <img class="card-img-top" style="height: 15vh" src="uploads/<?=$product['picture']?>" alt="...">
-                                            <div class="card-body">
+                                            <div class="card-body text-center">
                                                 <h5 class="card-title text-center"><?=$product['name']?></h5>
-                                                <p class="text-center"></p>
+                                                <p class="badge text-bg-secondary"><?=$orderItem['quantity']?></p>
                                             </div>
                                             <!-- Badge for each product card -->
                                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                                            <?=$orderItem['product_price']?> $
-                                        </span>
+                                                <?=$orderItem['product_price']?> $
+                                            </span>
                                         </div>
                                     </div>
                                 <?php }?>
