@@ -1,3 +1,9 @@
+<?php
+    if(!isset($_SESSION['id'])){
+        header("location: ../404.php");
+    }
+?>
+
 <div class="container-fluid">
     <!-- DataTales Example -->
     <?php
@@ -18,29 +24,39 @@
                 <thead class="table-light">
                 <tr>
                     <th>ID</th>
-                    <th>Username</th>
-                    <th>Total Price</th>
-                    <th>Room Number</th>
-                    <th>Status</th>
                     <th>Order Date</th>
+                    <th>Username</th>
+                    <th>Room</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-                if (!empty($result)) {
-                    foreach($result as $order){
+                if (!empty($orders_result)) {
+                    foreach($orders_result as $order){
                         ?>
                         <tr>
                             <td><?=$id++?></td>
-                            <td><?=$order['user_id']?></td>
-                            <td><?=$order['total_price']?></td>
-                            <td><?=$order['room_id']?></td>
-                            <td><?=$order['status']?></td>
                             <td><?=$order['order_date']?></td>
+                            <td><?=$users->FindById('id',$order['user_id'])['username']?></td>
+                            <td><?=$order['room_number']?></td>
+                            <td><?=$order['total_price']?> <span class="badge-success">$</span></td>
                             <td>
+                                <?php if($order['status'] == 'Done') {?>
+                                    <span class="badge text-bg-success"><?=$order['status']?></span>
+                                <?php } elseif ($order['status'] == 'Processing'){ ?>
+                                    <span class="badge text-bg-warning"><?=$order['status']?></span>
+
+                                <?php } else { ?>
+                                    <span class="badge text-bg-danger"><?=$order['status']?></span>
+                                <?php } ?>
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-success" href="?show=<?=$order['id']?>">Show</a>
                                 <?php if ($order['status'] == 'Processing') {?>
-                                    <a class="btn btn-danger" href="orders/delete.php?order_id=<?=$order['id']?>">Cancel</a>
+                                    <a class="btn btn-outline-danger" href="orders/delete.php?order_id=<?=$order['id']?>">Cancel</a>
                                 <?php }?>
                             </td>
                         </tr>
@@ -62,3 +78,9 @@
 </body>
 
 </html>
+<!--<select class="form-select btn btn-outline-info w-100" aria-label="status">-->
+<!--    --><?php //$orderStatus = ['Processing', 'Out For Delivery', 'Done', 'Cancelled'];
+//    foreach($orderStatus as $status){ ?>
+<!--        <option value="--><?php //=$status?><!--" --><?php //= $order['status'] == $status ? 'selected' : ''?><!--><?php //=$status?><!--</option>-->
+<!--    --><?php //}?>
+<!--</select>-->

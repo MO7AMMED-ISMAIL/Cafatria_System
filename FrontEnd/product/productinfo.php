@@ -45,7 +45,7 @@
                             <a class="nav-link text-light" href="index.php #productSection" style="width:100%;">Product</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="index.php #Myproduct" style="width:100%;">My Product</a>
+                            <a class="nav-link text-light" href="order.php" style="width:100%;">My order</a>
                         </li>
                     </ul>
                 </div>
@@ -64,7 +64,7 @@
          <li><a href="index.php #Home">Home</a></li>
         <li><a href="index.php #Latestorder">Latest Order</a></li>
         <li><a href="index.php #productSection">Product</a></li>
-        <li><a href="index.php #Myproduct">My Product</a></li>
+        <li><a href="order.php">My order</a></li>
     </ul>
    
     <button id="navClose" class="btn btn-outline-light mb-2 ml-2">Close</button>

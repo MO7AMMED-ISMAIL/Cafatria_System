@@ -44,6 +44,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         header("location: registerForm.php");
         exit();
     }
+}else{
+    header("Location: ../404.php");
 }
 
 ?>

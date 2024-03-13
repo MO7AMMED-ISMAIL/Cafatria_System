@@ -39,15 +39,13 @@ $orderTable->Create($orderDetails);
 $orders=$orderTable->Select(["id"])->rowCount();
 
 //prepare order items
-$orderItems=[];
-
 $parsedItems=json_decode($_POST["selectedProductsList"]);
 
 foreach ($parsedItems as $item){
     $itemArray = (array) $item;
 
     $itemArray['order_id'] = $orders;
-
+    $itemArray['total_price']=($itemArray['product_price']*$itemArray['quantity']);
     // insert order item
     $orderItemTable->Create($itemArray);
 }
@@ -57,31 +55,3 @@ foreach ($parsedItems as $item){
 
 
 
-// form submission
-orderForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    updateOrderForm();
-
-    // Serialize selectedProductsList into a JSON string
-    const selectedProductsJSON = JSON.stringify(selectedProductsList);
-
-    // Create a new FormData object
-    const formData = new FormData(orderForm);
-
-    // Append selectedProductsList to the FormData object
-    formData.append('selectedProductsList', selectedProductsJSON);
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'addOrder.php', true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.body.innerHTML = xhr.responseText;
-        } else {
-            console.error('Error:', xhr.statusText);
-        }
-    };
-    xhr.onerror = function() {
-        console.error('Request failed');
-    };
-    xhr.send(formData);
-});

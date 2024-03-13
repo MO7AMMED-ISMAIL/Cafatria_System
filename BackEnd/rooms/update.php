@@ -2,10 +2,8 @@
 include "../DataBase/DBCLass.php";
 use DbClass\Table;
 session_start();
-$update = new Table('admins');
+$update = new Table('rooms');
 
-// print_r($_POST);
-// die();
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     if(!isset($_POST['token']) || !isset($_SESSION['token'])){
@@ -22,26 +20,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     try{
         
         $id = $update->inputData($_POST['id']);
-        $username = $update->isValidUsername($_POST['username']);
-        $email = $update->ValidateEmail($_POST['email']);
-        $img = $update->Upload($_FILES['img']);
+        $roomNumber = $update->inputData($_POST['room_number']);
+        $extraData = $update->inputData($_POST['ext']);
         //update
         $DataUpdate = [
-            "username"=>$username,
-            "email"=>$email,
-            "profile_picture"=>$img
+            "room_number"=>$roomNumber,
+            "ext"=>$extraData,
         ];
         $updat = $update->Update($DataUpdate,'id',$id);
-        header("location: ../admin.php");
+        header("location: ../room.php");
         exit();
     }catch(Exception $e){
         $_SESSION['err'] = $e->getMessage();
-        header("Location: ../admin.php?edit=$id");
+        header("Location: ../room.php?edit=$id");
         exit();
     }
     
 }else{
-    header("location: ../404.php");
+    header("Location: ../404.php");
 }
 
 

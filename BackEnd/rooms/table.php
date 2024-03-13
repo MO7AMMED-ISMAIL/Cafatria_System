@@ -7,7 +7,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <a href="?add=Admin" class="btn btn-primary">Add</a>
+            <a href="?add=Room" class="btn btn-primary">Add</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -15,24 +15,22 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Image</th>
+                            <th>Room Number</th>
+                            <th>Extra Data</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php   
-                        foreach($result as $admin){
+                        foreach($rooms as $room){
                     ?>
                         <tr>
                             <td><?=$id++?></td>
-                            <td><?=$admin['username']?></td>
-                            <td><?=$admin['email']?></td>
-                            <td><img src="uploads/<?=$admin['profile_picture']?>"></td>
+                            <td><?=$room['room_number']?></td>
+                            <td><?=$room['ext']?></td>
                             <td>
-                                <a href="?edit=<?=$admin['id']?>" class="btn btn-outline-primary">Edit</a>
-                                <a href="admins/delete.php?id=<?=$admin['id']?>" class="btn btn-outline-danger">Delete</a>
+                                <a href="?edit=<?=$room['id']?>" class="btn btn-outline-primary">Edit</a>
+                                <a href="rooms/delete.php?id=<?=$room['id']?>" class="btn btn-outline-danger">Delete</a>
                             </td>
                         </tr>
                         <?php }?>

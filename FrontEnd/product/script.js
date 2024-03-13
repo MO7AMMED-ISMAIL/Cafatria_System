@@ -1,11 +1,3 @@
-// Product Selection and Order during click
-document.addEventListener('DOMContentLoaded', function() {
-
-});
-
-
-
-
 //selected product at form
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -18,40 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('click', function() {
             const productName = card.querySelector('.card-title').innerText;
             const productPrice = parseFloat(card.querySelector('.card-text').innerText.split(': ')[1]);
-            const productCards = document.querySelectorAll('.card');
-            const selectedProductName = document.getElementById('selectedProductName');
-            const selectedProductPrice = document.getElementById('selectedProductPrice');
-            const orderButton = document.getElementById('orderButton');
-
-            let selectedProduct = null;
-
-            productCards.forEach(function(card) {
-                card.addEventListener('click', function() {
-                    const productName = card.querySelector('.card-title').innerText;
-                    const productPrice = parseFloat(card.querySelector('.card-text').innerText.split(': ')[1]);
-                    const productId = card.querySelector('.product-id').value; // Retrieve product ID
-                    const user_id=document.querySelector(".user_id");
-                    selectedProductName.innerText = productName;
-                    selectedProductPrice.innerText = '$' + productPrice.toFixed(2);
-                    console.log(selectedProduct);
-                    console.log(selectedProductName);
-                    orderButton.disabled = false;
-
-                    selectedProduct = {
-                        user_id:user_id,
-                        product_id: productId,
-                        total_price: productPrice
-                    };
-                });
-            });
+            const productId = card.querySelector('.product-id').value;
             // if product is already selected
             const existingProductIndex = selectedProductsList.findIndex(product => product.name === productName);
             if (existingProductIndex !== -1) {
 
                 selectedProductsList[existingProductIndex].quantity++;
             } else {
-                // Add new one to list
-                selectedProductsList.push({product_id:productId , total_price: productPrice, quantity: 1 });
+                // Add new one
+                selectedProductsList.push({product_id:productId, product_price: productPrice, quantity: 1 });
             }
 
             

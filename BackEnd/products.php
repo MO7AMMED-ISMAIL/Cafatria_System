@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['id'])){
+    header("location: Auth/LoginForm.php");
+}
 $current="products";
 include "./DataBase/DBCLass.php";
 include "include/sidebar.php";
