@@ -13,7 +13,7 @@
 </head>
 
 <?php
-    include "../BackEnd/DataBase/DBCLass.php";
+    include "../../BackEnd/DataBase/DBCLass.php";
     use DbClass\Table;
     $orders = new Table('orders');
     $userOrder = $orders->UserOrders(4);
@@ -72,13 +72,14 @@
                                 </td>
 
                                 <td class="Processing">
-                                     <?php if ($order['status'] == 'Processing') { ?>
-                                      <i class="btn btn-warning"></i>
-                                      <?=$order['status']?>
-                                      <?php } else { ?>
-                                      <?=$order['status']?>
-                                       <?php } ?>
-                                        </td>
+                                    <?php 
+                                        if ($order['status'] == 'Processing') { ?>
+                                        <i class="btn btn-warning"></i>
+                                        <?=$order['status']?>
+                                        <?php } else { ?>
+                                        <?=$order['status']?>
+                                        <?php } ?>
+                                </td>
 
                                 <td>
                                     <span>
@@ -89,12 +90,13 @@
                                     </span> EGP
                                     
                                 </td>
-                               
                                 <td>
-        <?php if ($order["status"] == 'Processing') { ?>
-            <a href='cancel_order.php?order_id=<?= $order['id'] ?>' class='cancel btn btn-danger'>Cancel</a>
-        <?php } ?>
-    </td>
+                                    <?php 
+                                        if ($order["status"]=='Processing') { 
+                                    ?>
+                                        <a href='cancel_order.php?order_id=<?= $order['id'] ?>' class='cancel btn btn-danger'>Cancel</a>
+                                    <?php } ?>
+                                </td>
                             </tr>
 
                             <tr class="cart-item details-hidden">
