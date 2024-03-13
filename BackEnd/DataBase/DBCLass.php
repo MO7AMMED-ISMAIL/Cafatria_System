@@ -75,7 +75,7 @@ class Table extends Database{
         }
     }
 
-    public function SelectInnerJoinTable($tableName,array $firstTableColumns,array $secondTableColumns,$condition){
+    public function SelectInnerJoinTable($tableName,array $firstTableColumns,array $secondTableColumns,$condition, $condition2 = 1){
         $firstRequiredColumns=array();
         $secondRequiredColumns=array();
 
@@ -87,7 +87,7 @@ class Table extends Database{
         foreach ($secondTableColumns as $col){
             $secondRequiredColumns[]="$this->TbName"."."."$col";
         }
-        $statement="SELECT ".implode(",",$firstRequiredColumns).",".implode(",",$secondRequiredColumns)." FROM $this->TbName inner join $tableName on $condition";
+        $statement="SELECT ".implode(",",$firstRequiredColumns).",".implode(",",$secondRequiredColumns)." FROM $this->TbName inner join $tableName on $condition where $condition2";
         // echo $statement;
         try {
             $selected=parent::connect()->query($statement);
@@ -179,7 +179,46 @@ class Table extends Database{
             throw new Exception("Not Found Table Name");
         }
     }
-    
+
+
+
+
+
+
+
+
+
+
+    public function getOrderDetails($order_id) {
+        // Prepare the SQL statement
+        $statement  = `SELECT
+                    orders.*,
+                    products.name AS product_name,
+                    order_items.id AS item_id,
+                    order_items.product_id,
+                    order_items.product_price,
+                    order_items.quantity,
+                    order_items.total_price AS item_total_price,
+                    order_items.created_at
+                FROM
+                    orders
+                JOIN
+                    order_items ON orders.id = order_items.order_id
+                JOIN
+                    products ON order_items.product_id = products.id -- Joining with the 'products' table
+                WHERE
+                    orders.id = $order_id`;
+        // echo $statement;
+        try {
+            $selected=parent::connect()->query($statement);
+            if(! $selected->rowCount()){
+                throw new Exception("returned Data From Inner Join Is Empty...");
+            }
+            return $selected;
+        }catch (PDOException $e){
+            throw new Exception("PDO Error: ". $e->getMessage() );
+        }
+    }
 }
 
 

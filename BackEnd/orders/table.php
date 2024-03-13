@@ -18,24 +18,25 @@
                 <thead class="table-light">
                 <tr>
                     <th>ID</th>
-                    <th>Username</th>
-                    <th>Total Price</th>
-                    <th>Room Number</th>
-                    <th>Status</th>
                     <th>Order Date</th>
+                    <th>Username</th>
+                    <th>Room</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-                if (!empty($result)) {
-                    foreach($result as $order){
+                if (!empty($orders_result)) {
+                    foreach($orders_result as $order){
                         ?>
                         <tr>
                             <td><?=$id++?></td>
+                            <td><?=$order['order_date']?></td>
                             <td><?=$users->FindById('id',$order['user_id'])['username']?></td>
-                            <td><?=$order['total_price']?> <span class="badge-success">$</span></td>
                             <td><?=$order['room_number']?></td>
+                            <td><?=$order['total_price']?> <span class="badge-success">$</span></td>
                             <td>
                                 <?php if($order['status'] == 'Done') {?>
                                     <span class="badge text-bg-success"><?=$order['status']?></span>
@@ -46,10 +47,10 @@
                                     <span class="badge text-bg-danger"><?=$order['status']?></span>
                                 <?php } ?>
                             </td>
-                            <td><?=$order['order_date']?></td>
-                            <td class="text-center">
+                            <td>
+                                <a class="btn btn-outline-success" href="?show=<?=$order['id']?>">Show</a>
                                 <?php if ($order['status'] == 'Processing') {?>
-                                    <a class="btn btn-outline-danger w-100" href="orders/delete.php?order_id=<?=$order['id']?>">Cancel</a>
+                                    <a class="btn btn-outline-danger" href="orders/delete.php?order_id=<?=$order['id']?>">Cancel</a>
                                 <?php }?>
                             </td>
                         </tr>
