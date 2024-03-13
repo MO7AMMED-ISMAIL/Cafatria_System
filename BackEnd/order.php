@@ -8,6 +8,7 @@
     include "DataBase/DBCLass.php";
     use DbClass\Table;
     $orders = new Table('orders');
+    $rooms = new Table('rooms');
     $users = new Table('users');
     $products = new Table('products');
     include "include/sidebar.php";
@@ -24,11 +25,11 @@
         'order_date'
     ];
 
-    $result = $orders->Select($col);
+    $result=$orders->SelectInnerJoinTable("rooms",["room_number"],["*"],"rooms.id=orders.room_id");
     $users_result = $users->Select(['id', 'username']);
     $products_result = $products->Select(['id', 'name', 'price', 'picture']);
+    $rooms_result = $rooms->Select(['id', 'room_number']);
 
-    
 
     if(isset($_GET['add']) == 'orders'){
         include "orders/addForm.php";
