@@ -8,8 +8,8 @@ if(isset($_SESSION['email'])) {
     $user_id = $_SESSION['user_id']; 
 } else {
     
-//    header('Location: login.php');
-//    exit();
+    header('Location: login.php');
+    exit();
 }
 
 
@@ -295,7 +295,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
    <!-- Order form -->
    <div class="col-md-5 my-5 my-md-0 col-12">
     <h2>Order Details</h2>
-    <form id="orderForm" class="order-form formbtn" action="" method="post">
+    <form id="orderForm" class="order-form formbtn" action="addOrder.php" method="post">
         <div class="form-group">
             <label for="selectedProducts">Selected Products</label>
             <div id="selectedProducts"></div>
@@ -330,7 +330,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
         </div>
 
         <!-- input for user_id -->
-        <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+        <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id; ?>">
 
         <div class="form-group">
             <div class="d-flex flex-column">

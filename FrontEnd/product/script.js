@@ -1,29 +1,6 @@
 // Product Selection and Order during click
 document.addEventListener('DOMContentLoaded', function() {
-    const productCards = document.querySelectorAll('.card');
-    const selectedProductName = document.getElementById('selectedProductName');
-    const selectedProductPrice = document.getElementById('selectedProductPrice');
-    const orderButton = document.getElementById('orderButton');
 
-    let selectedProduct = null;
-
-    productCards.forEach(function(card) {
-        card.addEventListener('click', function() {
-            const productName = card.querySelector('.card-title').innerText;
-            const productPrice = parseFloat(card.querySelector('.card-text').innerText.split(': ')[1]);
-            const productId = card.querySelector('.product-id').value; // Retrieve product ID
-
-            selectedProductName.innerText = productName;
-            selectedProductPrice.innerText = '$' + productPrice.toFixed(2);
-            orderButton.disabled = false;
-
-            selectedProduct = {
-                id: productId,
-                name: productName,
-                price: productPrice
-            };
-        });
-    });
 });
 
 
@@ -41,7 +18,32 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('click', function() {
             const productName = card.querySelector('.card-title').innerText;
             const productPrice = parseFloat(card.querySelector('.card-text').innerText.split(': ')[1]);
+            const productCards = document.querySelectorAll('.card');
+            const selectedProductName = document.getElementById('selectedProductName');
+            const selectedProductPrice = document.getElementById('selectedProductPrice');
+            const orderButton = document.getElementById('orderButton');
 
+            let selectedProduct = null;
+
+            productCards.forEach(function(card) {
+                card.addEventListener('click', function() {
+                    const productName = card.querySelector('.card-title').innerText;
+                    const productPrice = parseFloat(card.querySelector('.card-text').innerText.split(': ')[1]);
+                    const productId = card.querySelector('.product-id').value; // Retrieve product ID
+                    const user_id=document.querySelector(".user_id");
+                    selectedProductName.innerText = productName;
+                    selectedProductPrice.innerText = '$' + productPrice.toFixed(2);
+                    console.log(selectedProduct);
+                    console.log(selectedProductName);
+                    orderButton.disabled = false;
+
+                    selectedProduct = {
+                        user_id:user_id,
+                        product_id: productId,
+                        total_price: productPrice
+                    };
+                });
+            });
             // if product is already selected
             const existingProductIndex = selectedProductsList.findIndex(product => product.name === productName);
             if (existingProductIndex !== -1) {
@@ -49,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 selectedProductsList[existingProductIndex].quantity++;
             } else {
                 // Add new one to list
-                selectedProductsList.push({ name: productName, price: productPrice, quantity: 1 });
+                selectedProductsList.push({product_id:productId , total_price: productPrice, quantity: 1 });
             }
 
             
@@ -82,7 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     selectedProductsContainer.innerHTML = selectedProductsHTML;
     document.getElementById('totalPrice').value = totalPrice.toFixed(2);
-    document.getElementById('orderButton').disabled = false; 
+    document.getElementById('orderButton').disabled = false;
+
+
 }
 
 
@@ -104,16 +108,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    //form submission
-    orderForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        selectedProductsList = [];
-        updateOrderForm();
-    });
+// form submission
+        orderForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            updateOrderForm();
+
+            // Serialize selectedProductsList into a JSON string
+            const selectedProductsJSON = JSON.stringify(selectedProductsList);
+
+            // Create a new FormData object
+            const formData = new FormData(orderForm);
+
+            // Append selectedProductsList to the FormData object
+            formData.append('selectedProductsList', selectedProductsJSON);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'addOrder.php', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.body.innerHTML = xhr.responseText;
+                } else {
+                    console.error('Error:', xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error('Request failed');
+            };
+            xhr.send(formData);
+        });
 
 
 
-    // Clear all products
+
+        // Clear all products
     document.getElementById('removeAllProducts').addEventListener('click', function() {
         selectedProductsList = [];
         updateOrderForm();
