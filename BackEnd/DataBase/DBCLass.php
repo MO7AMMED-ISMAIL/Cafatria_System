@@ -75,7 +75,7 @@ class Table extends Database{
         }
     }
 
-    public function SelectInnerJoinTable($tableName,array $firstTableColumns,array $secondTableColumns,$condition){
+    public function SelectInnerJoinTable($tableName,array $firstTableColumns,array $secondTableColumns,$condition, $condition2 = 1){
         $firstRequiredColumns=array();
         $secondRequiredColumns=array();
 
@@ -87,7 +87,7 @@ class Table extends Database{
         foreach ($secondTableColumns as $col){
             $secondRequiredColumns[]="$this->TbName"."."."$col";
         }
-        $statement="SELECT ".implode(",",$firstRequiredColumns).",".implode(",",$secondRequiredColumns)." FROM $this->TbName inner join $tableName on $condition";
+        $statement="SELECT ".implode(",",$firstRequiredColumns).",".implode(",",$secondRequiredColumns)." FROM $this->TbName inner join $tableName on $condition where $condition2";
         // echo $statement;
         try {
             $selected=parent::connect()->query($statement);
@@ -180,11 +180,11 @@ class Table extends Database{
         }
     }
 
-    public function UserOrders($userId){
-        $sql = "SELECT DISTINCT o.status, o.order_date, o.tax, ot.quantity, p.name, p.picture, p.price  FROM $this->TbName AS o 
+    public function UserOrders($userId,$cond=1){
+        $sql = "SELECT DISTINCT o.id,o.status, o.order_date, o.tax, ot.quantity, p.name, p.picture, p.price  FROM $this->TbName AS o 
         JOIN order_items AS ot ON o.id = ot.order_id
         JOIN products AS p ON ot.product_id = p.id
-        WHERE o.user_id = '$userId' ";
+        WHERE o.user_id = '$userId' AND $cond";
 
         $stmt = parent::connect()->prepare($sql);
         $stmt->execute();

@@ -15,11 +15,19 @@
 <?php
     include "../../BackEnd/DataBase/DBCLass.php";
     use DbClass\Table;
-    $orders = new Table('orders');
-    $userOrder = $orders->UserOrders(4);
+    $userId = isset($_GET['userId']) ? $_GET['userId'] : 4;
     $totalAmount = 0;
-    // print_r($userOrder);
-    // die();
+    if(isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !empty($_GET['end'])){
+        $start = $_GET['start'];
+        $end = $_GET['end'];
+        $orders = new Table('orders');
+        $cond = "o.order_date BETWEEN '$start' AND '$end'";
+        $userOrder = $orders->UserOrders($userId,$cond);
+    } else {
+        $orders = new Table('orders');
+        $userOrder = $orders->UserOrders($userId);
+    }
+    
 ?>
 
 <body>
@@ -27,7 +35,8 @@
         <section class="main-padding">
             <div class="container py-5">
                 <h1>My Orders</h1>
-                <form action="" method="GET">
+                <form action="" method="GET" id="searchForm">
+                    <input type="hidden" name="userId" value="<?=$userId?>" />
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="from-group">
@@ -42,8 +51,10 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="button" class="btn btn-primary" onclick="searchOrders()">Search</button>
+                            <button type="submit" class="btn btn-primary mx-2">Search</button>
+                            <a href="order.php" class="btn btn-danger mt-2">Clear</a>
                         </div>
+                        
                     </div>
                 </form>
             </div>
@@ -88,7 +99,6 @@
                                         echo $order['price'] * $order['quantity'];
                                         ?>
                                     </span> EGP
-                                    
                                 </td>
                                 <td>
                                     <?php 
@@ -118,22 +128,18 @@
                                                         Total: <?=$order['price'] * $order['quantity']?> EGP
                                                     </p>
                                                 </div>
-                                                
                                             </div>
                                         </div>
                                     </div>
                                 </td>
-
-                                <!-- end for each UserOrder-->
                             </tr>
                             <?php } ?>
-                            
                         </tbody>
                     </table>
 
                     <div class="total-price">
                         <h3>Total</h3>
-                        <h4>EGP <span id="totalAmount">0.00 </span></h4>
+                        <h4>EGP <span id="totalAmount"><?= $totalAmount ?></span></h4>
                     </div>
                 </div>
             </div>
@@ -146,6 +152,22 @@
 
 </body>
 
+<!--
+        public function UserOrdersByDate($userId, $start, $end) {
+        $sql = "SELECT DISTINCT o.id, o.status, o.order_date, o.tax, ot.quantity, p.name, p.picture, p.price  
+                FROM $this->TbName AS o 
+                JOIN order_items AS ot ON o.id = ot.order_id
+                JOIN products AS p ON ot.product_id = p.id
+                WHERE o.user_id = '$userId' AND o.order_date BETWEEN '$start' AND '$end'";
+
+        $stmt = parent::connect()->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $results;
+    }
+
+  
+}
+-->
+
 </html>
-
-

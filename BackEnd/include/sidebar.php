@@ -58,14 +58,6 @@
                     </a>
                 </li>
 
-                <!-- Orders -->
-                <li class="nav-item mb-1">
-                    <a href="order.php" class="nav-link text-white <?= $current == 'orders'? 'active' : '' ?>" aria-current="page" >
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        Orders
-                    </a>
-                </li>
-
                 <!-- Product -->
                 <li class="nav-item mb-1">
                     <a href="products.php" class="nav-link text-white <?= $current == 'products'? 'active' : '' ?>" aria-current="page" >
@@ -82,9 +74,17 @@
                     </a>
                 </li>
 
+                <!-- Orders -->
+                <li class="nav-item mb-1">
+                    <a href="order.php" class="nav-link text-white <?= $current == 'orders'? 'active' : '' ?>" aria-current="page" >
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Orders
+                    </a>
+                </li>
+
                 <!-- Checks -->
                 <li class="nav-item mb-1">
-                    <a href="order.php" class="nav-link text-white <?= $current == 'checks'? 'active' : '' ?>" aria-current="page" >
+                    <a href="checks.php" class="nav-link text-white <?= $current == 'checks'? 'active' : '' ?>" aria-current="page" >
                         <i class="fa-regular fa-credit-card"></i>
                         Checkout Order
                     </a>
