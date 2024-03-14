@@ -25,13 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $table->ValidateEmail($_POST["email"]);
         $password = $table->inputData($_POST["pass"]); 
         $room_id = $_POST["room"]; 
+        //$room_ext=$_post["ext"];
         $img = $table->Upload($_FILES['profile_picture']);
         $data = array(
             'username' => $name,
             'email' => $email,
             'password' => $password,
             'profile_picture' => $img,
-            'room_id' =>$room_id
+            'room_id' =>$room_id,
+           // 'room_id'=>$room_ext
         );
         $result = $table->Create($data);
         header("location: ../users.php");
