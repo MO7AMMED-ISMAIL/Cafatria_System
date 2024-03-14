@@ -19,10 +19,8 @@ use DbClass\Table;
 $orderTable = new Table('orders');
 
 //latest order for the user
-$latestOrderQuery = $orderTable->Select(['*'], 'user_id = ' . $user_id . ' ORDER BY order_date DESC LIMIT 1');
+$latestOrderQuery = $orderTable->Select(['*'], "user_id = $user_id AND status = 'Done' ORDER BY order_date DESC LIMIT 1");
 $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
-
-
 ?>
 
 
