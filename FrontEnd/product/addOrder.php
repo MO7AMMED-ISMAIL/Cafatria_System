@@ -29,9 +29,6 @@ try {
     exit();
 }
 
-
-$orders=$orderTable->Select(["id"])->rowCount();
-
 $parsedItems=json_decode($_POST["selectedProductsList"]);
 foreach ($parsedItems as $item) {
 
