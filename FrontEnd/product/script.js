@@ -11,14 +11,15 @@
             const productName = card.querySelector('.card-title').innerText;
             const productPrice = parseFloat(card.querySelector('.card-text').innerText.split(': ')[1]);
             const productId = card.querySelector('.product-id').value;
+
             // if product is already selected
             const existingProductIndex = selectedProductsList.findIndex(product => product.name === productName);
             if (existingProductIndex !== -1) {
 
                 selectedProductsList[existingProductIndex].quantity++;
             } else {
-                // Add new one
-                selectedProductsList.push({product_id:productId, product_price: productPrice, quantity: 1 });
+                // Add new one to list
+                selectedProductsList.push({product_id:productId, name: productName, price: productPrice, quantity: 1 });
             }
 
             
@@ -39,22 +40,53 @@
         const quantitySign = product.quantity > 0 ? '+' : '-';
         //ID to each product
         const productId = `selectedProduct_${index}`;
-        selectedProductsHTML += `
-            <div id="${productId}" class="selected-product">
-                ${product.name} - Quantity: ${quantitySign}${Math.abs(product.quantity)}
-                <button class=" btn btn-primary" style="border-radius:20%;" onclick="changeQuantity('${product.name}', 1)">+</button>
-                <button id="decr" class=" btn btn-danger" style="border-radius:20%;" onclick="changeQuantity('${product.name}', -1)">-</button>
-                - $${totalProductPrice.toFixed(2)}
-                <button class="btn btn-danger close-icon" onclick="removeProduct('${productId}')">×</button>
-            </div>`;
+selectedProductsHTML += `
+    <div id="${productId}" class="selected-product">
+        <input type="hidden" class="product-id" value="${product.product_id}">
+        ${product.name} - Quantity: ${quantitySign}${Math.abs(product.quantity)}
+        <button class="btn btn-primary" style="border-radius:20%;" onclick="changeQuantity('${product.name}', 1)">+</button>
+        <button id="decr" class="btn btn-danger" style="border-radius:20%;" onclick="changeQuantity('${product.name}', -1)">-</button>
+        - $${totalProductPrice.toFixed(2)}
+        <button class="btn btn-danger close-icon" onclick="removeProduct('${productId}')">×</button>
+    </div>`;
+
     });
 
     selectedProductsContainer.innerHTML = selectedProductsHTML;
     document.getElementById('totalPrice').value = totalPrice.toFixed(2);
-    document.getElementById('orderButton').disabled = false;
-
-
+    document.getElementById('orderButton').disabled = false; 
 }
+
+// form submission
+orderForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    updateOrderForm();
+
+    // Serialize selectedProductsList into a JSON string
+    const selectedProductsJSON = JSON.stringify(selectedProductsList);
+
+    
+    const formData = new FormData(orderForm);
+
+    // Append selectedProductsList to the FormData object
+    formData.append('selectedProductsList', selectedProductsJSON);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'addOrder.php', true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.body.innerHTML = xhr.responseText;
+        } else {
+            console.error('Error:', xhr.statusText);
+        }
+    };
+    xhr.onerror = function() {
+        console.error('Request failed');
+    };
+    xhr.send(formData);
+});
+
+
 
 
 
@@ -75,39 +107,8 @@
 
 
 
-// form submission
-        orderForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            updateOrderForm();
 
-            // Serialize selectedProductsList into a JSON string
-            const selectedProductsJSON = JSON.stringify(selectedProductsList);
-
-            // Create a new FormData object
-            const formData = new FormData(orderForm);
-
-            // Append selectedProductsList to the FormData object
-            formData.append('selectedProductsList', selectedProductsJSON);
-
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'addOrder.php', true);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    document.body.innerHTML = xhr.responseText;
-                } else {
-                    console.error('Error:', xhr.statusText);
-                }
-            };
-            xhr.onerror = function() {
-                console.error('Request failed');
-            };
-            xhr.send(formData);
-        });
-
-
-
-
-        // Clear all products
+    // Clear all products
     document.getElementById('removeAllProducts').addEventListener('click', function() {
         selectedProductsList = [];
         updateOrderForm();
