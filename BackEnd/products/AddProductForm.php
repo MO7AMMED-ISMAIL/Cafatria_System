@@ -1,9 +1,33 @@
 <?php
+
+if (isset($_GET['add'])) {
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+    $_SESSION['token_expire'] = time() + 3600;
+} else {
+    header("Location: ../404.php");
+    exit();
+}
+
+if (isset($_SESSION["message"])) {
+    $messageColor = $_SESSION['color'] ?? 'black';
+    $message = $_SESSION["message"];
+    unset($_SESSION["message"]);
+    unset($_SESSION["color"]);
+    echo "<div class='alert alert-dismissible fade show' style='color: $messageColor;' role='alert'>
+            $message
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";
+}
+
+
 echo "<h2 class='text-center mb-5'>Add New Product</h2>";
 ?>
 
 <form class="container mt-5 needs-validation" action="products/AddProduct.php" method="post" enctype="multipart/form-data" novalidate>
     <div class="row">
+        <div class="form-group">
+            <input type="hidden" class="form-control form-control-user" name="token" value="<?=$_SESSION['token']?>">
+        </div>
         <div class="col-md-6 mb-3">
             <label for="name" class="form-label">Product Name</label>
             <input type="text" name="name" class="form-control" id="name" required>
@@ -21,7 +45,7 @@ echo "<h2 class='text-center mb-5'>Add New Product</h2>";
             <label for="price" class="form-label">Price</label>
             <div class="input-group">
                 <span class="input-group-text">$</span>
-                <input type="number" name="price" class="form-control" id="price" min="5" required>
+                <input type="number" name="price" class="form-control" id="price" step="0.01" required>
             </div>
             <div class="invalid-feedback">
                 Please enter a price greater than or equal to 5.

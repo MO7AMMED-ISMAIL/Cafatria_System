@@ -1,8 +1,18 @@
 <?php
-$productId = $_GET['edit'];
-$cond = "id = $productId";
-$SelectProduct = $table->Select(["*"],$cond);
-$SelectProduct=$SelectProduct->fetchAll(PDO::FETCH_ASSOC);
+// Check if 'id' parameter is set in the URL
+if (isset($_GET['edit'])) {
+    $productId = $_GET['edit'];
+    $cond = "id = $productId";
+    $SelectProduct = $table->Select(["*"],$cond);
+    $SelectProduct=$SelectProduct->fetchAll(PDO::FETCH_ASSOC);
+
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+    $_SESSION['token_expire'] = time() + 3600;
+} else {
+    header("Location: ../404.php");
+}
+
+
 echo "<h4 class='display-6 text-center mb-5' style='font-weight: bolder'>Edit Product</h4>";
 ?>
 

@@ -10,17 +10,48 @@ include "include/navbar.php";
 
 use DbClass\Table;
 
-$table = new Table("products");
-$table->conn();
-$selected=$table->SelectInnerJoinTable("categories",["category_name"],["*"],"categories.id=products.category_id");
+//define tables to avoid scope error
+$table=new Table("products");
+$selected=[];
+$category_table=new Table("categories");
+$cat_selected=[];
+
+
+try {
+    $table->conn();
+
+}catch (Exception $e){
+    //error while connecting
+    header("Location:404.php");
+}
+try {
+    $selected = $table->SelectInnerJoinTable("categories", ["category_name"], ["*"], "categories.id=products.category_id");
+}catch (Exception $e){
+    //empty table
+    $selected=[];
+}
 
 
 //category table
-$category_table=new Table("categories");
-$category_table->conn();
-$cat_selected = $category_table->Select(["category_name", "id"]);
-$cat_selected=$cat_selected->fetchAll(PDO::FETCH_ASSOC);
 
+try {
+    $category_table->conn();
+}catch (Exception $e){
+    //error while connecting
+    header("Location:404.php");
+}
+
+try {
+    $cat_selected = $category_table->Select(["category_name", "id"]);
+    $cat_selected=$cat_selected->fetchAll(PDO::FETCH_ASSOC);
+}catch (Exception $e){
+    //empty table
+    $cat_selected=[];
+}
+
+
+
+//handle many pages
 if(isset($_GET['add']) == 'product'){
     echo"<div class='container'>";
     echo "<div class='row'>";
