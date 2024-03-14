@@ -7,10 +7,6 @@ use PDOException;
 
 class Table extends Database{
     public $TbName;
-    private $conn;
-    public function conn(){
-        $this->conn = parent::connect();
-    }
 
     public function __construct($tableName){
         $this->TbName = $tableName;

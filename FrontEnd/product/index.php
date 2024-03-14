@@ -13,7 +13,7 @@ if(isset($_SESSION['email'])) {
 }
 
 
-require "class.php"; 
+require "../../BackEnd/DataBase/DBCLass.php"; 
 use DbClass\Table; 
 
 $orderTable = new Table('orders');

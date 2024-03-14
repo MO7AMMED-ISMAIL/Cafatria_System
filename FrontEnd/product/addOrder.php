@@ -1,12 +1,9 @@
 <?php
-require "class.php";
+require "../../BackEnd/DataBase/DBCLass.php";
 use DbClass\Table;
 
 $orderTable = new Table("orders");
-$orderTable->conn();
-
 $orderItemTable = new Table("order_items");
-$orderItemTable->conn();
 
 
 $orderDetails = [];
@@ -25,7 +22,8 @@ $orderDetails['room_id'] = $_POST['room'];
 
 
 try {
-    $orderTable->Create($orderDetails);
+    $lastID = $orderTable->Create($orderDetails);
+    
 } catch (Exception $e) {
     echo "Error inserting order details: " . $e->getMessage();
     exit();
@@ -33,6 +31,7 @@ try {
 
 
 $orders=$orderTable->Select(["id"])->rowCount();
+
 $parsedItems=json_decode($_POST["selectedProductsList"]);
 foreach ($parsedItems as $item) {
 
@@ -41,7 +40,7 @@ foreach ($parsedItems as $item) {
     $totalPrice = $itemArray['price'] * $itemArray['quantity'];
 
     $insertData = array(
-        'order_id' => $orders,
+        'order_id' => $lastID,
         'product_id' => $itemArray['product_id'],
         'product_price' => $itemArray['price'],
         'quantity' => $itemArray['quantity'],
