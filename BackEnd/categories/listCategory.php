@@ -38,7 +38,7 @@ if (isset($_SESSION["message"])) {
                   echo "</td>";
               }
               echo "<td class='d-flex justify-content-around'>
-                    <a href='categories.php?edit=1' class='btn btn-outline-primary'>Update</a>
+                    <a href='categories.php?edit={$selected[$idx]['id']}' class='btn btn-outline-primary'>Update</a>
                     <a href='categories/delete.php?id={$selected[$idx]['id']}' class='btn btn-outline-danger'>Delete</a>
                     </td>";
               echo "</tr>";

@@ -19,4 +19,4 @@ $table->Update($posted,'id',$_POST['id']);
 
 //successfully updated
 
-header("Location:listCategories.php");
+header("Location:../categories.php");

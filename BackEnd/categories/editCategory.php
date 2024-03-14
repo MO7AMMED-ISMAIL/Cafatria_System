@@ -1,23 +1,25 @@
 <?php
 echo "<h2 class='text-center mb-5'>Update Category</h2>";
+
+$catSelected=$table->Select(['*'],"id={$_GET['edit']}")->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <form class="container mt-5 needs-validation" action="categories/update.php" method="post" enctype="multipart/form-data" novalidate>
     <div class="row">
         <div class="col-6 mb-3">
         <label for="id" class="form-label">ID</label>
-        <input type="text" name="id" class="form-control" value="<?=$selected[0]['id']?>" id="id" required>
+        <input type="text" name="id" class="form-control" value="<?=$catSelected['id']?>" id="id" required>
         </div>
         <div class="col-md-6 mb-3">
             <label for="category_name" class="form-label">Product</label>
-            <input type="text" name="category_name" class="form-control" value="<?=$selected[0]['category_name']?>" id="category_name" required>
+            <input type="text" name="category_name" class="form-control" value="<?=$catSelected['category_name']?>" id="category_name" required>
             <div class="invalid-feedback">
                 Please provide a product name.
             </div>
         </div>
         <div class="col-md-6 mb-3">
             <label for="category_description" class="form-label">Description (Optional)</label>
-            <textarea name="category_description" class="form-control" id="category_description" rows="3"><?=$selected[0]['category_description']?></textarea>
+            <textarea name="category_description" class="form-control" id="category_description" rows="3"><?=$catSelected['category_description']?></textarea>
         </div>
     </div>
 

@@ -27,10 +27,10 @@ $postData['picture'] = $file['name'];
 try {
     $table->Update($postData, "id",$_POST['id']);
     //successfully updated
-    header("Location:../product.php");
+    header("Location:../products.php");
 }
 catch (Exception $e){
     $_SESSION['error']="error while update please try again";
     $_SESSION['color']="red";
-    header("../product.php?edit={$_POST['id']}");
+    header("../products.php?edit={$_POST['id']}");
 }
