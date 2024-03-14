@@ -3,19 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Info</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Cafeteria App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
     <style>
-        body, html {
-            height: 100%;
-        }
-        body {
-           
-            background-color: #f8f9fa;
-            
-        }
-        
+       
     </style>
 </head>
 <body>
@@ -38,11 +31,6 @@
                         <li class="nav-item"  >
                             <a class="nav-link text-light" href="index.php #Home" style="width:100%;">Home</a>
                         </li>
-
-                        <li class="nav-item"  >
-                            <a class="nav-link text-light" href="menu.php" style="width:100%;">Menu</a>
-                        </li>
-
                         <li class="nav-item">
                             <a class="nav-link text-light" href="index.php #Latestorder" style="width:100%;">Latest Order</a>
                         </li>
@@ -67,7 +55,6 @@
 <div id="sideNav" class="nav-drawer d-lg-none">
     <ul class="mt-4">
          <li><a href="index.php #Home">Home</a></li>
-         <li><a href="menu.php">Menu</a></li>
         <li><a href="index.php #Latestorder">Latest Order</a></li>
         <li><a href="index.php #productSection">Order now</a></li>
         <li><a href="order.php">My orders</a></li>
@@ -78,82 +65,80 @@
 
 
 <div class="container">
-        <h1 class="display-4 my-5" style="font-style: italic; font-size: 10.7em; color: rgba(237, 243, 246, 0.753);">Cafeto</h1>
-        <p class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Where every cup tells a story</p>
+    <div class="row">
+        <h1 class="display-4 my-5 col-12" style="font-style: italic; font-size: 10.7em; color: rgba(237, 243, 246, 0.753);">Menu</h1>
+        </div>
+
+        <div class="row">
+        <p class="lead col-12" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Discover Delight, Taste the Moment: Your Café, Your Culinary Journey!</p>
+    </div>
+</div>
+</div>
+
+
+<!-- Menu Section -->
+<div class="container-fluid my-5">
+    
+    <div class="row">
+        <div class="accordion accordion-flush col-12" id="accordionFlushExample">
+            <?php
+            require "class.php"; 
+            use DbClass\Table; 
+            $categoryTable = new Table('categories');
+            $categoryDataQuery = $categoryTable->Select(['id', 'category_name']);
+            $categories = $categoryDataQuery->fetchAll(PDO::FETCH_ASSOC);
+
+           
+            foreach ($categories as $index => $category) {
+                echo '<div class="accordion-item">';
+                echo '<h2 class="accordion-header">';
+                echo '<button id="accordionButton' . $category['id'] . '" style="background-color:rgb(56, 45, 3);" class="accordion-button text-light ' . ($index === 0 ? 'active' : '') . '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . $category['id'] . '">';
+                echo $category['category_name'];
+                echo '</button>';
+                echo '</h2>';
+                echo '<div id="collapse' . $category['id'] . '" class="accordion-collapse collapse ' . ($index === 0 ? 'show' : '') . '">';
+                echo '<div class="accordion-body">';
+                
+                //  products related to category
+                $productTable = new Table('products');
+                $productQuery = $productTable->Select(['id', 'name', 'description', 'price', 'picture'], 'category_id = ' . $category['id']);
+                $products = $productQuery->fetchAll(PDO::FETCH_ASSOC);
+                
+                //products in row of three
+                echo '<div class="row">';
+                $counter = 0;
+                foreach ($products as $product) {
+                    echo '<div class="col-md-4 col-4">';
+                    echo '<div class="row">';
+                    echo '<div class="col-md-6 col-7">';
+                    echo '<img src="images/' . $product['picture'] . '" class="img-fluid" alt="Product Image">';
+                    echo '</div>';
+                    echo '<div class="col-md-6 my-md-5 ">';
+                    echo '<h4>' . $product['name'] . '</h4>';
+                    echo '<p>' . $product['description'] . '</p>';
+                    echo '<p><strong>Price:</strong> $' . $product['price'] . '</p>';
+                    echo '</div>';
+                    echo '</div>'; 
+                    echo '</div>';
+                    $counter++;
+                    if ($counter % 3 == 0) {
+                        echo '</div><div class="row">';
+                    }
+                }
+                echo '</div>'; 
+                echo '</div>'; 
+                echo '</div>'; 
+                echo '</div>'; 
+            }
+            ?>
+        </div>
     </div>
 </div>
 
 
 
-<?php
-require_once 'class.php'; 
-use DbClass\Table; 
-
-$table = new Table('products');
-
-
-if(isset($_GET['search'])) {
-    $search = $_GET['search'];
-
-    
-    $selected= $table->Select(['*'], "status = 'Available' AND name LIKE '$search'");
-    $selectedProduct = $selected->fetch(PDO::FETCH_ASSOC);
-    
-    if (!empty($selectedProduct)) {
-?>
-        <div class="row my-5 text-center">
-            <div class="card mx-auto col-md-5 col-12 maincard">
-                <img src="images/<?php echo $selectedProduct['picture']; ?>" class="card-img-top" alt="Product Image">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $selectedProduct['name']; ?></h5>
-                    <p class="card-text">Price: <?php echo $selectedProduct['price']; ?></p>
-                </div>
-            </div>
-        </div>
-
-<?php
-
-        // Related products
-        $categoryId = $selectedProduct['category_id'];
-        $relatedProductsquery = $table->Select(['*'], "category_id = $categoryId AND id != {$selectedProduct['id']} LIMIT 4");
-        $relatedProducts = $relatedProductsquery->fetchAll(PDO::FETCH_ASSOC);
-        
-        if (!empty($relatedProducts)) {
-?>
-            <div class="related-products container my-5">
-                <div class="row">
-                    <h2 class="text-center mt-5 my-5">Related Products</h2>
-                </div>
-
-                <div class="row text-center">
-<?php
-                    foreach ($relatedProducts as $row) {
-?>
-                        <div class="col-md-3 col-10 offset-2 offset-md-0  text-center my-5">
-                            <div class="card cardss">
-                                <img src="images/<?php echo $row['picture']; ?>" class="card-img-top" alt="Product Image">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $row['name']; ?></h5>
-                                    <p class="card-text">Price: <?php echo $row['price']; ?></p>
-                                </div>
-                            </div>
-                        </div>
-<?php
-                    }
-?>
-                </div>
-            </div>
-<?php
-        }
-    } else {
-        echo "<p class='text-center'>No products found.</p>";
-    }           
-}
-?>
-
- 
- <!-- About Section -->
- <div class=" container my-5" style="padding-top:5%;">
+<!-- About Section -->
+<div class=" container my-5" style="padding-top:5%;">
         <div class="about row">
             <div class="col-md-4 col-5 text-center ">
                 <h5 class="text-light"style="font-size:1.8em;" >Help & Information</h5>
@@ -183,13 +168,8 @@ if(isset($_GET['search'])) {
     </div>
 
 
-   
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
    document.addEventListener('DOMContentLoaded', function() {
     var images = ["images/home-1-slider-image-3.jpg", "images/home-1-slider-image-1.jpg", "images/home-1-slider-image-2.jpg"]; 
 
@@ -240,8 +220,6 @@ window.addEventListener('scroll', function() {
         navbar.style.background="transparent";
     }
 });
-    </script>
-    <script src="script.js"></script>
-
+</script>
 </body>
 </html>

@@ -57,10 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .login-container {
             background-color: rgba(241, 250, 249, 0.547);
             max-width: 78%;
-            height: 78.5%;
+            height: 78%;
             margin: auto;
-            margin-top: 10%;
-            padding:5%;
+            margin-top: 11%;
+            padding: 10%;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
             color: rgb(55, 122, 223);

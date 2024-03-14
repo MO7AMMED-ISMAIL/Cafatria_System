@@ -1,7 +1,7 @@
 <?php
-include "../../BackEnd/DataBase/DBClass.php";
-use DbClass\Table;
 
+require "class.php"; 
+use DbClass\Table; 
 
 $table = new Table("orders");
 $table->conn();
