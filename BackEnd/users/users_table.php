@@ -24,6 +24,7 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Room</th>
+                                            <th>Ext</th>
                                             <th>Img</th>
                                             <th>Action</th>
                                         </tr>
@@ -44,11 +45,16 @@
                                             </td>
                                             <?php
                                                 $userRoom = $room->FindById('id', $user['room_id']);
+                                                $userExt = $room->FindById('id', $user['room_id']);
                                             ?>
                                             <td>
                                                 <a href=""><?= $userRoom['room_number']?></a>
                                             </td>
-                                            
+
+                                            <td>
+                                                <?= $userExt['ext']?>
+                                            </td>
+
                                             <td>
                                                 <img src="uploads/<?= $user['profile_picture'] ?>" style="max-width:50px; max-height:50px;">
                                             </td>

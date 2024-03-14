@@ -56,7 +56,8 @@
                     <input type="file" class="form-control" name="profile_picture" aria-label="Username" aria-describedby="basic-addon1"> 
                 </div>
 
-                <button type="submit" class="btn btn-primary d-block m-auto w-25">ADD</button>
+                <button type="submit" class="btn btn-primary d-block m-auto w-25">Save</button>
+                <button class="btn btn-secondary" type="reset">Reset</button>
             </form>
             <hr>
             <?php
