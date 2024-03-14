@@ -47,7 +47,7 @@ foreach ($parsedItems as $item) {
         'total_price' => $totalPrice
     );
 
-    
+
     $orderItemTable->Create($insertData);
 }
 
