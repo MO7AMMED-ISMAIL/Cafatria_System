@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         unset($_SESSION['token']);
 
         $users = new Table('users');
-        var_dump($_POST);
         // Validate and sanitize input data
         $username = $users->isValidUsername($_POST['username']);
         $email = $users->ValidateEmail($_POST['email']);
@@ -32,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $repeatPass = $users->inputData($_POST['confirm_password']);
         $room_id = $_POST["room"];
         $img = $users->Upload($_FILES['profile_picture'], '../../BackEnd/uploads/');
-        // var_dump($img);
         // Check if password and repeat password match
         if ($password !== $repeatPass) {
             throw new Exception("Password and confirm Password do not match");

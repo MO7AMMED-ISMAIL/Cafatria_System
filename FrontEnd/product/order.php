@@ -33,10 +33,10 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
     $end = $_GET['end'];
     $orders = new Table('orders');
     $cond = "o.order_date BETWEEN '$start' AND '$end'";
-    $userOrder = $orders->UserOrders($userId, $cond);
+    $userOrder =$orders->SelectInnerJoinTable("rooms",["room_number"],["*"],"rooms.id=orders.room_id");
 } else {
     $orders = new Table('orders');
-    $userOrder = $orders->UserOrders($userId);
+    $userOrder =$orders->SelectInnerJoinTable("rooms",["room_number"],["*"],"rooms.id=orders.room_id And user_id= '$userId'");
 }
 ?>
 
@@ -172,10 +172,9 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                                     <td>
                                         <span>
                                             <?php
-                                            $totalAmount += $order['price'] * $order['quantity'];
-                                            echo $order['price'] * $order['quantity'];
+                                            echo $order['total_price'];
                                             ?>
-                                        </span> EGP
+                                        </span> $
                                     </td>
                                     <td>
                                         <?php
@@ -187,26 +186,31 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                                 </tr>
 
                                 <tr class="cart-item details-hidden">
+                                    <?php
+                                    $order_id = $order['id'];
+                                    $orderItems = $orders->UserOrders($userId, "orders.id = $order_id");
+                                    foreach ($orderItems as $orderItem) { ?>
                                     <td>
                                         <div class="cart-item-details">
-                                            <div class="cart-item-info d-flex justify-content-center">
-                                                <div class="card shadow position-relative align-items-center mb-3" style="width: 15rem;">
-                                                    <img class="card-img-top" src="images/<?= $order['picture'] ?>" alt="Product Name">
+                                            <div class="cart-item-info d-flex justify-content-start align-items-center">
+                                                <div class="card shadow position-relative mb-3" style="width: 15rem;">
+                                                    <img class="card-img-top" src="images/<?= $orderItem['picture'] ?>" alt="Product Name">
                                                     <div class="card-body text-center">
                                                         <h5 class="card-title">
-                                                            <?= $order['name'] ?>
+                                                            <?= $orderItem['name'] ?>
                                                         </h5>
                                                         <p class="card-text">
                                                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                                                                <?= $order['price'] ?>EGP</span><br>
-                                                            Quantity: <?= $order['quantity'] ?><br>
-                                                            Total: <?= $order['price'] * $order['quantity'] ?> EGP
+                                                                <?= $orderItem['price'] ?>EGP</span><br>
+                                                            Quantity: <?= $orderItem['quantity'] ?><br>
+                                                            Total: <?= $orderItem['price'] * $orderItem['quantity'] ?> EGP
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
+                                    <?php } ?>
                                 </tr>
                             <?php } ?>
                         </tbody>

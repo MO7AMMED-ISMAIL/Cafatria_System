@@ -34,14 +34,10 @@
             ];
 
             $createdOrderId = $orders->Create($orderData);
-            var_dump($createdOrderId);
 
             $orderItemsJSON = $_POST["orderItems"];
             $orderItems = json_decode($orderItemsJSON, true);
 
-            echo "<pre>";
-            var_dump($orderItems);
-            echo "</pre>";
             foreach ($orderItems as $order) {
                 $orderItemData = [
                     'order_id'      => $createdOrderId,

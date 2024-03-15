@@ -2,7 +2,6 @@
 
 session_start();
 
-
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
     $user_id = $_SESSION['user_id'];
@@ -33,7 +32,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,8 +49,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
     <!--cafe name-->
     <div id="Home" class="mainhome jumbotron jumbotron-fluid bg-cover d-flex align-items-center">
-
-
         <!-- Navigation bar -->
         <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
             <div class="container-fluid">

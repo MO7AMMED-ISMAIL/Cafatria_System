@@ -196,10 +196,11 @@ class Table extends Database{
     }
 
     public function UserOrders($userId,$cond=1){
-        $sql = "SELECT DISTINCT o.id,o.status, o.order_date, o.tax, ot.quantity, p.name, p.picture, p.price  FROM $this->TbName AS o 
-        JOIN order_items AS ot ON o.id = ot.order_id
-        JOIN products AS p ON ot.product_id = p.id
-        WHERE o.user_id = '$userId' AND $cond";
+        $sql = "SELECT DISTINCT orders.id, orders.status, orders.order_date, orders.tax, order_items.quantity, products.name, products.picture, products.price  
+        FROM $this->TbName AS orders
+        JOIN order_items AS order_items ON orders.id = order_items.order_id
+        JOIN products AS products ON order_items.product_id = products.id
+        WHERE orders.user_id = '$userId' AND $cond";
 
         $stmt = parent::connect()->prepare($sql);
         $stmt->execute();
