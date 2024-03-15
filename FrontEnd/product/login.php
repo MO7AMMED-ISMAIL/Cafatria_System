@@ -1,8 +1,23 @@
 <?php
 session_start();
-require "class.php";
+require "../../BackEnd/DataBase/DBCLass.php"; 
+use DbClass\Table; 
 
-use DbClass\Table;
+$returnUrl = isset($_GET['return_url']) ? $_GET['return_url'] : 'index.php';
+
+if(isset($_GET['logout'])) {
+
+    session_unset();
+    session_destroy();
+    header('Location: login.php?return_url=' . urlencode($returnUrl));
+    exit();
+}
+
+
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+    header('Location: ' . $returnUrl);
+    exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -19,7 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['message'] = "Login successful.";
                 $_SESSION['success'] = true;
-                header('Location: index.php');
+                $_SESSION['logged_in'] = true; 
+                header('Location: ' . $returnUrl); 
                 exit();
             } else {
                 $_SESSION['message'] = "Incorrect password. Please try again.";
@@ -28,12 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['message'] = "Email not found. Please register or try a different email.";
         }
         $_SESSION['success'] = false;
-        header('Location: login.php');
+        header('Location: login.php?return_url=' . urlencode($returnUrl)); 
         exit();
     } catch (Exception $e) {
         $_SESSION['message'] = "Error: " . $e->getMessage();
         $_SESSION['success'] = false;
-        header('Location: login.php');
+        header('Location: login.php?return_url=' . urlencode($returnUrl)); 
         exit();
     }
 }
@@ -46,52 +62,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-    
-    <style>
-        body {
-            background-image: url("images/s14.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-        .login-container {
-            background-color: rgba(241, 250, 249, 0.547);
-            max-width: 78%;
-            height: 78%;
-            margin: auto;
-            margin-top: 11%;
-            padding: 10%;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-            color: rgb(55, 122, 223);
-        }
-        .form-control {
-            background-color: transparent; 
-            border: none; 
-            border-bottom: 2px solid #5A2A00; 
-            border-radius: 0; 
-            color: rgb(55, 122, 223); 
-            margin-bottom: 1rem; 
-        }
-        
-        .form-control:focus {
-            box-shadow: none; 
-            border-color:rgb(55, 122, 223); 
-            
-        }
-       
-        .form-floating label {
-            color: #5A2A00; 
-        }
-        
-    </style>
+    <link href="login.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid mainhome">
+        <div class="row my-4">
+            <div class="col-12 text-center">
+                <h1 class="text-light slogan" id="slogan" style="font-style: italic;">Indulge in Digital Delights: Welcome to Caféto Corner</h1>
+            </div>
+        </div>
         <div class="row mt-5">
             <div class="col-12 col-md-6 mx-auto">
                 <div class="login-container">
-                    <h2 class="login-title text-center" style="color:rgb(77, 49, 8); font-style:italic;">Welcome To Cafeto</h2>
+                    <h2 class="login-title text-center" style="color:rgb(77, 49, 8); font-style:italic;">Welcome</h2>
                     <?php if(isset($_SESSION['message'])): ?>
                         <div class="alert alert-danger" role="alert">
                             <?php echo $_SESSION['message']; ?>
@@ -113,15 +96,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <p class="small mb-5 text-center my-5">
                             <a href="forgetPassword.php" class="ForgetPwd" style="color:blue;">Forget Password?</a>
                         </p>
-
                         <p class="small mb-5 text-center">
-                            <a href="isreg.php" class="ForgetPwd" style="color:blue;">Sign Up</a>
+                            <a href="registerform.php" class="ForgetPwd" style="color:blue;">Sign Up</a>
                         </p>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <script src="log.js"></script>
 </body>
 </html>
-

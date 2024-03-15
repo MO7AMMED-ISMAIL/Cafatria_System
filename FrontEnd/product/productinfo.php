@@ -6,17 +6,8 @@
     <title>Product Info</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <style>
-        body, html {
-            height: 100%;
-        }
-        body {
-           
-            background-color: #f8f9fa;
-            
-        }
-        
-    </style>
+   
+    
 </head>
 <body>
 
@@ -86,7 +77,7 @@
 
 
 <?php
-require_once 'class.php'; 
+require "../../BackEnd/DataBase/DBCLass.php"; 
 use DbClass\Table; 
 
 $table = new Table('products');
@@ -122,7 +113,7 @@ if(isset($_GET['search'])) {
 ?>
             <div class="related-products container my-5">
                 <div class="row">
-                    <h2 class="text-center mt-5 my-5">Related Products</h2>
+                    <h2 class="text-center text-light mt-5 my-5"style="background-color:rgb(56, 45, 3);">Related Products</h2>
                 </div>
 
                 <div class="row text-center">
@@ -188,60 +179,8 @@ if(isset($_GET['search'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-
-   document.addEventListener('DOMContentLoaded', function() {
-    var images = ["images/home-1-slider-image-3.jpg", "images/home-1-slider-image-1.jpg", "images/home-1-slider-image-2.jpg"]; 
-
-    var index = 0;
-    var mainhome = document.querySelector('.mainhome');
-
-    //  change the background image
-    function changeBackground() {
-        mainhome.style.transition = "background-image 2s ease";
-        mainhome.style.backgroundImage = "url('" + images[index] + "')";
-        index = (index + 1) % images.length;
-    }
-
-    
-    changeBackground();
-
    
-    setInterval(changeBackground, 6000); 
-});
-
-
-
-// Nav Draw Toggle and Close
-document.addEventListener('DOMContentLoaded', function() {
-    const navToggle = document.getElementById('navToggle');
-    const navClose = document.getElementById('navClose');
-    const sideNav = document.getElementById('sideNav');
-
-    navToggle.addEventListener('click', function() {
-        sideNav.style.left = (sideNav.style.left === '0px') ? '-300px' : '0px';
-    });
-
-    navClose.addEventListener('click', function() {
-        sideNav.style.left = '-300px';
-    });
-});
-
-
-
-//sticky Navbar Scroll
-window.addEventListener('scroll', function() {
-    const navbar = document.getElementById('navbar');
-    if (window.pageYOffset >= 100) {
-        navbar.classList.add('sticky');
-        navbar.style.background="rgb(56, 45, 3)";
-    } else {
-        navbar.classList.remove('sticky');
-        navbar.style.background="transparent";
-    }
-});
-    </script>
-    <script src="script.js"></script>
+    <script src="scriptnavimg.js"></script>
 
 </body>
 </html>

@@ -12,6 +12,14 @@ if(isset($_SESSION['email'])) {
     exit();
 }
 
+if (isset($_GET['logout'])) {
+    
+    session_unset();
+
+    header('Location: login.php');
+    exit(); 
+}
+
 
 require "../../BackEnd/DataBase/DBCLass.php"; 
 use DbClass\Table; 
@@ -33,56 +41,25 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
     <title>Cafeteria App</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <style>
-
-.footer-container {
-    padding: 20px;
-}
-
-.image-container {
-    overflow: hidden;
-    width: 100%;
-    height: auto;
-}
-
-.image-container img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-.image-container img:hover {
-    transform: scale(1.1); 
-    opacity: 0.7; 
-}
-
-
-.list-unstyled li a {
-            text-decoration: none; 
-           
-            transition: color 0.3s; 
-            font-size: 18px; 
-        }
-        .list-unstyled li a:hover {
-            color: #007bff; 
-        }
-
-    </style>
+    <link href="index.css" rel="stylesheet">
+   
 </head>
 <body>
 
  <!--cafe name-->
 <div id="Home" class="mainhome jumbotron jumbotron-fluid bg-cover d-flex align-items-center">
 
+
 <!-- Navigation bar -->
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
 <div class="container-fluid">
         <div class="row align-items-center">
 
+
   <!-- User image and name -->
          <div class="col-auto">
              <div class="d-flex align-items-center">
+
   <!-- user image -->
     <?php
          $userTable = new Table('users');        
@@ -148,6 +125,9 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                       <a class="nav-link text-light" href="order.php" style="width:100%;">My 0rders</a>
                      </li>
 
+                     <li class="nav-item">
+                       <a class="nav-link text-light" href="index.php?logout=1" style="width:100%;">Log out</a>
+                    </li>
                  </ul>
                 </div>
             </div>
@@ -178,6 +158,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
         <li><a href="#Latestorder">Latest Order</a></li>
         <li><a href="#productSection">Order now</a></li>
         <li><a href="order.php">My 0rders</a></li>
+        <li><a onclick="logout();" href="login.php">Log out</a></li>
     </ul>
    
     <button id="navClose" class="btn btn-outline-light mb-2 ml-2">Close</button>
@@ -192,62 +173,57 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
 
 
-   <!-- Latest Order Section -->
-   <div id="Latestorder" class="container mt-4 my-5">
-        <div class="row">
-            <h1 class="col-12 my-5 text-center" style="padding: 9%;">Your Latest orders</h1>
+<!-- Latest Order Section -->
+<?php if ($latestOrder): ?>
+    <div id="Latestorder" class="container mt-4 my-5" style="padding-top: 3%;">
+        <div class="row my-5">
+            <h1 class="col-12 my-5 text-center text-light" style="padding: 1.5%; background-color: rgba(71, 44, 8, 0.816);">Your Latest orders</h1>
         </div>
         <div class="row">
-            <div class="card-deck" style="width:100%;">
-                <?php 
-                
-            if ($latestOrder) {
-                // order items for the latest order
-                 $orderItemsTable = new Table('order_items');
-                 $orderItemsQuery = $orderItemsTable->Select(['product_id', 'product_price'], 'order_id = ' . $latestOrder['id']);
-                 $orderItems = $orderItemsQuery->fetchAll(PDO::FETCH_ASSOC);
-
-                
-                 foreach ($orderItems as $item) {
-                 
-                     $productTable = new Table('products');
-                     $productQuery = $productTable->Select(['name', 'picture', 'price'], 'id = ' . $item['product_id']);
-                     $product = $productQuery->fetch(PDO::FETCH_ASSOC);
-
-                 // Display product
-                 if ($product) {
-                ?>
-                 <div class="col-md-3 col-8 offset-2 offset-md-0 my-5 my-md-0 text-center">
-                    <div class="card mb-3" style="max-width: 250px; position: relative;">
-                             <img src="images/<?php echo $product['picture']; ?>" class="card-img-top" alt="Product Image">
-                         <div class="card-body">
-                                <h5 class="card-title"><?php echo $product['name']; ?></h5>
-                                <span class="badge bg-success text-light" style="position: absolute; top: 0; right: 0;">Price: $<?php echo $product['price']; ?></span>
-                         </div>
-                     </div>
-                 </div>
+            <div class="card-deck" style="width: 100%;">
                 <?php
-                        }
-                    }
-                } else {
-                    echo "<p>No orders found.</p>";
+                // order items for the latest order
+                $orderItemsTable = new Table('order_items');
+                $orderItemsQuery = $orderItemsTable->Select(['product_id', 'product_price'], 'order_id = ' . $latestOrder['id']);
+                $orderItems = $orderItemsQuery->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($orderItems as $item) {
+                    $productTable = new Table('products');
+                    $productQuery = $productTable->Select(['name', 'picture', 'price'], 'id = ' . $item['product_id']);
+                    $product = $productQuery->fetch(PDO::FETCH_ASSOC);
+
+                    // Display product
+                    if ($product): ?>
+                        <div class="col-md-3 col-8 offset-2 offset-md-0 my-5 my-md-0 text-center">
+                            <div class="card mb-3" style="max-width: 250px; position: relative;">
+                                <img src="images/<?php echo $product['picture']; ?>" class="card-img-top" alt="Product Image">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $product['name']; ?></h5>
+                                    <span class="badge bg-success text-light" style="position: absolute; top: 0; right: 0;">Price: $<?php echo $product['price']; ?></span>
+                                </div>
+                            </div>
+                        </div>
+                <?php
+                    endif;
                 }
                 ?>
             </div>
         </div>
     </div>
+<?php endif; ?>
+
 
 
 
 
 <!-- Product section -->
-<div id="productSection"  class="container mt-4" style="padding-top:9%;">
+<div id="productSection"  class="container mt-4 text-center" style="padding:0%; padding-top:9%;">
     <div class="row">
 
         <!-- Product Table -->
-        <div class="col-md-7 col-10 my-md-0 my-5 mx-md-0 mx-5 ">
-            <h2>Products</h2>
-            <div id="productContainer">
+        <div class="col-md-8 col-10 my-md-0 my-5 mx-md-0 "  style="padding:0%;">
+            <h2 class="text-light" style="font-style:italic;background-color: rgba(71, 44, 8, 0.816);">Order Now</h2>
+            <div id="productContainer"class="my-5">
             <?php
                 
                 $productTable = new Table('products');
@@ -295,8 +271,8 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
 
  <!-- Order form -->
- <div class="col-md-5 my-5 my-md-0 col-12">
-    <h2>Order Details</h2>
+ <div class="col-md-4  my-5 my-md-0 col-10 offset-md-0 offset-1" style=" padding-top:4%;">
+   
     <form id="orderForm" class="order-form formbtn" action="addOrder.php" method="post">
         <div class="form-group">
             <label for="selectedProducts">Selected Products</label>
@@ -385,42 +361,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
     
 
     <script>
-
-// Nav Draw Toggle and Close
-document.addEventListener('DOMContentLoaded', function() {
-    const navToggle = document.getElementById('navToggle');
-    const navClose = document.getElementById('navClose');
-    const sideNav = document.getElementById('sideNav');
-
-    navToggle.addEventListener('click', function() {
-        sideNav.style.left = (sideNav.style.left === '0px') ? '-300px' : '0px';
-    });
-
-    navClose.addEventListener('click', function() {
-        sideNav.style.left = '-300px';
-    });
-});
-
-
-
-
-
-
-// sticky Navbar Scroll
-window.addEventListener('scroll', function() {
-    const navbar = document.getElementById('navbar');
-    if (window.pageYOffset >= 100) {
-        navbar.classList.add('sticky');
-        navbar.style.background="rgb(56, 45, 3)";
-    } else {
-        navbar.classList.remove('sticky');
-        navbar.style.background="transparent";
-    }
-});
-
-
- 
-
 //display product at tpage
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -487,31 +427,10 @@ window.addEventListener('scroll', function() {
 });
 
 
-//change background image
-document.addEventListener('DOMContentLoaded', function() {
-    var images = ["images/home-1-slider-image-3.jpg", "images/home-1-slider-image-1.jpg", "images/home-1-slider-image-2.jpg"];
-
-     var index = 0;
-    var mainhome = document.querySelector('.mainhome');
-
-    
-    function changeBackground() {
-        mainhome.style.transition = "background-image 2s ease";
-        mainhome.style.backgroundImage = "url('" + images[index] + "')";
-        index = (index + 1) % images.length;
-    }
-
-   
-    changeBackground();
-
-    
-    setInterval(changeBackground, 6000); 
-});
-
-
 </script>
 
-   
+<script src="scriptnavimg.js"></script>
+  
 <script src="script.js"></script>
 
 

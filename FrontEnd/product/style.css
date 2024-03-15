@@ -9,6 +9,19 @@
     animation: zoomBackground 8s ease infinite;
 }
 
+@media (max-width:800px) {
+    .mainhome {
+    background-size: cover;
+    width: 100%;
+    height:52vh;
+    padding-top:1%;
+    border-color: black;
+    border-width: 3%;
+    text-align: center;
+    animation: zoomBackground 8s ease infinite;
+    }
+}
+
 #navbar {
     position: fixed;
     width: 100%;

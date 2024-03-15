@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
-    <style>
-       
-    </style>
+    <link href="menu.css" rel="stylesheet">
 </head>
 <body>
 
 <!--cafe name-->
 <div class="mainhome jumbotron jumbotron-fluid bg-cover d-flex align-items-center" style="height:50vh;">
 
+
 <!-- Navigation bar -->
 <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
     <div class="container-fluid">
         <div class="row align-items-center">
+
 
   <!-- Navigation icon  -->
      <div class="col-auto">
@@ -70,10 +70,12 @@
         </div>
 
         <div class="row">
-        <p class="lead col-12" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Discover Delight, Taste the Moment: Your Café, Your Culinary Journey!</p>
+        <p class="lead slogen col-12 text-light">Discover Delight, Taste the Moment: Your Café, Your Culinary Journey!</p>
     </div>
 </div>
 </div>
+
+
 
 
 <!-- Menu Section -->
@@ -82,8 +84,8 @@
     <div class="row">
         <div class="accordion accordion-flush col-12" id="accordionFlushExample">
             <?php
-            require "class.php"; 
-            use DbClass\Table; 
+           require "../../BackEnd/DataBase/DBCLass.php"; 
+           use DbClass\Table; 
             $categoryTable = new Table('categories');
             $categoryDataQuery = $categoryTable->Select(['id', 'category_name']);
             $categories = $categoryDataQuery->fetchAll(PDO::FETCH_ASSOC);
@@ -169,57 +171,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script>
-   document.addEventListener('DOMContentLoaded', function() {
-    var images = ["images/home-1-slider-image-3.jpg", "images/home-1-slider-image-1.jpg", "images/home-1-slider-image-2.jpg"]; 
+<script src="scriptnavimg.js"></script>
 
-    var index = 0;
-    var mainhome = document.querySelector('.mainhome');
-
-    //  change the background image
-    function changeBackground() {
-        mainhome.style.transition = "background-image 2s ease";
-        mainhome.style.backgroundImage = "url('" + images[index] + "')";
-        index = (index + 1) % images.length;
-    }
-
-    
-    changeBackground();
-
-   
-    setInterval(changeBackground, 6000); 
-});
-
-
-
-// Nav Draw Toggle and Close
-document.addEventListener('DOMContentLoaded', function() {
-    const navToggle = document.getElementById('navToggle');
-    const navClose = document.getElementById('navClose');
-    const sideNav = document.getElementById('sideNav');
-
-    navToggle.addEventListener('click', function() {
-        sideNav.style.left = (sideNav.style.left === '0px') ? '-300px' : '0px';
-    });
-
-    navClose.addEventListener('click', function() {
-        sideNav.style.left = '-300px';
-    });
-});
-
-
-
-//sticky Navbar Scroll
-window.addEventListener('scroll', function() {
-    const navbar = document.getElementById('navbar');
-    if (window.pageYOffset >= 100) {
-        navbar.classList.add('sticky');
-        navbar.style.background="rgb(56, 45, 3)";
-    } else {
-        navbar.classList.remove('sticky');
-        navbar.style.background="transparent";
-    }
-});
-</script>
 </body>
 </html>

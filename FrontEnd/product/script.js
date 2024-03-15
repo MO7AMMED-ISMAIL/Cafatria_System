@@ -1,3 +1,4 @@
+
 //selected product at form
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -41,11 +42,12 @@
         //ID to each product
         const productId = `selectedProduct_${index}`;
 selectedProductsHTML += `
-    <div id="${productId}" class="selected-product">
+    <div id="${productId}" class="selected-product" style="width:100%;padding:0; margin:0;">
         <input type="hidden" class="product-id" value="${product.product_id}">
-        ${product.name} - Quantity: ${quantitySign}${Math.abs(product.quantity)}
-        <button class="btn btn-primary" style="border-radius:20%;" onclick="changeQuantity('${product.name}', 1)">+</button>
-        <button id="decr" class="btn btn-danger" style="border-radius:20%;" onclick="changeQuantity('${product.name}', -1)">-</button>
+        ${product.name} 
+        <button class="btn btn-primary" style="border-radius:20%;width:8%;padding:0; margin:0;" onclick="changeQuantity('${product.name}', 1)">+</button>
+        ${quantitySign}${Math.abs(product.quantity)}
+        <button id="decr" class="btn btn-danger" style="border-radius:20%;width:8%;padding:0; margin:0;" onclick="changeQuantity('${product.name}', -1)">-</button>
         - $${totalProductPrice.toFixed(2)}
         <button class="btn btn-danger close-icon" onclick="removeProduct('${productId}')">×</button>
     </div>`;
@@ -56,6 +58,7 @@ selectedProductsHTML += `
     document.getElementById('totalPrice').value = totalPrice.toFixed(2);
     document.getElementById('orderButton').disabled = false; 
 }
+
 
 // form submission
 orderForm.addEventListener('submit', function(event) {
