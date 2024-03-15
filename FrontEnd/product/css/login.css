@@ -9,7 +9,7 @@
     animation: zoomBackground 8s ease infinite;
 }
 
-@media (max-width:800px) {
+@media (max-width:600px) {
     .mainhome {
     background-size: cover;
     width: 100%;
@@ -21,6 +21,14 @@
     animation: zoomBackground 8s ease infinite;
     }
 }
+
+@media (max-width:600px) {
+    body{
+   background-color: #502e10b9;
+    }
+}
+
+
 @keyframes zoomBackground {
     0% {
         background-size: 100%;
@@ -40,11 +48,13 @@
 
 .login-container {
     background-color: rgba(241, 250, 249, 0.547);
-    width:70%;
-    height:87%;
+    width:66%;
+    height:98%;
+    padding-left: 5%;
+    padding-right: 5%;
+  padding-top: 1%;
     margin: auto;
    
-    padding:5%;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     color: rgb(55, 122, 223);
@@ -61,6 +71,7 @@
 .form-control:focus {
     box-shadow: none; 
     border-color:rgb(55, 122, 223); 
+   
     
 }
 
@@ -83,4 +94,11 @@
     100% {
         transform: translateY(0);
     }
+}
+
+
+button{
+    background: #1D4350;  
+    background: -webkit-linear-gradient(to right, #A43931, #1D4350);  
+    background: linear-gradient(to right, #A43931, #1D4350); 
 }

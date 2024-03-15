@@ -194,10 +194,17 @@ width: 100%;
 
 #prevPage{
 width:20%;
+background: #1d4350; 
+  background: -webkit-linear-gradient(to right, #1d4350, #a43931); 
+  background: linear-gradient(to right, #1d4350, #a43931);
 }
 
 #nextPage{
 width:20%;
+background: #1D4350; 
+background: -webkit-linear-gradient(to right, #A43931, #1D4350);  
+background: linear-gradient(to right, #A43931, #1D4350); 
+
 }
 
 
@@ -311,12 +318,27 @@ margin-left: 5px;
     width:3%;
    
     border-radius: 35%;
+
+    background: #e53935;  
+    background: -webkit-linear-gradient(to right, #e35d5b, #e53935);  
+    background: linear-gradient(to right, #e35d5b, #e53935); 
+    
 }
 
-.formbtn #decr{
-    width:9%;
+
+#incr{
+
+    background: #2c3e50; 
+background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  
+background: linear-gradient(to right, #3498db, #2c3e50); 
+
 }
 
+#price{
+    color: #e0af69;  
+    font-size: large;
+
+}
 
 
 
@@ -369,6 +391,20 @@ margin-left: 5px;
 
 
        
+#orderButton{
+    background: #1A2980;  
+    background: -webkit-linear-gradient(to right, #26D0CE, #1A2980); 
+    background: linear-gradient(to right, #26D0CE, #1A2980); 
+    
+}
+  
+#removeAllProducts{
+    background: #EB3349; 
+background: -webkit-linear-gradient(to right, #F45C43, #EB3349); 
+background: linear-gradient(to right, #F45C43, #EB3349); 
 
-       
+}
+
+
+
         
