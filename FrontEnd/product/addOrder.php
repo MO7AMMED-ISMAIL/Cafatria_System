@@ -45,8 +45,8 @@ foreach ($parsedItems as $item) {
 
 
     $orderItemTable->Create($insertData);
+    var_dump($orderItemTable);
 }
-
 header('Location: order.php');
 exit();
 

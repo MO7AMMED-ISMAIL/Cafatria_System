@@ -40,8 +40,8 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cafeteria App</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <link href="index.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
    
 </head>
 <body>
@@ -62,7 +62,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
   <!-- user image -->
     <?php
-         $userTable = new Table('users');        
+         $userTable = new Table('users');
          $userDataQuery = $userTable->Select(['profile_picture', 'username'], 'id = ' . $user_id);
          $userData = $userDataQuery->fetch(PDO::FETCH_ASSOC);
 
@@ -429,9 +429,9 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
 </script>
 
-<script src="scriptnavimg.js"></script>
+<script src="js/scriptnavimg.js"></script>
   
-<script src="script.js"></script>
+<script src="js/script.js"></script>
 
 
 </body>
