@@ -30,7 +30,7 @@ CREATE TABLE products
     category_id INT UNSIGNED NOT NULL,
     status ENUM('Available', 'Not Available') DEFAULT 'Available',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE `rooms`
@@ -50,7 +50,7 @@ CREATE TABLE users
     extra_data VARCHAR(255) NULL,
     profile_picture VARCHAR(255) NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (room_id) REFERENCES rooms(id),
+    FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE SET NULL ON UPDATE CASCADE,
     INDEX idx_users_email (email)
 );
 
@@ -60,13 +60,12 @@ CREATE TABLE orders
     user_id INT UNSIGNED NOT NULL,
     total_price FLOAT NOT NULL,
     tax FLOAT NOT NULL DEFAULT 0.1,
-    total_price_after_tax FLOAT NOT NULL,
     status ENUM('Processing', 'Out For Delivery', 'Done', 'Cancelled') DEFAULT 'Processing',
     notes TEXT NULL,
-    room_id INT UNSIGNED NOT NULL,
+    room_id INT UNSIGNED NULL,
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (room_id) REFERENCES rooms(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE order_items
@@ -78,8 +77,8 @@ CREATE TABLE order_items
     quantity INT NOT NULL DEFAULT 1,
     total_price FLOAT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE,
     UNIQUE (order_id, product_id)
 );
 
@@ -96,11 +95,22 @@ CREATE TABLE `notifications`
     INDEX (notifiable_id, notifiable_type)
 );
 
--- Insert data into the 'users' table
-INSERT INTO users (username, email, password, extra_data, profile_picture)
+-- Insert data into the 'rooms' table
+INSERT INTO rooms (id, room_number, ext)
 VALUES
-    ('john_doe', 'user1@gmail.com', '123456', 'Some extra data', 'user.png'),
-    ('jane_smith', 'user2@gmail.com', '123456', 'Additional info', 'user.png');
+    (1, 'Room One', 'info room1'),
+    (2, 'Room Two', 'info room2'),
+    (3, 'Room Three', 'info room3'),
+    (4, 'Room Four', 'info room4');
+
+-- Insert data into the 'users' table
+INSERT INTO users (username, email, password, room_id, extra_data, profile_picture)
+VALUES
+    ('User one', 'user1@gmail.com', '123456', 1, 'Some extra data', 'user.png'),
+    ('User Two', 'user2@gmail.com', '123456', 2, 'Additional info', 'user.png'),
+    ('User Three', 'user3@gmail.com', '123456', 1, 'Additional info', 'user.png'),
+    ('User Four', 'user4@gmail.com', '123456', 4, 'Additional info', 'user.png'),
+    ('User Five', 'user5@gmail.com', '123456', 3, 'Additional info', 'user.png');
 
 -- Insert data into the 'admins' table
 INSERT INTO admins (username, email, password, profile_picture)
@@ -118,31 +128,32 @@ VALUES
 -- Insert data into the 'products' table
 INSERT INTO products (name, description, price, picture, category_id, status)
 VALUES
-    ('Cola', 'Refreshing soda', 2.5, 'default.png', 1, 'Available'),
-    ('Chips', 'Crunchy potato chips', 1.5, 'default.png', 2, 'Available'),
-    ('Chocolate Cake', 'Rich and moist cake', 5.0, 'default.png', 3, 'Available');
-
--- Insert data into the 'rooms' table
-INSERT INTO rooms (id, room_number, ext)
-VALUES
-    (1, 'Room One', 'info room1'),
-    (2, 'Room Two', 'info room2'),
-    (3, 'Room Three', 'info room3'),
-    (4, 'Room Four', 'info room4');
+    ('Cola', 'Refreshing soda', 10, 'default.png', 1, 'Available'),
+    ('Chips', 'Crunchy potato chips', 20, 'default.png', 2, 'Available'),
+    ('Coffee', 'Coffee cup', 20, 'default.png', 1, 'Available'),
+    ('Watter', 'Watter Bottle', 10, 'default.png', 2, 'Available'),
+    ('Chocolate Cake', 'Rich and moist cake', 30, 'default.png', 3, 'Available');
 
 -- Insert data into the 'orders' table
-INSERT INTO orders (user_id, total_price, total_price_after_tax, status, notes, room_id)
+INSERT INTO orders (user_id, total_price, status, notes, room_id, order_date)
 VALUES
-    (1, 8.0, 8.8, 'Done', 'Special instructions for the order', 1),
-    (2, 8.0, 8.8, 'Cancelled', 'Special instructions for the order', 2),
-    (2, 3.5, 3.85, 'Processing', NULL, 3);
+    (1, 30, 'Done', 'Special instructions for the order', 1, '2024-03-08 12:00:00'),
+    (1, 30, 'Cancelled', 'Special instructions for the order', 2,'2024-03-07 12:00:00'),
+    (2, 20, 'Out For Delivery', 'Special instructions for the order', 2, '2024-03-11 12:00:00'),
+    (2, 20, 'Processing', 'Special instructions for the order', 2, '2024-03-04 12:00:00'),
+    (3, 10, 'Processing', 'Special instructions for the order', 2, '2024-03-12 12:00:00'),
+    (3, 10, 'Processing', NULL, 3, '2024-03-10 12:00:00');
 
 -- Insert data into the 'order_items' table
-INSERT INTO order_items (order_id, product_id, product_price, quantity, total_price)
+INSERT INTO order_items (order_id, product_id, product_price, quantity, total_price, created_at)
 VALUES
-    (1, 1, 2.5, 2, 5.0),
-    (1, 2, 1.5, 1, 1.5),
-    (2, 3, 5.0, 1, 5.0);
+    (1, 1, 10, 2, 10, '2024-03-08 12:00:00'),
+    (1, 2, 20, 1, 20, '2024-03-08 12:00:00'),
+    (2, 5, 30, 1, 30,'2024-03-07 12:00:00'),
+    (3, 2, 20, 1, 20, '2024-03-11 12:00:00'),
+    (4, 3, 20, 1, 20, '2024-03-04 12:00:00'),
+    (5, 4, 10, 1, 20, '2024-03-12 12:00:00'),
+    (6, 1, 10, 1, 20, '2024-03-10 12:00:00');
 
 -- Insert data into the 'notifications' table
 INSERT INTO notifications (type, notifiable_id, notifiable_type, data, read_at)

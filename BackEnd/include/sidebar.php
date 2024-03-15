@@ -34,7 +34,7 @@
 <body>
     <div class="container-fluid p-0 d-flex h-100">
         <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-bg-info text-white offcanvas-md offcanvas-start">
-            <a href="#" class="navbar-brand text-center">Cafateria</a><hr>
+            <a href="./index.php" class="navbar-brand text-center">Cafateria</a><hr>
             <ul class="mynav nav nav-pills flex-column flex-grow-1 pe-3 mb-auto">
                 <!-- Index -->
                 <li class="nav-item mb-1">
