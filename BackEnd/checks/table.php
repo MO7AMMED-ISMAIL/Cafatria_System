@@ -23,7 +23,7 @@ if(!isset($_SESSION['id'])){
                     <input type="date" class="form-control" name="end_date" placeholder="Date To" aria-label="Date To">
                 </div>
                 <div class="col">
-                    <select name="username" id="username" class="form-control form-select">
+                    <select name="user_id" id="user_id" class="form-control form-select">
                         <option value="">Select User</option>
                         <?php foreach($users_result as $user) {?>
                             <option value="<?=$user['id']?>"><?=$user['username']?></option>
