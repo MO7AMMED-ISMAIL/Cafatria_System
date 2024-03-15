@@ -9,8 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/styles.css" />
-    <link href="style.css" rel="stylesheet">
-    <link rel="stylesheet" href="My_Order.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/My_Order.css">
 </head>
 
 <?php
@@ -227,8 +227,8 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script src="My_Order.js"></script>
-    <script src="scriptnavimg.js"></script>
+    <script src="js/My_Order.js"></script>
+    <script src="js/scriptnavimg.js"></script>
 
 
 </body>
