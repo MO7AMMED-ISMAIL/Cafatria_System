@@ -200,9 +200,9 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                                                         </h5>
                                                         <p class="card-text">
                                                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                                                                <?= $orderItem['price'] ?>EGP</span><br>
+                                                                <?= $orderItem['price'] ?>$</span><br>
                                                             Quantity: <?= $orderItem['quantity'] ?><br>
-                                                            Total: <?= $orderItem['price'] * $orderItem['quantity'] ?> EGP
+                                                            Total: <?= $orderItem['price'] * $orderItem['quantity'] ?> $
                                                         </p>
                                                     </div>
                                                 </div>
@@ -220,7 +220,7 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
 
                     <div class="total-price">
                         <h3 class="text-light">Total</h3>
-                        <h4 class="text-light">EGP <span id="totalAmount" class="text-light"><?= $totalAmount ?></span></h4>
+                        <h4 class="text-light"><span id="totalAmount" class="text-light"><?= $totalAmount ?></span>$</h4>
                     </div>
                 </div>
             </div>
