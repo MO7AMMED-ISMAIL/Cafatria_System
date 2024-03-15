@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
         }
 
         $table = new Table("categories");
-        $table->conn();
 
         $currentDate = date("Y-m-d H:i:s");
         echo $currentDate;

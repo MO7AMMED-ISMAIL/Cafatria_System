@@ -3,7 +3,6 @@ require("../DataBase/DBCLass.php");
 use DbClass\Table;
 session_start();
 $table = new Table("products");
-$table->conn();
 
 
 if(isset($_GET['id'])) {

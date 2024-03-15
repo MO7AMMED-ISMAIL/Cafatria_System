@@ -21,8 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Create a connection to the products table
         $table = new Table("products");
-        $table->conn();
-
 // Retrieve the uploaded file
         $file = $_FILES["product_image"];
 

@@ -5,7 +5,6 @@ require("../DataBase/DBCLass.php");
 use DbClass\Table;
 
 $table = new Table("categories");
-$table->conn();
 
 
 if(isset($_GET['id'])) {

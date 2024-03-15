@@ -18,13 +18,6 @@ $cat_selected=[];
 
 
 try {
-    $table->conn();
-
-}catch (Exception $e){
-    //error while connecting
-    header("Location:404.php");
-}
-try {
     $selected = $table->SelectInnerJoinTable("categories", ["category_name"], ["*"], "categories.id=products.category_id");
 }catch (Exception $e){
     //empty table
@@ -33,14 +26,6 @@ try {
 
 
 //category table
-
-try {
-    $category_table->conn();
-}catch (Exception $e){
-    //error while connecting
-    header("Location:404.php");
-}
-
 try {
     $cat_selected = $category_table->Select(["category_name", "id"]);
     $cat_selected=$cat_selected->fetchAll(PDO::FETCH_ASSOC);

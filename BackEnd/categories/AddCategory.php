@@ -26,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // Create a connection to the products table
         $table = new Table("categories");
-        $table->conn();
         unset($_POST['token']);
         $table->Create($_POST);
 

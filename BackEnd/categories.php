@@ -11,7 +11,6 @@ include "include/navbar.php";
 use DbClass\Table;
 
 $table = new Table("categories");
-$table->conn();
 $selected=$table->Select(["*"]);
 $selected=$selected->fetchAll(PDO::FETCH_ASSOC);
 
