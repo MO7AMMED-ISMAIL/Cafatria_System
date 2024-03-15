@@ -17,7 +17,6 @@ $orderDetails['total_price'] = $_POST['totalPrice'];
 $orderDetails['user_id'] = $_POST['user_id'];
 $orderDetails['tax'] = 0.1;
 $orderDetails['status'] = "Processing";
-$orderDetails['total_price_after_tax'] = floatval($orderDetails['total_price'] * 1.1);
 $orderDetails['room_id'] = $_POST['room'];
 
 

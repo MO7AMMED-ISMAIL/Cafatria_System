@@ -7,7 +7,7 @@
     $currentAdmin = $newTable->FindById('id',$_SESSION['id']);
 ?>
 
-<div id="body_content" class="bg-light flex-fill">
+<div id="body_content" class="flex-fill">
     <!-- bars button of offcanvas-->
     <div class="p-2 d-md-none d-flex text-white bg-info">
         <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">

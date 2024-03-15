@@ -20,7 +20,6 @@
         'user_id',
         'total_price',
         'tax',
-        'total_price_after_tax',
         'status',
         'notes',
         'order_date'

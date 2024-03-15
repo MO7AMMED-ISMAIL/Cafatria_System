@@ -7,11 +7,14 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <a href="?add=Admin" class="btn btn-primary">Add</a>
+            <div class="row justify-content-between align-items-center">
+                <h4 class="col text-primary">All Admins</h4>
+                <a href="?add=Admin" class="col-2 me-2 btn btn-primary">Add Admin</a>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-hover table-responsive" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
@@ -31,7 +34,7 @@
                             <td><?=$admin['email']?></td>
                             <td><img src="uploads/<?=$admin['profile_picture']?>"></td>
                             <td>
-                                <a href="?edit=<?=$admin['id']?>" class="btn btn-outline-primary">Edit</a>
+                                <a href="?edit=<?=$admin['id']?>" class="btn btn-outline-warning">Edit</a>
                                 <a href="admins/delete.php?id=<?=$admin['id']?>" class="btn btn-outline-danger">Delete</a>
                             </td>
                         </tr>

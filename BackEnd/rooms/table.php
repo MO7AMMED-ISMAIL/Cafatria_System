@@ -7,11 +7,14 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <a href="?add=Room" class="btn btn-primary">Add</a>
+            <div class="row justify-content-between align-items-center">
+                <h4 class="col text-primary">All Rooms</h4>
+                <a href="?add=Room" class="col-2 me-2 btn btn-primary">Add Room</a>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-hover table-responsive">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>

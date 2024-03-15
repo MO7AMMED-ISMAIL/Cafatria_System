@@ -176,6 +176,17 @@ class Table extends Database{
         }
     }
 
+    public function earningMoney($tableName){
+        $sql = "SELECT SUM(total_price) AS total_price_sum FROM $tableName WHERE status IN ('Out For Delivery', 'Done')";
+        try{
+            $stmt = parent::connect()->query($sql);
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+            return $result['total_price_sum'];
+        }catch(Exception $e){
+            throw new Exception("Not Found Table Name");
+        }
+    }
+
     public function UserOrders($userId,$cond=1){
         $sql = "SELECT DISTINCT o.id,o.status, o.order_date, o.tax, ot.quantity, p.name, p.picture, p.price  FROM $this->TbName AS o 
         JOIN order_items AS ot ON o.id = ot.order_id
@@ -188,10 +199,11 @@ class Table extends Database{
         return $results;
     }
 
-    public function UserNamesWithOrderPrices(){
+    public function UserNamesWithOrderPrices($condition = 1){
         $sql = "SELECT users.username AS username, orders.user_id, SUM(orders.total_price) AS order_total_price
                 FROM $this->TbName AS orders
                 JOIN users ON orders.user_id = users.id
+                WHERE $condition
                 GROUP BY orders.user_id;";
 
         $stmt = parent::connect()->prepare($sql);
@@ -200,6 +212,4 @@ class Table extends Database{
         return $results;
     }
 }
-
-
 ?>

@@ -23,14 +23,12 @@
         try{
             $user_id = $orders->inputData($_POST['user_id']);
             $total_price = $orders->inputData($_POST['order_total_price']);
-            $tax = 0.1;
             $notes = $orders->inputData($_POST['notes']);
             $room_id = $orders->inputData($_POST['room_id']);
 
             $orderData = [
                 'user_id' => $user_id,
                 'total_price' => $total_price,
-                'total_price_after_tax' => $tax * $total_price,
                 'notes' => $notes,
                 'room_id' => $room_id
             ];
