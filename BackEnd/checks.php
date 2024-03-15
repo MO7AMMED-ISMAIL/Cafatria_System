@@ -15,14 +15,13 @@ $products = new Table('products');
 include "include/sidebar.php";
 include "include/navbar.php";
 
-
+// Search in order
 if(isset($_GET['start_date']) && isset($_GET['end_date']) && isset($_GET['user_id']) && !empty($_GET['start_date']) && !empty($_GET['end_date']) && !empty($_GET['user_id'])){
     $start_date = $_GET['start_date'];
     $end_date = $_GET['end_date'];
     $user_id = $_GET['user_id'];
     $condition = "orders.user_id = '$user_id' AND orders.order_date BETWEEN '$start_date' AND '$end_date'";
     $users_orders_result =$orders->UserNamesWithOrderPrices($condition);
-    var_dump($users_orders_result);
 }else {
     $users_orders_result =$orders->UserNamesWithOrderPrices();
 }
