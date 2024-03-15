@@ -87,9 +87,9 @@ class Table extends Database{
         // echo $statement;
         try {
             $selected=parent::connect()->query($statement);
-            if(! $selected->rowCount()){
+            /*if(! $selected->rowCount()){
                 throw new Exception("returned Data From Inner Join Is Empty...");
-            }
+            }*/
             return $selected;
         }catch (PDOException $e){
             throw new Exception("PDO Error: ". $e->getMessage() );

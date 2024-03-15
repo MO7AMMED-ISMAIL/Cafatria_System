@@ -32,8 +32,8 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
     $start = $_GET['start'];
     $end = $_GET['end'];
     $orders = new Table('orders');
-    $cond = "o.order_date BETWEEN '$start' AND '$end'";
-    $userOrder =$orders->SelectInnerJoinTable("rooms",["room_number"],["*"],"rooms.id=orders.room_id");
+    $cond = "rooms.id=orders.room_id And user_id= '$userId' And orders.order_date BETWEEN '$start' AND '$end'";
+    $userOrder =$orders->SelectInnerJoinTable("rooms",["room_number"],["*"],$cond);
 } else {
     $orders = new Table('orders');
     $userOrder =$orders->SelectInnerJoinTable("rooms",["room_number"],["*"],"rooms.id=orders.room_id And user_id= '$userId'");
@@ -150,46 +150,45 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                             </tr>
                         </thead>
                         <tbody id="orderTableBody">
-                            <?php
-                            foreach ($userOrder as $order) {
-                            ?>
-                                <tr class="order">
-                                    <td>
-                                        <span><?= $order['order_date'] ?></span>
-                                        <i class="fa fa-plus-square mx-5"></i>
-                                    </td>
+                            <?php if ($userOrder->rowCount()) {
+                            foreach ($userOrder as $order) { ?>
+                            <tr class="order">
+                                <td>
+                                    <span><?= $order['order_date'] ?></span>
+                                    <i class="fa fa-plus-square mx-5"></i>
+                                </td>
 
-                                    <td class="Processing">
-                                        <?php
-                                        if ($order['status'] == 'Processing') { ?>
-                                            <i class="btn btn-warning"></i>
-                                            <?= $order['status'] ?>
-                                        <?php } else { ?>
-                                            <?= $order['status'] ?>
-                                        <?php } ?>
-                                    </td>
+                                <td class="Processing">
+                                    <?php
+                                    if ($order['status'] == 'Processing') { ?>
+                                        <i class="btn btn-warning"></i>
+                                        <?= $order['status'] ?>
+                                    <?php } else { ?>
+                                        <?= $order['status'] ?>
+                                    <?php } ?>
+                                </td>
 
-                                    <td>
+                                <td>
                                         <span>
                                             <?php
                                             echo $order['total_price'];
                                             ?>
                                         </span> $
-                                    </td>
-                                    <td>
-                                        <?php
-                                        if ($order["status"] == 'Processing') {
-                                        ?>
-                                            <a href='cancel_order.php?order_id=<?= $order['id'] ?>' class='cancel btn btn-danger'>Cancel</a>
-                                        <?php } ?>
-                                    </td>
-                                </tr>
-
-                                <tr class="cart-item details-hidden">
+                                </td>
+                                <td>
                                     <?php
-                                    $order_id = $order['id'];
-                                    $orderItems = $orders->UserOrders($userId, "orders.id = $order_id");
-                                    foreach ($orderItems as $orderItem) { ?>
+                                    if ($order["status"] == 'Processing') {
+                                        ?>
+                                        <a href='cancel_order.php?order_id=<?= $order['id'] ?>' class='cancel btn btn-danger'>Cancel</a>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+
+                            <tr class="cart-item details-hidden">
+                                <?php
+                                $order_id = $order['id'];
+                                $orderItems = $orders->UserOrders($userId, "orders.id = $order_id");
+                                foreach ($orderItems as $orderItem) { ?>
                                     <td>
                                         <div class="cart-item-details">
                                             <div class="cart-item-info d-flex justify-content-start align-items-center">
@@ -210,9 +209,12 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                                             </div>
                                         </div>
                                     </td>
-                                    <?php } ?>
-                                </tr>
-                            <?php } ?>
+                                <?php } ?>
+                            </tr>
+                            <?php }; ?>
+                            <?php } else { ?>
+                               <div class="alert alert-warning" role="alert">No orders found in this date ....</div>
+                            <?php }; ?>
                         </tbody>
                     </table>
 
