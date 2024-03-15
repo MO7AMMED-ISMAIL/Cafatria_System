@@ -24,7 +24,7 @@
 
 
                     <!-- Navigation icon  -->
-                    <div class="col-auto">
+                    <div class="col-auto ms-auto"> 
                         <button id="navToggle" class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -49,10 +49,6 @@
             </div>
         </nav>
 
-
-
-
-
         <!-- Nav drawer -->
         <div id="sideNav" class="nav-drawer d-lg-none">
             <ul class="mt-4">
@@ -65,7 +61,6 @@
             <button id="navClose" class="btn btn-outline-light mb-2 ml-2">Close</button>
         </div>
 
-
         <div class="container">
             <div class="row">
                 <h1 class="display-4 my-5 col-12" style="font-style: italic; font-size: 10.7em; color: rgba(237, 243, 246, 0.753);">Menu</h1>
@@ -77,12 +72,8 @@
         </div>
     </div>
 
-
-
-
     <!-- Menu Section -->
     <div class="container-fluid my-5">
-
         <div class="row">
             <div class="accordion accordion-flush col-12" id="accordionFlushExample">
                 <?php
@@ -93,7 +84,6 @@
                 $categoryTable = new Table('categories');
                 $categoryDataQuery = $categoryTable->Select(['id', 'category_name']);
                 $categories = $categoryDataQuery->fetchAll(PDO::FETCH_ASSOC);
-
 
                 foreach ($categories as $index => $category) {
                     echo '<div class="accordion-item">';
@@ -122,7 +112,7 @@
                         echo '<div class="col-md-6 my-md-5 ">';
                         echo '<h4>' . $product['name'] . '</h4>';
                         echo '<p>' . $product['description'] . '</p>';
-                        echo '<p><strong>Price:</strong> $' . $product['price'] . '</p>';
+                        echo '<p id="price"><strong>Price:</strong> $' . $product['price'] . '</p>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
@@ -140,8 +130,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!-- About Section -->
     <div class=" container my-5" style="padding-top:5%;">
@@ -172,7 +160,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="js/scriptnavimg.js"></script>
