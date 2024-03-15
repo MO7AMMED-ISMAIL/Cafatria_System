@@ -13,16 +13,14 @@ if(isset($_SESSION['email'])) {
 }
 
 
-require "class.php"; 
+require "../../BackEnd/DataBase/DBCLass.php"; 
 use DbClass\Table; 
 
 $orderTable = new Table('orders');
 
 //latest order for the user
-$latestOrderQuery = $orderTable->Select(['*'], 'user_id = ' . $user_id . ' ORDER BY order_date DESC LIMIT 1');
+$latestOrderQuery = $orderTable->Select(['*'], "user_id = $user_id AND status = 'Done' ORDER BY order_date DESC LIMIT 1");
 $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
-
-
 ?>
 
 
@@ -106,6 +104,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
 
 
+
      <!-- Search input and button -->
      <div class="col-auto ml-auto">
         <div class="input-group d-none d-lg-flex">
@@ -122,7 +121,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
 
 
- <!-- Navigation icon  -->
+ <!-- Nav icon  -->
    <div class="col-auto">
          <button id="navToggle" class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -133,16 +132,20 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                        <a class="nav-link text-light" href="#Home" style="width:100%;">Home</a>
                    </li>
 
+                   <li class="nav-item"  >
+                       <a class="nav-link text-light" href="menu.php" style="width:100%;">Menu</a>
+                   </li>
+
                    <li class="nav-item">
                       <a class="nav-link text-light" href="#Latestorder" style="width:100%;">Latest Order</a>
                    </li>
 
                     <li class="nav-item">
-                       <a class="nav-link text-light" href="#productSection" style="width:100%;">Product</a>
+                       <a class="nav-link text-light" href="#productSection" style="width:100%;">Order now</a>
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link text-light" href="order.php" style="width:100%;">My 0rder</a>
+                      <a class="nav-link text-light" href="order.php" style="width:100%;">My 0rders</a>
                      </li>
 
                  </ul>
@@ -171,9 +174,10 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
 
         <li><a href="#Home">Home</a></li>
+        <li><a href="menu.php">Menu</a></li>
         <li><a href="#Latestorder">Latest Order</a></li>
-        <li><a href="#productSection">Product</a></li>
-        <li><a href="order.php">My 0rder</a></li>
+        <li><a href="#productSection">Order now</a></li>
+        <li><a href="order.php">My 0rders</a></li>
     </ul>
    
     <button id="navClose" class="btn btn-outline-light mb-2 ml-2">Close</button>
@@ -205,7 +209,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
                 
                  foreach ($orderItems as $item) {
-                 // product details for each order item
+                 
                      $productTable = new Table('products');
                      $productQuery = $productTable->Select(['name', 'picture', 'price'], 'id = ' . $item['product_id']);
                      $product = $productQuery->fetch(PDO::FETCH_ASSOC);
@@ -247,7 +251,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
             <?php
                 
                 $productTable = new Table('products');
-               //display product 
+
              $productQuery = $productTable->Select(['*'], 'status = "Available"');
              $products = $productQuery->fetchAll(PDO::FETCH_ASSOC);
 
@@ -263,7 +267,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                     $product = $products[$i];
                     echo '<div class="col-md-4 col-12 my-5">';
                     echo '<div class="card">';
-                    echo '<input type="hidden" class="product-id" value="' . $product['id'] . '">';
+                    echo '<input type="hidden"  name="product_id" class="product-id" value="' . $product['id'] . '">';
                     echo '<img src="images/' . $product['picture'] . '" class="card-img-top" alt="Product Image">';
                     echo '<div class="card-body">';
                     echo '<h5 class="card-title">' . $product['name'] . '</h5>';
@@ -290,10 +294,8 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
         </div>
 
 
-
-       
-   <!-- Order form -->
-   <div class="col-md-5 my-5 my-md-0 col-12">
+ <!-- Order form -->
+ <div class="col-md-5 my-5 my-md-0 col-12">
     <h2>Order Details</h2>
     <form id="orderForm" class="order-form formbtn" action="addOrder.php" method="post">
         <div class="form-group">
@@ -309,18 +311,19 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
         <div class="form-group">
             <label for="room">Room</label>
             <select class="form-control" id="room" name="room">
-                <?php
-                try {
-                    $table = new Table('rooms');
-                    $roomNumbersQuery = $table->Select(['room_number']);
-                    $roomNumbers = $roomNumbersQuery->fetchAll(PDO::FETCH_ASSOC);
-                    foreach ($roomNumbers as $room) {
-                        echo "<option value='" . $room['room_number'] . "'>" . $room['room_number'] . "</option>";
-                    }
-                } catch (Exception $e) {
-                    echo "<option value=''>Error fetching rooms</option>";
-                }
-                ?>
+            <?php
+     try {
+    $table = new Table('rooms');
+    $roomNumbersQuery = $table->Select(['id', 'room_number']); 
+    $roomNumbers = $roomNumbersQuery->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($roomNumbers as $room) {
+        echo "<option  value='" . $room['id'] . "'>" . $room['room_number'] . "</option>"; 
+      }
+} catch (Exception $e) {
+    echo "<option value=''>Error fetching rooms</option>";
+}
+?>
+
             </select>
         </div>
 
@@ -343,6 +346,8 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
 
 
+       
+  
  <!-- About Section -->
  <div class=" container my-5" style="padding-top:5%;">
         <div class="about row">
@@ -423,34 +428,34 @@ window.addEventListener('scroll', function() {
     const prevButton = document.getElementById('prevPage');
     const nextButton = document.getElementById('nextPage');
 
-    const itemsPerPage = 9; // Number of products per page
+    const itemsPerPage = 9; //products per page
     let currentPage = <?php echo $currentPage; ?>;
     let numPages = <?php echo $numPages; ?>;
     let products = <?php echo json_encode($products); ?>;
 
     function displayProducts(page) {
-        const startIdx = (page - 1) * itemsPerPage;
-        const endIdx = Math.min(startIdx + itemsPerPage, products.length);
-        
-        let html = '<div class="row">';
-        for (let i = startIdx; i < endIdx; i++) {
-            const product = products[i];
-            html += '<div class="col-md-4">';
-            html += '<div class="card">';
-            html += '<img src="images/' + product.picture + '" class="card-img-top" alt="Product Image">';
-            html += '<div class="card-body">';
-            html += '<h5 class="card-title">' + product.name + '</h5>';
-            html += '<p class="card-text">Price: ' + product.price + '</p>';
-            html += '</div>';
-            html += '<div class="card-footer">';
-            html += '</div>';
-            html += '</div>';
-            html += '</div>';
-        }
-        html += '</div>';
-        productContainer.innerHTML = html;
+    const startIdx = (page - 1) * itemsPerPage;
+    const endIdx = Math.min(startIdx + itemsPerPage, products.length);
 
-        // Disable or enable previous and next button
+    let html = '<div class="row">';
+    for (let i = startIdx; i < endIdx; i++) {
+        const product = products[i];
+        html += '<div class="col-md-4">';
+        html += '<div class="card">';
+        html += '<input type="hidden" name="product_id" class="product-id" value="' + product.id + '">';
+        html += '<img src="images/' + product.picture + '" class="card-img-top" alt="Product Image">';
+        html += '<div class="card-body">';
+        html += '<h5 class="card-title">' + product.name + '</h5>';
+        html += '<p class="card-text">Price: ' + product.price + '</p>';
+        html += '</div>';
+        html += '<div class="card-footer">';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+    }
+    html += '</div>';
+    productContainer.innerHTML = html;
+        //previous and next button
         if (currentPage === 1) {
             prevButton.disabled = true;
         } else {

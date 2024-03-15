@@ -7,10 +7,6 @@ use PDOException;
 
 class Table extends Database{
     public $TbName;
-    private $conn;
-    public function conn(){
-        $this->conn = parent::connect();
-    }
 
     public function __construct($tableName){
         $this->TbName = $tableName;
@@ -191,7 +187,18 @@ class Table extends Database{
         $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $results;
     }
-    
+
+    public function UserNamesWithOrderPrices(){
+        $sql = "SELECT users.username AS username, orders.user_id, SUM(orders.total_price) AS order_total_price
+                FROM $this->TbName AS orders
+                JOIN users ON orders.user_id = users.id
+                GROUP BY orders.user_id;";
+
+        $stmt = parent::connect()->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $results;
+    }
 }
 
 

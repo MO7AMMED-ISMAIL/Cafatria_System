@@ -14,7 +14,7 @@
 
 <?php
 session_start();
-require "class.php"; 
+require "../../BackEnd/DataBase/DBCLass.php"; 
 use DbClass\Table; 
 if (!isset($_SESSION['user_id'])) {
     
