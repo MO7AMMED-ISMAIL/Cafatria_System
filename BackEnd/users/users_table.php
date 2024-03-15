@@ -3,6 +3,15 @@
         if(!isset($_SESSION['id'])){
         header("location: ../404.php");
     }
+    if(isset($_SESSION['success'])){
+        $message = $_SESSION["success"];
+        $messageColor="green";
+        unset($_SESSION["message"]);
+        echo "<div class='alert alert-dismissible fade show' style='color: $messageColor;' role='alert'>
+            $message
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";
+    }
 }
 ?>
 <div class="container-fluid">

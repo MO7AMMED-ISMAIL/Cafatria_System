@@ -105,15 +105,23 @@ class Table extends Database{
         }
     }
 
-    public function inputData($data) { 
+    public function inputData($data) {
+        $data = trim($data);  
+        $data = stripslashes($data);  
+        $data = htmlspecialchars($data);
         if(strlen($data) <= 0){
             throw new Exception("The input is empty");
         }
-        $data = trim($data);  
-        $data = stripslashes($data);  
-        $data = htmlspecialchars($data);  
         return $data;  
-    }  
+    }
+    public function checkPassword($data)
+    {
+        $data=$this->inputData($data);
+        if(strlen($data) <= 3){
+            throw new Exception("Password should at least 4 characters");
+        }
+        return $data;
+    }
 
     public function ValidateEmail($data){
         if(filter_var($data, FILTER_VALIDATE_EMAIL)){

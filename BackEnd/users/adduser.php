@@ -23,8 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $table = new Table('users');
         $name = $table->isValidUsername($_POST["name"]);
         $email = $table->ValidateEmail($_POST["email"]);
-        $password = $table->inputData($_POST["pass"]); 
-        $room_id = $_POST["room"]; 
+        $password = $table->checkPassword($_POST["pass"]);
+        $room_id = $_POST["room"];
+        if($room_id=="Choose The Rooms"){
+            throw new Exception("Please Select A Room");
+        }
         //$room_ext=$_post["ext"];
         $img = $table->Upload($_FILES['profile_picture']);
         $data = array(
@@ -36,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            // 'room_id'=>$room_ext
         );
         $result = $table->Create($data);
+        $_SESSION["success"]="Successfully Inserted";
         header("location: ../users.php");
         exit();
     } catch (Exception $e) {

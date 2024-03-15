@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include "../DataBase/DBCLass.php"; 
 use DbClass\Table; 
 $table = new DbClass\Table('users');
@@ -7,7 +7,8 @@ if(isset($_GET['id'])) {
     $id = $_GET['id'];
     try {
         
-        $table->Delete("id = $id"); 
+        $table->Delete("id = $id");
+        $_SESSION["success"]="Successfully Deleted";
         header("Location:../users.php");
         exit(); 
     } catch (Exception $e) {
