@@ -91,7 +91,7 @@ CREATE TABLE `notifications`
     data TEXT NOT NULL,
     read_at TIMESTAMP NULL DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (notifiable_id) REFERENCES orders(id),
+    FOREIGN KEY (notifiable_id) REFERENCES orders(id) ON DELETE CASCADE ON UPDATE CASCADE,
     INDEX (notifiable_id, notifiable_type)
 );
 
