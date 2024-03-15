@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
         $postData = [];
 
         foreach ($_POST as $key => $data) {
-            if ($key != "id")
+            if ($key != "id" && $key!="token")
                 $postData[$key] = $data;
         }
 
@@ -42,10 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
 
         $table->Update($postData, "id", $_POST['id']);
         //successfully updated
+        $_SESSION["message"]="successfully updated";
+        $_SESSION["color"]="green";
         header("Location:../products.php");
     }
 catch (Exception $e){
-    $_SESSION['error']="error while update please try again";
+    $_SESSION['message']="error while update please try again";
     $_SESSION['color']="red";
     header("../products.php?edit={$_POST['id']}");
 }
