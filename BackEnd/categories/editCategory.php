@@ -1,11 +1,36 @@
 <?php
 echo "<h2 class='text-center mb-5'>Update Category</h2>";
 
-$catSelected=$table->Select(['*'],"id={$_GET['edit']}")->fetch(PDO::FETCH_ASSOC);
+
+// Check if 'id' parameter is set in the URL
+if(isset($_GET['edit'])) {
+    $catSelected=$table->Select(['*'],"id={$_GET['edit']}")->fetch(PDO::FETCH_ASSOC);
+    $_SESSION['token'] = bin2hex(random_bytes(32));
+    $_SESSION['token_expire'] = time() + 3600 ;
+}else{
+    header("Location: ../404.php");
+}
+
+if (isset($_SESSION["message"])) {
+    $messageColor = $_SESSION['color'] ?? 'black';
+    $message = $_SESSION["message"];
+    unset($_SESSION["message"]);
+    unset($_SESSION["color"]);
+    echo "<div class='alert alert-dismissible fade show' style='color: $messageColor;' role='alert'>
+            $message
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";
+}
+
 ?>
 
-<form class="container mt-5 needs-validation" action="categories/update.php" method="post" enctype="multipart/form-data" novalidate>
+<form class="container mt-5 needs-validation" action="categories/update.php" method="post">
     <div class="row">
+        <!-- Token -->
+        <div class="form-group">
+            <input type="hidden" class="form-control form-control-user" name="token" value="<?=$_SESSION['token']?>">
+        </div>
+
         <div class="col-6 mb-3">
         <label for="id" class="form-label">ID</label>
         <input type="text" name="id" class="form-control" value="<?=$catSelected['id']?>" id="id" required>

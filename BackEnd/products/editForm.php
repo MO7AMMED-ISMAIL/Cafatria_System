@@ -12,6 +12,19 @@ if (isset($_GET['edit'])) {
     header("Location: ../404.php");
 }
 
+if (isset($_SESSION["message"])) {
+    $messageColor = $_SESSION['color'] ?? 'black';
+    $message = $_SESSION["message"];
+    unset($_SESSION["message"]);
+    unset($_SESSION["color"]);
+    echo "<div class='alert alert-dismissible fade show' style='color: $messageColor;' role='alert'>
+            $message
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";
+}
+
+
+
 
 echo "<h4 class='display-6 text-center mb-5' style='font-weight: bolder'>Edit Product</h4>";
 ?>
@@ -21,6 +34,11 @@ echo "<h4 class='display-6 text-center mb-5' style='font-weight: bolder'>Edit Pr
 <form class="container mt-5 needs-validation" style="overflow: scroll" action="products/update.php" method="post" enctype="multipart/form-data" novalidate>
 
     <div class="row">
+        <!-- Token -->
+        <div class="form-group">
+            <input type="hidden" class="form-control form-control-user" name="token" value="<?=$_SESSION['token']?>">
+        </div>
+
         <div class="col-6 offset-3 mb-3">
             <label for="id" class="form-label">ID</label>
             <input type="text" name="id" value="<?=$SelectProduct[0]['id']?>" class="form-control" id="id" readonly>

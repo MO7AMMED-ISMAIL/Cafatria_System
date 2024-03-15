@@ -9,6 +9,13 @@ if (isset($_SESSION["message"])) {
             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
         </div>";
 }
+
+if (!isset($_SESSION['id'])) {
+    if (!isset($_SESSION['id'])) {
+        header("location: ../404.php");
+    }
+}
+
 ?>
 
 
