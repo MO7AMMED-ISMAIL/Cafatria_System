@@ -1,10 +1,9 @@
 <?php
 
-require "class.php"; 
+require "../../BackEnd/DataBase/DBCLass.php"; 
 use DbClass\Table; 
-
 $table = new Table("orders");
-$table->conn();
+
 
 $order_id = $_GET['order_id']; 
 
