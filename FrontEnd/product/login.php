@@ -65,6 +65,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <link href="css/login.css" rel="stylesheet">
+
+    <style>
+        button{
+            background: #1D4350;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #A43931, #1D4350);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #A43931, #1D4350); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+    </style>
 </head>
 
 <body>
@@ -97,10 +105,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <button type="submit" class="btn btn-primary">Login</button>
                         </div>
                         <p class="small mb-5 text-center my-5">
-                            <a href="forgetPassword.php" class="ForgetPwd" style="color:blue;">Forget Password?</a>
+                            <a href="forgetPassword.php" class="ForgetPwd text-decoration-none" style="color:blue;">Forget Password?</a>
                         </p>
                         <p class="small mb-5 text-center">
-                            <a href="registerform.php" class="ForgetPwd" style="color:blue;">Sign Up</a>
+                            <a href="registerform.php" class="ForgetPwd text-decoration-none" style="color:blue;">Sign Up</a>
                         </p>
                     </form>
                 </div>

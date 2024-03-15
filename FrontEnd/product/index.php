@@ -139,9 +139,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
         </nav>
 
 
-
-
-
         <!-- Nav drawer -->
         <div id="sideNav" class="nav-drawer d-lg-none">
             <ul class="mt-4">
@@ -172,8 +169,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
             <p class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Where every cup tells a story</p>
         </div>
     </div>
-
-
 
 
     <!-- Latest Order Section -->
@@ -216,13 +211,9 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
     <?php endif; ?>
 
 
-
-
-
     <!-- Product section -->
     <div id="productSection" class="container mt-4 text-center" style="padding:0%; padding-top:9%;">
         <div class="row">
-
             <!-- Product Table -->
             <div class="col-md-8 col-10 my-md-0 my-5 mx-md-0 " style="padding:0%;">
                 <h2 class="text-light" style="font-style:italic;background-color: rgba(71, 44, 8, 0.816);">Order Now</h2>
@@ -271,7 +262,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                 </div>
 
             </div>
-
 
             <!-- Order form -->
             <div class="col-md-4  my-5 my-md-0 col-10 offset-md-0 offset-1" style=" padding-top:4%;">
@@ -323,10 +313,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
             </div>
 
 
-
-
-
-
             <!-- About Section -->
             <div class=" container my-5" style="padding-top:5%;">
                 <div class="about row">
@@ -357,15 +343,11 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                 </div>
             </div>
 
-
-
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 
 
             <script>
                 //display product at tpage
-
                 document.addEventListener('DOMContentLoaded', function() {
                     const productContainer = document.getElementById('productContainer');
                     const prevButton = document.getElementById('prevPage');
@@ -433,7 +415,8 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
             <script src="js/scriptnavimg.js"></script>
 
             <script src="js/script.js"></script>
-
+        </div>
+    </div>
 
 </body>
 
