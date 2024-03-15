@@ -15,10 +15,12 @@
 
 <?php
 session_start();
-require "../../BackEnd/DataBase/DBCLass.php"; 
-use DbClass\Table; 
+require "../../BackEnd/DataBase/DBCLass.php";
+
+use DbClass\Table;
+
 if (!isset($_SESSION['user_id'])) {
-    
+
     header('Location: login.php');
     exit();
 }
@@ -41,77 +43,77 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
 
 <body>
 
-<!--cafe name-->
-<div class="mainhome jumbotron jumbotron-fluid bg-cover d-flex align-items-center" style="height:50vh;">
+    <!--cafe name-->
+    <div class="mainhome jumbotron jumbotron-fluid bg-cover d-flex align-items-center" style="height:50vh;">
 
 
-<!-- Navigation bar -->
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
-    <div class="container-fluid">
-        <div class="row align-items-center">
+        <!-- Navigation bar -->
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
+            <div class="container-fluid">
+                <div class="row align-items-center">
 
 
-  <!-- Navigation icon  -->
-     <div class="col-auto">
-         <button id="navToggle" class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-             </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav" style="margin-top:3%;">
-                        <li class="nav-item"  >
-                            <a class="nav-link text-light" href="index.php #Home" style="width:100%;">Home</a>
-                        </li>
+                    <!-- Navigation icon  -->
+                    <div class="col-auto">
+                        <button id="navToggle" class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                            <ul class="navbar-nav" style="margin-top:3%;">
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="index.php #Home" style="width:100%;">Home</a>
+                                </li>
 
-                        <li class="nav-item"  >
-                            <a class="nav-link text-light" href="menu.php" style="width:100%;">Menu</a>
-                        </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="menu.php" style="width:100%;">Menu</a>
+                                </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="index.php #Latestorder" style="width:100%;">Latest Order</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="index.php #productSection" style="width:100%;">Order now</a>
-                        </li>
-                        
-                    </ul>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="index.php #Latestorder" style="width:100%;">Latest Order</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="index.php #productSection" style="width:100%;">Order now</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </nav>
+
+
+
+
+
+        <!-- Nav drawer -->
+        <div id="sideNav" class="nav-drawer d-lg-none">
+            <ul class="mt-4">
+                <li><a href="index.php #Home">Home</a></li>
+                <li><a href="menu.php">Menu</a></li>
+                <li><a href="index.php #Latestorder">Latest Order</a></li>
+                <li><a href="index.php #productSection">Order now</a></li>
+
+            </ul>
+
+            <button id="navClose" class="btn btn-outline-light mb-2 ml-2">Close</button>
+        </div>
+
+
+        <div class="container">
+            <h1 class="display-4 my-5" style="font-style: italic; font-size: 10em; color: rgba(237, 243, 246, 0.753);">Orders</h1>
+            <p class="lead text-light">Indulge Your Senses, Order with Ease: Your Café Delights Await!</p>
         </div>
     </div>
-</nav>
 
 
-
-
-
-<!-- Nav drawer -->
-<div id="sideNav" class="nav-drawer d-lg-none">
-    <ul class="mt-4">
-         <li><a href="index.php #Home">Home</a></li>
-         <li><a href="menu.php">Menu</a></li>
-        <li><a href="index.php #Latestorder">Latest Order</a></li>
-        <li><a href="index.php #productSection">Order now</a></li>
-       
-    </ul>
-   
-    <button id="navClose" class="btn btn-outline-light mb-2 ml-2">Close</button>
-</div>
-
-
-<div class="container">
-        <h1 class="display-4 my-5" style="font-style: italic; font-size: 10em; color: rgba(237, 243, 246, 0.753);">Orders</h1>
-        <p class="lead text-light">Indulge Your Senses, Order with Ease: Your Café Delights Await!</p>
-    </div>
-</div>
-
-
-  <!--ordertable-->  
+    <!--ordertable-->
     <main class="my-orders my-5">
         <section class="main-padding">
             <div class="container py-5 my-5">
-               
+
                 <form action="" method="GET" id="searchForm">
-                    <input type="hidden" name="userId" value="<?=$userId?>" />
+                    <input type="hidden" name="userId" value="<?= $userId ?>" />
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="from-group">
@@ -129,7 +131,7 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                             <button type="submit" class="btn btn-primary mx-2">Search</button>
                             <a href="order.php" class="btn btn-danger mt-2">Clear</a>
                         </div>
-                        
+
                     </div>
                 </form>
             </div>
@@ -149,65 +151,63 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                         </thead>
                         <tbody id="orderTableBody">
                             <?php
-                                foreach($userOrder as $order){
+                            foreach ($userOrder as $order) {
                             ?>
-                            <tr class="order">
-                                <td>
-                                    <span><?=$order['order_date']?></span>
-                                    <i class="fa fa-plus-square mx-5"></i>
-                                </td>
+                                <tr class="order">
+                                    <td>
+                                        <span><?= $order['order_date'] ?></span>
+                                        <i class="fa fa-plus-square mx-5"></i>
+                                    </td>
 
-                                <td class="Processing">
-                                    <?php 
-                                        if ($order['status'] == 'Processing') { ?>
-                                        <i class="btn btn-warning"></i>
-                                        <?=$order['status']?>
-                                        <?php } else { ?>
-                                        <?=$order['status']?>
-                                        <?php } ?>
-                                </td>
-
-                                <td>
-                                    <span>
+                                    <td class="Processing">
                                         <?php
-                                        $totalAmount += $order['price'] * $order['quantity']; 
-                                        echo $order['price'] * $order['quantity'];
-                                        ?>
-                                    </span> EGP
-                                </td>
-                                <td>
-                                    <?php 
-                                        if ($order["status"]=='Processing') { 
-                                    ?>
-                                        <a href='cancel_order.php?order_id=<?= $order['id'] ?>' class='cancel btn btn-danger'>Cancel</a>
-                                    <?php } ?>
-                                </td>
-                            </tr>
+                                        if ($order['status'] == 'Processing') { ?>
+                                            <i class="btn btn-warning"></i>
+                                            <?= $order['status'] ?>
+                                        <?php } else { ?>
+                                            <?= $order['status'] ?>
+                                        <?php } ?>
+                                    </td>
 
-                            <tr class="cart-item details-hidden">
-                                <td>
-                                    <div class="cart-item-details">
-                                        <div class="cart-item-info d-flex justify-content-center">
-                                            <div class="card shadow position-relative align-items-center mb-3"
-                                                style="width: 15rem;">
-                                                <img class="card-img-top" src="images/<?=$order['picture']?>" alt="Product Name">
-                                                <div class="card-body text-center">
-                                                    <h5 class="card-title">
-                                                        <?=$order['name']?>
-                                                    </h5>
-                                                    <p class="card-text">
-                                                        <span
-                                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                                                            <?=$order['price']?>EGP</span><br>
-                                                        Quantity: <?=$order['quantity']?><br>
-                                                        Total: <?=$order['price'] * $order['quantity']?> EGP
-                                                    </p>
+                                    <td>
+                                        <span>
+                                            <?php
+                                            $totalAmount += $order['price'] * $order['quantity'];
+                                            echo $order['price'] * $order['quantity'];
+                                            ?>
+                                        </span> EGP
+                                    </td>
+                                    <td>
+                                        <?php
+                                        if ($order["status"] == 'Processing') {
+                                        ?>
+                                            <a href='cancel_order.php?order_id=<?= $order['id'] ?>' class='cancel btn btn-danger'>Cancel</a>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+
+                                <tr class="cart-item details-hidden">
+                                    <td>
+                                        <div class="cart-item-details">
+                                            <div class="cart-item-info d-flex justify-content-center">
+                                                <div class="card shadow position-relative align-items-center mb-3" style="width: 15rem;">
+                                                    <img class="card-img-top" src="images/<?= $order['picture'] ?>" alt="Product Name">
+                                                    <div class="card-body text-center">
+                                                        <h5 class="card-title">
+                                                            <?= $order['name'] ?>
+                                                        </h5>
+                                                        <p class="card-text">
+                                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                                                <?= $order['price'] ?>EGP</span><br>
+                                                            Quantity: <?= $order['quantity'] ?><br>
+                                                            Total: <?= $order['price'] * $order['quantity'] ?> EGP
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>
@@ -219,8 +219,8 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                 </div>
             </div>
         </section>
-       
-    </div>
+
+        </div>
 
     </main>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,141 +10,144 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/menu.css" rel="stylesheet">
 </head>
+
 <body>
 
-<!--cafe name-->
-<div class="mainhome jumbotron jumbotron-fluid bg-cover d-flex align-items-center" style="height:50vh;">
+    <!--cafe name-->
+    <div class="mainhome jumbotron jumbotron-fluid bg-cover d-flex align-items-center" style="height:50vh;">
 
 
-<!-- Navigation bar -->
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
-    <div class="container-fluid">
-        <div class="row align-items-center">
+        <!-- Navigation bar -->
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
+            <div class="container-fluid">
+                <div class="row align-items-center">
 
 
-  <!-- Navigation icon  -->
-     <div class="col-auto">
-         <button id="navToggle" class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-             </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav" style="margin-top:3%;">
-                        <li class="nav-item"  >
-                            <a class="nav-link text-light" href="index.php #Home" style="width:100%;">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="index.php #Latestorder" style="width:100%;">Latest Order</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="index.php #productSection" style="width:100%;">Order now</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="order.php" style="width:100%;">My orders</a>
-                        </li>
-                    </ul>
+                    <!-- Navigation icon  -->
+                    <div class="col-auto">
+                        <button id="navToggle" class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                            <ul class="navbar-nav" style="margin-top:3%;">
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="index.php #Home" style="width:100%;">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="index.php #Latestorder" style="width:100%;">Latest Order</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="index.php #productSection" style="width:100%;">Order now</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="order.php" style="width:100%;">My orders</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </nav>
+
+
+
+
+
+        <!-- Nav drawer -->
+        <div id="sideNav" class="nav-drawer d-lg-none">
+            <ul class="mt-4">
+                <li><a href="index.php #Home">Home</a></li>
+                <li><a href="index.php #Latestorder">Latest Order</a></li>
+                <li><a href="index.php #productSection">Order now</a></li>
+                <li><a href="order.php">My orders</a></li>
+            </ul>
+
+            <button id="navClose" class="btn btn-outline-light mb-2 ml-2">Close</button>
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <h1 class="display-4 my-5 col-12" style="font-style: italic; font-size: 10.7em; color: rgba(237, 243, 246, 0.753);">Menu</h1>
+            </div>
+
+            <div class="row">
+                <p class="lead slogen col-12 text-light">Discover Delight, Taste the Moment: Your Café, Your Culinary Journey!</p>
             </div>
         </div>
     </div>
-</nav>
 
 
 
 
-
-<!-- Nav drawer -->
-<div id="sideNav" class="nav-drawer d-lg-none">
-    <ul class="mt-4">
-         <li><a href="index.php #Home">Home</a></li>
-        <li><a href="index.php #Latestorder">Latest Order</a></li>
-        <li><a href="index.php #productSection">Order now</a></li>
-        <li><a href="order.php">My orders</a></li>
-    </ul>
-   
-    <button id="navClose" class="btn btn-outline-light mb-2 ml-2">Close</button>
-</div>
-
-
-<div class="container">
-    <div class="row">
-        <h1 class="display-4 my-5 col-12" style="font-style: italic; font-size: 10.7em; color: rgba(237, 243, 246, 0.753);">Menu</h1>
-        </div>
+    <!-- Menu Section -->
+    <div class="container-fluid my-5">
 
         <div class="row">
-        <p class="lead slogen col-12 text-light">Discover Delight, Taste the Moment: Your Café, Your Culinary Journey!</p>
-    </div>
-</div>
-</div>
+            <div class="accordion accordion-flush col-12" id="accordionFlushExample">
+                <?php
+                require "../../BackEnd/DataBase/DBCLass.php";
+
+                use DbClass\Table;
+
+                $categoryTable = new Table('categories');
+                $categoryDataQuery = $categoryTable->Select(['id', 'category_name']);
+                $categories = $categoryDataQuery->fetchAll(PDO::FETCH_ASSOC);
 
 
+                foreach ($categories as $index => $category) {
+                    echo '<div class="accordion-item">';
+                    echo '<h2 class="accordion-header">';
+                    echo '<button id="accordionButton' . $category['id'] . '" style="background-color:rgb(56, 45, 3);" class="accordion-button text-light ' . ($index === 0 ? 'active' : '') . '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . $category['id'] . '">';
+                    echo $category['category_name'];
+                    echo '</button>';
+                    echo '</h2>';
+                    echo '<div id="collapse' . $category['id'] . '" class="accordion-collapse collapse ' . ($index === 0 ? 'show' : '') . '">';
+                    echo '<div class="accordion-body">';
 
+                    //  products related to category
+                    $productTable = new Table('products');
+                    $productQuery = $productTable->Select(['id', 'name', 'description', 'price', 'picture'], 'category_id = ' . $category['id']);
+                    $products = $productQuery->fetchAll(PDO::FETCH_ASSOC);
 
-<!-- Menu Section -->
-<div class="container-fluid my-5">
-    
-    <div class="row">
-        <div class="accordion accordion-flush col-12" id="accordionFlushExample">
-            <?php
-           require "../../BackEnd/DataBase/DBCLass.php"; 
-           use DbClass\Table; 
-            $categoryTable = new Table('categories');
-            $categoryDataQuery = $categoryTable->Select(['id', 'category_name']);
-            $categories = $categoryDataQuery->fetchAll(PDO::FETCH_ASSOC);
-
-           
-            foreach ($categories as $index => $category) {
-                echo '<div class="accordion-item">';
-                echo '<h2 class="accordion-header">';
-                echo '<button id="accordionButton' . $category['id'] . '" style="background-color:rgb(56, 45, 3);" class="accordion-button text-light ' . ($index === 0 ? 'active' : '') . '" type="button" data-bs-toggle="collapse" data-bs-target="#collapse' . $category['id'] . '">';
-                echo $category['category_name'];
-                echo '</button>';
-                echo '</h2>';
-                echo '<div id="collapse' . $category['id'] . '" class="accordion-collapse collapse ' . ($index === 0 ? 'show' : '') . '">';
-                echo '<div class="accordion-body">';
-                
-                //  products related to category
-                $productTable = new Table('products');
-                $productQuery = $productTable->Select(['id', 'name', 'description', 'price', 'picture'], 'category_id = ' . $category['id']);
-                $products = $productQuery->fetchAll(PDO::FETCH_ASSOC);
-                
-                //products in row of three
-                echo '<div class="row">';
-                $counter = 0;
-                foreach ($products as $product) {
-                    echo '<div class="col-md-4 col-4">';
+                    //products in row of three
                     echo '<div class="row">';
-                    echo '<div class="col-md-6 col-7">';
-                    echo '<img src="images/' . $product['picture'] . '" class="img-fluid" alt="Product Image">';
-                    echo '</div>';
-                    echo '<div class="col-md-6 my-md-5 ">';
-                    echo '<h4>' . $product['name'] . '</h4>';
-                    echo '<p>' . $product['description'] . '</p>';
-                    echo '<p><strong>Price:</strong> $' . $product['price'] . '</p>';
-                    echo '</div>';
-                    echo '</div>'; 
-                    echo '</div>';
-                    $counter++;
-                    if ($counter % 3 == 0) {
-                        echo '</div><div class="row">';
+                    $counter = 0;
+                    foreach ($products as $product) {
+                        echo '<div class="col-md-4 col-4">';
+                        echo '<div class="row">';
+                        echo '<div class="col-md-6 col-7">';
+                        echo '<img src="images/' . $product['picture'] . '" class="img-fluid" alt="Product Image">';
+                        echo '</div>';
+                        echo '<div class="col-md-6 my-md-5 ">';
+                        echo '<h4>' . $product['name'] . '</h4>';
+                        echo '<p>' . $product['description'] . '</p>';
+                        echo '<p><strong>Price:</strong> $' . $product['price'] . '</p>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        $counter++;
+                        if ($counter % 3 == 0) {
+                            echo '</div><div class="row">';
+                        }
                     }
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
                 }
-                echo '</div>'; 
-                echo '</div>'; 
-                echo '</div>'; 
-                echo '</div>'; 
-            }
-            ?>
+                ?>
+            </div>
         </div>
     </div>
-</div>
 
 
 
-<!-- About Section -->
-<div class=" container my-5" style="padding-top:5%;">
+    <!-- About Section -->
+    <div class=" container my-5" style="padding-top:5%;">
         <div class="about row">
             <div class="col-md-4 col-5 text-center ">
-                <h5 class="text-light"style="font-size:1.8em;" >Help & Information</h5>
+                <h5 class="text-light" style="font-size:1.8em;">Help & Information</h5>
                 <ul class="list-unstyled">
                     <li class="my-5"><a class="text-light" href="#">About Us</a></li>
                     <li class="my-5"><a class="text-light" href="#">Privacy Policy</a></li>
@@ -151,15 +155,15 @@
                 </ul>
             </div>
             <div class="col-md-4 col-3 text-center">
-                <h5 class="text-light"style="font-size:1.8em;">About Us</h5>
+                <h5 class="text-light" style="font-size:1.8em;">About Us</h5>
                 <ul class="list-unstyled">
                     <li class="my-5"><a class="text-light" href="#">Terms & Conditions</a></li>
-                    <li class="my-5"><a  class="text-light" href="#">Contact</a></li>
-                    <li class="my-5"><a  class="text-light" href="#">Home Page</a></li>
+                    <li class="my-5"><a class="text-light" href="#">Contact</a></li>
+                    <li class="my-5"><a class="text-light" href="#">Home Page</a></li>
                 </ul>
             </div>
             <div class="col-md-4 col-3 text-center">
-                <h5 class="text-light"style="font-size:1.8em;">Categories</h5>
+                <h5 class="text-light" style="font-size:1.8em;">Categories</h5>
                 <ul class="list-unstyled">
                     <li class="my-5"><a class="text-light" href="#">Privacy Policy</a></li>
                     <li class="my-5"><a class="text-light" href="#">Home Page</a></li>
@@ -170,8 +174,9 @@
     </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="js/scriptnavimg.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="js/scriptnavimg.js"></script>
 
 </body>
+
 </html>

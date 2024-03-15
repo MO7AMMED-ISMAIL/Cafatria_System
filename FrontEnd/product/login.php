@@ -1,11 +1,12 @@
 <?php
 session_start();
-require "../../BackEnd/DataBase/DBCLass.php"; 
-use DbClass\Table; 
+require "../../BackEnd/DataBase/DBCLass.php";
+
+use DbClass\Table;
 
 $returnUrl = isset($_GET['return_url']) ? $_GET['return_url'] : 'index.php';
 
-if(isset($_GET['logout'])) {
+if (isset($_GET['logout'])) {
 
     session_unset();
     session_destroy();
@@ -14,7 +15,7 @@ if(isset($_GET['logout'])) {
 }
 
 
-if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     header('Location: ' . $returnUrl);
     exit();
 }
@@ -34,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['message'] = "Login successful.";
                 $_SESSION['success'] = true;
-                $_SESSION['logged_in'] = true; 
-                header('Location: ' . $returnUrl); 
+                $_SESSION['logged_in'] = true;
+                header('Location: ' . $returnUrl);
                 exit();
             } else {
                 $_SESSION['message'] = "Incorrect password. Please try again.";
@@ -44,12 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['message'] = "Email not found. Please register or try a different email.";
         }
         $_SESSION['success'] = false;
-        header('Location: login.php?return_url=' . urlencode($returnUrl)); 
+        header('Location: login.php?return_url=' . urlencode($returnUrl));
         exit();
     } catch (Exception $e) {
         $_SESSION['message'] = "Error: " . $e->getMessage();
         $_SESSION['success'] = false;
-        header('Location: login.php?return_url=' . urlencode($returnUrl)); 
+        header('Location: login.php?return_url=' . urlencode($returnUrl));
         exit();
     }
 }
@@ -57,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Login</title>
     <meta charset="utf-8" />
@@ -64,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <link href="css/login.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="container-fluid mainhome">
         <div class="row my-4">
@@ -75,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-12 col-md-6 mx-auto">
                 <div class="login-container">
                     <h2 class="login-title text-center" style="color:rgb(77, 49, 8); font-style:italic;">Welcome</h2>
-                    <?php if(isset($_SESSION['message'])): ?>
+                    <?php if (isset($_SESSION['message'])) : ?>
                         <div class="alert alert-danger" role="alert">
                             <?php echo $_SESSION['message']; ?>
                         </div>
@@ -108,4 +111,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="js/log.js"></script>
 </body>
+
 </html>

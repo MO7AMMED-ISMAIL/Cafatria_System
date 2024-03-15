@@ -1,5 +1,6 @@
 <?php
 require "../../BackEnd/DataBase/DBCLass.php";
+
 use DbClass\Table;
 
 $orderTable = new Table("orders");
@@ -22,13 +23,12 @@ $orderDetails['room_id'] = $_POST['room'];
 
 try {
     $lastID = $orderTable->Create($orderDetails);
-    
 } catch (Exception $e) {
     echo "Error inserting order details: " . $e->getMessage();
     exit();
 }
 
-$parsedItems=json_decode($_POST["selectedProductsList"]);
+$parsedItems = json_decode($_POST["selectedProductsList"]);
 foreach ($parsedItems as $item) {
 
     $itemArray = (array) $item;
@@ -49,6 +49,3 @@ foreach ($parsedItems as $item) {
 }
 header('Location: order.php');
 exit();
-
-?>
-
