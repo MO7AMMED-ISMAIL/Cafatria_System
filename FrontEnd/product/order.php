@@ -76,7 +76,7 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                     <div class="col-auto ms-auto">
                         <div class="input-group d-none d-lg-flex">
                             <form class="input-group d-none d-lg-flex" action="productinfo.php" method="GET">
-                                <input type="text" id="productNameInput" name="search" class="form-control" placeholder="Search for products...">
+                                <input type="text" id="productNameInputt" name="search" class="form-control" placeholder="Search for products...">
                                 <div class="input-group-append">
                                     <button id="searchButton" class="lince btn btn-primary" type="submit">Search</button>
                                 </div>

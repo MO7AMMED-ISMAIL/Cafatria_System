@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+    $user_id = $_SESSION['user_id'];
+} else {
+    header('Location: login.php');
+    exit();
+}
+
+if (isset($_GET['logout'])) {
+    session_unset();
+    header('Location: login.php');
+    exit();
+}
+
+require "../../BackEnd/DataBase/DBCLass.php";
+
+use DbClass\Table;
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,15 +36,51 @@
 
 <body>
 
-    <!--cafe name-->
-    <div class="mainhome jumbotron jumbotron-fluid bg-cover d-flex align-items-center" style="height:50vh;">
 
+ <!--cafe name-->
+ <div id="Home" class="mainhome jumbotron jumbotron-fluid bg-cover d-flex align-items-center">
         <!-- Navigation bar -->
         <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
             <div class="container-fluid">
-                <div class="row align-items-center justify-content-end">
+                <div class="row  align-items-center">
+                    <!-- User image and name -->
+                    <div class="col-auto">
+                        <div class="d-flex align-items-center">
 
-                    <!-- Navigation icon  -->
+                            <!-- user image -->
+                            <?php
+                            $userTable = new Table('users');
+                            $userDataQuery = $userTable->Select(['profile_picture', 'username'], 'id = ' . $user_id);
+                            $userData = $userDataQuery->fetch(PDO::FETCH_ASSOC);
+
+                            if ($userData && isset($userData['profile_picture'])) {
+                                echo '<img id="userimg" src="images/' . $userData['profile_picture'] . '" alt="User Image" class="img-fluid rounded-circle mr-2">';
+                            }
+                            ?>
+                            <!-- username -->
+                            <?php
+                            if ($userData && isset($userData['username'])) {
+                                echo '<p class="text-white mb-0">' . $userData['username'] . '</p>';
+                            }
+                            ?>
+                        </div>
+                    </div>
+
+
+                    <!-- Search input and button -->
+                    <div class="col-auto ms-auto">
+                        <div class="input-group d-none d-lg-flex">
+                            <form class="input-group d-none d-lg-flex" action="productinfo.php" method="GET">
+                                <input type="text" id="productNameInput" name="search" class="form-control" placeholder="Search for products...">
+                                <div class="input-group-append">
+                                    <button id="searchButton" class="lince btn btn-primary" type="submit">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <!-- Nav icon  -->
                     <div class="col-auto">
                         <button id="navToggle" class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -27,7 +88,7 @@
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                             <ul class="navbar-nav" style="margin-top:3%;">
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" href="index.php #Home" style="width:100%;">Home</a>
+                                    <a class="nav-link text-light" href="index.php#Home" style="width:100%;">Home</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -35,13 +96,19 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" href="index.php #Latestorder" style="width:100%;">Latest Order</a>
+                                    <a class="nav-link text-light" href="index.php#Latestorder" style="width:100%;">Latest Order</a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" href="index.php #productSection" style="width:100%;">Order now</a>
+                                    <a class="nav-link text-light" href="index.php#productSection" style="width:100%;">Order now</a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" href="order.php" style="width:100%;">My orders</a>
+                                    <a class="nav-link text-light" href="order.php" style="width:100%;">My 0rders</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" href="index.php?logout=1" style="width:100%;">Log out</a>
                                 </li>
                             </ul>
                         </div>
@@ -53,11 +120,23 @@
         <!-- Nav drawer -->
         <div id="sideNav" class="nav-drawer d-lg-none">
             <ul class="mt-4">
-                <li><a href="index.php #Home">Home</a></li>
+                <li>
+                    <!-- Search input and button -->
+                    <form class="input-group" action="productinfo.php" method="GET">
+                        <input type="text" id="productNameInput" name="search" class="form-control" placeholder="Search for products...">
+                        <div class="input-group-append">
+                            <button id="searchButton" class="lince btn btn-primary" type="submit">Search</button>
+                        </div>
+                    </form>
+                </li>
+
+
+                <li><a href="#Home">Home</a></li>
                 <li><a href="menu.php">Menu</a></li>
-                <li><a href="index.php #Latestorder">Latest Order</a></li>
-                <li><a href="index.php #productSection">Order now</a></li>
-                <li><a href="order.php">My orders</a></li>
+                <li><a href="index.php#Latestorder">Latest Order</a></li>
+                <li><a href="index.php#productSection">Order now</a></li>
+                <li><a href="order.php">My 0rders</a></li>
+                <li><a onclick="logout();" href="login.php">Log out</a></li>
             </ul>
 
             <button id="navClose" class="btn btn-outline-light mb-2 ml-2">Close</button>
@@ -65,17 +144,16 @@
 
         <div class="container">
             <h1 class="display-4 my-5" style="font-style: italic; font-size: 10.7em; color: rgba(237, 243, 246, 0.753);">Cafeto</h1>
-            <p class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Where every cup tells a story</p>
+            <div id="slogann">
+                <p id="sloganText" class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Unveiling Richness with Every Scroll, Because the Best Brews Are Worth the Search</p>
+            </div>
         </div>
     </div>
 
 
+    
     <?php
-    require "../../BackEnd/DataBase/DBCLass.php";
-
-    use DbClass\Table;
-
-    $table = new Table('products');
+  $table = new Table('products');
 
 
     if (isset($_GET['search'])) {
@@ -91,7 +169,7 @@
                     <img src="images/<?php echo $selectedProduct['picture']; ?>" class="card-img-top" alt="Product Image">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $selectedProduct['name']; ?></h5>
-                        <p class="card-text">Price: <?php echo $selectedProduct['price']; ?></p>
+                        <p class="card-text" style="color: #d06663; font-size: large;">Price:$ <?php echo $selectedProduct['price']; ?></p>
                     </div>
                 </div>
             </div>
@@ -107,7 +185,7 @@
             ?>
                 <div class="related-products container my-5">
                     <div class="row">
-                        <h2 class="text-center text-light mt-5 my-5" style="background-color:rgba(71, 44, 8, 0.816);">Related Products</h2>
+                        <h2 class="text-center text-light mt-5 my-5" style="padding: 1.5%; background-color: rgba(71, 44, 8, 0.816);">Related Products</h2>
                     </div>
 
                     <div class="row text-center">
@@ -119,7 +197,7 @@
                                     <img src="images/<?php echo $row['picture']; ?>" class="card-img-top" alt="Product Image">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $row['name']; ?></h5>
-                                        <p class="card-text">Price: <?php echo $row['price']; ?></p>
+                                        <p class="card-text"style="color: #d06663; font-size: large;">Price:$ <?php echo $row['price']; ?></p>
                                     </div>
                                 </div>
                             </div>
