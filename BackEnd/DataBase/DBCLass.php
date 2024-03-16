@@ -125,6 +125,10 @@ class Table extends Database{
 
     public function ValidateEmail($data){
         if(filter_var($data, FILTER_VALIDATE_EMAIL)){
+            $emails=$this->Select(["*"],"email='{$data}'");
+            if ($emails->rowCount()>0){
+                throw new Exception("email already exist");
+            }
             return $data;
         }
         else{
@@ -134,14 +138,13 @@ class Table extends Database{
 
     public function isValidUsername($username){
         $pattern = '/^[a-zA-Z0-9_]{3,20}$/';
-//        $userNames=$this->Select(["*"],"username='{$username}'");
-//        $userNames->fetchAll(PDO::)
-//        if ($userNames){
-//            throw new Exception("user name is not unique");
-//        }
         if (!preg_match($pattern, $username)) {
             throw new Exception('Invalid username format.');
         }else{
+            $userNames=$this->Select(["*"],"username='{$username}'");
+            if ($userNames->rowCount()>0){
+                throw new Exception("user name already exist");
+            }
             return $username;
         }
     }
