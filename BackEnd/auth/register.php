@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     try{
         $username = $admins->isValidUsername($_POST['username']);
-        $email = $admins->ValidateEmail($_POST['email']);
+        $email = $admins->ValidateEmail($_POST['email'],1);
         $img = $admins->Upload($_FILES['img']);
         $password = $admins->inputData($_POST['pass']);
         $repeatePass = $admins->inputData($_POST['rep_pass']);

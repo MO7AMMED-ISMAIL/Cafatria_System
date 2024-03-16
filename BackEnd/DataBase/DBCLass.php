@@ -123,10 +123,10 @@ class Table extends Database{
         return $data;
     }
 
-    public function ValidateEmail($data){
+    public function ValidateEmail($data,$uniqueness=0){
         if(filter_var($data, FILTER_VALIDATE_EMAIL)){
             $emails=$this->Select(["*"],"email='{$data}'");
-            if ($emails->rowCount()>0){
+            if ($emails->rowCount()>0&&$uniqueness){
                 throw new Exception("email already exist");
             }
             return $data;

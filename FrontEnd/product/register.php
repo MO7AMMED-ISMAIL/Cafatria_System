@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         var_dump($_POST);
         // Validate and sanitize input data
         $username = $users->isValidUsername($_POST['username']);
-        $email = $users->ValidateEmail($_POST['email']);
+        $email = $users->ValidateEmail($_POST['email'],1);
         $password = $users->inputData($_POST['password']);
         $repeatPass = $users->inputData($_POST['confirm_password']);
         $room_id = $_POST["room"];
