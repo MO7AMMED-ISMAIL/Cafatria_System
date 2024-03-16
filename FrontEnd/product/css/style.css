@@ -52,7 +52,7 @@
     left: -300px; 
     width:298px;
     height: 100%;
-    background-color:rgb(56, 45, 3);
+    background-color:rgba(71, 44, 8, 0.816);
     color: #fff;
     transition: left 0.3s ease;
     z-index: 1000;
@@ -169,21 +169,26 @@ border-radius: 20px;
 
 .order-form {
 background-color: #f8f9fa;
-padding: 30px; 
-border-radius: 8px; 
-height:95%; 
+padding: 30px;
+border-radius: 8px;
+height:95%;
 display: flex; 
 flex-direction: column; 
 justify-content: space-between; 
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
 }
 
 .order-form h2 {
-margin-bottom: 20px; 
+margin-bottom: 20px;
 }
 
 .order-form .form-group {
-margin-bottom: 15px; 
+    margin-bottom: 10px;
+}
+
+.order-form .form-group label{
+    color: #d06663;
 }
 
 .order-form input[type="text"],
@@ -375,7 +380,7 @@ background: linear-gradient(to right, #124a6f, #334a5f);
 }
 
 #price{
-    color: #e0af69;  
+    color: #d06663;
     font-size: large;
 
 }

@@ -36,7 +36,7 @@
     font-size: 3rem;
     color: black; 
 }
-    .card {
+    .cart-item-details .card {
         width: 150px;
         margin: 10px;
     }
@@ -63,7 +63,7 @@
     }
 
 .my-orders{
-    border:13px solid rgb(56, 45, 3);
+    border:13px solid rgba(71, 44, 8, 0.816);
     border-radius:6%; 
     margin-top:5%;
     padding:3%;

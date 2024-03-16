@@ -58,3 +58,15 @@ body {
         margin-left: 20%; 
     }
 }
+
+button{
+    background: #1D4350;
+    background: -webkit-linear-gradient(to right, #A43931, #1D4350);
+    background: linear-gradient(to right, #A43931, #1D4350);
+}
+
+button:hover{
+    background: #15343e;
+    background: -webkit-linear-gradient(to right, #8b2d26, #15343e);
+    background: linear-gradient(to right, #862a24, #102b34);
+}

@@ -108,7 +108,7 @@
             ?>
                 <div class="related-products container my-5">
                     <div class="row">
-                        <h2 class="text-center text-light mt-5 my-5" style="background-color:rgb(56, 45, 3);">Related Products</h2>
+                        <h2 class="text-center text-light mt-5 my-5" style="background-color:rgba(71, 44, 8, 0.816);">Related Products</h2>
                     </div>
 
                     <div class="row text-center">

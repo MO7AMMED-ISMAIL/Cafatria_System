@@ -33,7 +33,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,21 +43,15 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
-
 </head>
 
 <body>
-
     <!--cafe name-->
     <div id="Home" class="mainhome jumbotron jumbotron-fluid bg-cover d-flex align-items-center">
-
-
         <!-- Navigation bar -->
         <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
             <div class="container-fluid">
                 <div class="row align-items-center">
-
-
                     <!-- User image and name -->
                     <div class="col-auto">
                         <div class="d-flex align-items-center">
@@ -83,8 +76,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                     </div>
 
 
-
-
                     <!-- Search input and button -->
                     <div class="col-auto ml-auto">
                         <div class="input-group d-none d-lg-flex">
@@ -97,8 +88,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
                         </div>
                     </div>
-
-
 
 
                     <!-- Nav icon  -->
@@ -138,7 +127,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
             </div>
         </nav>
 
-
         <!-- Nav drawer -->
         <div id="sideNav" class="nav-drawer d-lg-none">
             <ul class="mt-4">
@@ -167,9 +155,8 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
         <div class="container">
             <h1 class="display-4 my-5" style="font-style: italic; font-size: 10.7em; color: rgba(237, 243, 246, 0.753);">Cafeto</h1>
             <div id="slogann">
-      <p id="sloganText" class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Discover Delight, Taste the Moment: Your Café, Your Culinary Journey!</p>
+                <p id="sloganText" class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Discover Delight, Taste the Moment: Your Café, Your Culinary Journey!</p>
             </div>
-        
         </div>
     </div>
 
@@ -217,9 +204,11 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
     <!-- Product section -->
     <div id="productSection" class="container mt-4 text-center" style="padding:0%; padding-top:9%;">
         <div class="row">
+            <h1 class="col-12 text-center text-light" style="padding: 1.5%; background-color: rgba(71, 44, 8, 0.816);">Order Now</h1>
+        </div>
+        <div class="row">
             <!-- Product Table -->
             <div class="col-md-8 col-10 my-md-0 my-5 mx-md-0 " style="padding:0%;">
-                <h2 class="text-light" style="font-style:italic;background-color: rgba(71, 44, 8, 0.816);">Order Now</h2>
                 <div id="productContainer" class="my-5">
                     <?php
 
@@ -265,7 +254,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
             </div>
 
             <!-- Order form -->
-            <div class="col-md-4  my-5 my-md-0 col-10 offset-md-0 offset-1" style=" padding-top:4%;">
+            <div class="col-md-4 my-5 my-md-0 col-10 offset-md-0 offset-3" style=" padding-top:4%;">
 
                 <form id="orderForm" class="order-form formbtn" action="addOrder.php" method="post">
                     <div class="form-group">
@@ -293,7 +282,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                                 echo "<option value=''>Error fetching rooms</option>";
                             }
                             ?>
-
                         </select>
                     </div>
 
