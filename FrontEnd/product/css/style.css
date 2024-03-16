@@ -331,9 +331,10 @@ margin-left: 5px;
 
 
 #decr{
-    width:3%;
-   
-    border-radius: 35%;
+    width:8%;
+   padding: 0;
+   margin: 0;
+    border-radius:19%;
 
     background: #e53935;  
     background: -webkit-linear-gradient(to right, #e35d5b, #e53935);  
@@ -342,10 +343,11 @@ margin-left: 5px;
 }
 
 #decr:hover{
-    width:3%;
+    width:8%;
    
-    border-radius: 35%;
-
+    border-radius:19%;
+    padding: 0;
+    margin: 0;
     background: #af3634;  
     background: -webkit-linear-gradient(to right, #a83230, #b83230);  
     background: linear-gradient(to right, #c54240, #b94947); 
@@ -353,7 +355,9 @@ margin-left: 5px;
 }
 
 #incr{
-
+    width:8%;
+    padding: 0;
+    margin: 0;
     background: #5389bf; 
 background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  
 background: linear-gradient(to right, #3498db, #2c3e50); 
@@ -361,7 +365,9 @@ background: linear-gradient(to right, #3498db, #2c3e50);
 }
 
 #incr:hover{
-
+    width:8%;
+    padding: 0;
+    margin: 0;
     background: #223446; 
 background: -webkit-linear-gradient(to right, #2278b1, #2c3e50);  
 background: linear-gradient(to right, #124a6f, #334a5f); 
