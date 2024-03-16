@@ -118,7 +118,7 @@
                         echo '</div>';
                         $counter++;
                         if ($counter % 3 == 0) {
-                            echo '</div><div class="row">';
+                            echo '</div><br><div class="row">';
                         }
                     }
                     echo '</div>';
