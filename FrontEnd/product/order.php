@@ -50,7 +50,7 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
         <!-- Navigation bar -->
         <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
             <div class="container-fluid">
-                <div class="row align-items-center">
+                <div class="row align-items-center justify-content-end">
 
 
                     <!-- Navigation icon  -->
@@ -137,28 +137,28 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
             </div>
         </section>
 
-        <section class="main-padding">
-            <div class="container">
-                <div class="user-orders">
-                    <table class="table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Order Date</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="orderTableBody">
-                            <?php if ($userOrder->rowCount()) {
-                            foreach ($userOrder as $order) { ?>
-                            <tr class="order">
-                                <td>
-                                    <span><?= $order['order_date'] ?></span>
-                                    <i class="fa fa-plus-square mx-5"></i>
-                                </td>
+<section class="main-padding">
+     <div class="container">
+         <div class="user-orders">
+              <table class="table">
+                 <thead class="thead-light">
+                      <tr>
+                          <th scope="col">Order Date</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Amount</th>
+                          <th scope="col">Action</th>
+                     </tr>
+                 </thead>
+                    <tbody id="orderTableBody">
+                         <?php if ($userOrder->rowCount()) {
+                         foreach ($userOrder as $order) { ?>
+                         <tr class="order">
+                            <td>
+                                <span><?= $order['order_date'] ?></span>
+                                <i class="fa fa-plus-square mx-5"></i>
+                            </td>
 
-                                <td class="Processing">
+                             <td class="Processing">
                                     <?php
                                     if ($order['status'] == 'Processing') { ?>
                                         <i class="btn btn-warning"></i>
@@ -176,33 +176,33 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                                         </span> $
                                 </td>
                                 <td>
-                                    <?php
-                                    if ($order["status"] == 'Processing') {
-                                        ?>
-                                        <a href='cancel_order.php?order_id=<?= $order['id'] ?>' class='cancel btn btn-danger'>Cancel</a>
-                                    <?php } ?>
-                                </td>
+                          <?php
+                            if ($order["status"] == 'Processing') {
+                                ?>
+                                <a href='cancel_order.php?order_id=<?= $order['id'] ?>' class='cancel btn btn-danger'>Cancel</a>
+                             <?php } ?>
+                           </td>
                             </tr>
 
-                            <tr class="cart-item details-hidden">
-                                <?php
-                                $order_id = $order['id'];
-                                $orderItems = $orders->UserOrders($userId, "orders.id = $order_id");
-                                foreach ($orderItems as $orderItem) { ?>
-                                    <td>
-                                        <div class="cart-item-details">
-                                            <div class="cart-item-info d-flex justify-content-start align-items-center">
-                                                <div class="card shadow position-relative mb-3" style="width: 15rem;">
-                                                    <img class="card-img-top" src="images/<?= $orderItem['picture'] ?>" alt="Product Name">
-                                                    <div class="card-body text-center">
-                                                        <h5 class="card-title">
-                                                            <?= $orderItem['name'] ?>
-                                                        </h5>
-                                                        <p class="card-text">
-                                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                                                                <?= $orderItem['price'] ?>$</span><br>
-                                                            Quantity: <?= $orderItem['quantity'] ?><br>
-                                                            Total: <?= $orderItem['price'] * $orderItem['quantity'] ?> $
+                     <tr class="cart-item details-hidden">
+                         <?php
+                             $order_id = $order['id'];
+                             $orderItems = $orders->UserOrders($userId, "orders.id = $order_id");
+                            foreach ($orderItems as $orderItem) { ?>
+                              <td>
+                         <div class="cart-item-details">
+                             <div class="cart-item-info d-flex justify-content-start align-items-center">
+                                  <div class="card shadow position-relative mb-3" style="width: 15rem;">
+                                         <img class="card-img-top" src="images/<?= $orderItem['picture'] ?>" alt="Product Name">
+                                          <div class="card-body text-center">
+                                             <h5 class="card-title">
+                                              <?= $orderItem['name'] ?>
+                                            </h5>
+                                           <p class="card-text">
+                                           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                                 <?= $orderItem['price'] ?>$</span><br>
+                                                     Quantity: <?= $orderItem['quantity'] ?><br>
+                                                     Total: <?= $orderItem['price'] * $orderItem['quantity'] ?> $
                                                         </p>
                                                     </div>
                                                 </div>

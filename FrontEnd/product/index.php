@@ -166,7 +166,10 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
         <div class="container">
             <h1 class="display-4 my-5" style="font-style: italic; font-size: 10.7em; color: rgba(237, 243, 246, 0.753);">Cafeto</h1>
-            <p class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Where every cup tells a story</p>
+            <div id="slogann">
+      <p id="sloganText" class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Discover Delight, Taste the Moment: Your Café, Your Culinary Journey!</p>
+            </div>
+        
         </div>
     </div>
 
@@ -241,7 +244,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                         echo '<img src="images/' . $product['picture'] . '" class="card-img-top" alt="Product Image">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $product['name'] . '</h5>';
-                        echo '<p class="card-text">Price: ' . $product['price'] . '</p>';
+                        echo '<p class="card-text">Price:$ ' . $product['price'] . '</p>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
@@ -408,7 +411,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                             html += '<img src="images/' + product.picture + '" class="card-img-top" alt="Product Image">';
                             html += '<div class="card-body">';
                             html += '<h5 class="card-title">' + product.name + '</h5>';
-                            html += '<p id="price" class="card-text">Price: ' + product.price + '</p>';
+                            html += '<p id="price" class="card-text">Price$: ' + product.price + '</p>';
                             html += '</div>';
                             html += '</div>';
                             html += '</div>';
@@ -445,6 +448,8 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
                     displayProducts(currentPage);
                 });
+
+
             </script>
 
             <script src="js/scriptnavimg.js"></script>
