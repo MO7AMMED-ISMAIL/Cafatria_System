@@ -1,7 +1,7 @@
 .mainhome {
     background-size: cover;
     width: 100%;
-    height: 99vh;
+    height:100vh;
     padding-top:1%;
     border-color: black;
     border-width: 3%;
@@ -198,6 +198,14 @@ background: #1d4350;
   background: -webkit-linear-gradient(to right, #1d4350, #a43931); 
   background: linear-gradient(to right, #1d4350, #a43931);
 }
+#prevPage:hover{
+    width:20%;
+    background: #15313b; 
+      background: -webkit-linear-gradient(to right, #173a45, #812923); 
+      background: linear-gradient(to right, #15333d, #802922);
+    }
+
+
 
 #nextPage{
 width:20%;
@@ -206,6 +214,14 @@ background: -webkit-linear-gradient(to right, #A43931, #1D4350);
 background: linear-gradient(to right, #A43931, #1D4350); 
 
 }
+
+#nextPage:hover{
+    width:20%;
+    background: #15313b; 
+      background: -webkit-linear-gradient(to right, #173a45, #812923); 
+      background: linear-gradient(to right, #15333d, #802922);
+    
+    }
 
 
 
@@ -325,12 +341,30 @@ margin-left: 5px;
     
 }
 
+#decr:hover{
+    width:3%;
+   
+    border-radius: 35%;
+
+    background: #af3634;  
+    background: -webkit-linear-gradient(to right, #a83230, #b83230);  
+    background: linear-gradient(to right, #c54240, #b94947); 
+    
+}
 
 #incr{
 
-    background: #2c3e50; 
+    background: #5389bf; 
 background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  
 background: linear-gradient(to right, #3498db, #2c3e50); 
+
+}
+
+#incr:hover{
+
+    background: #223446; 
+background: -webkit-linear-gradient(to right, #2278b1, #2c3e50);  
+background: linear-gradient(to right, #124a6f, #334a5f); 
 
 }
 
@@ -397,6 +431,14 @@ background: linear-gradient(to right, #3498db, #2c3e50);
     background: linear-gradient(to right, #26D0CE, #1A2980); 
     
 }
+
+#orderButton:hover{
+    background: #15205d;  
+    background: -webkit-linear-gradient(to right, #158b89, #4d59a0); 
+    background: linear-gradient(to right, #119593, #444c7b); 
+    
+}
+
   
 #removeAllProducts{
     background: #EB3349; 
@@ -405,8 +447,29 @@ background: linear-gradient(to right, #F45C43, #EB3349);
 
 }
 
+#removeAllProducts:hover{
+    background: #ad1628; 
+background: -webkit-linear-gradient(to right, #b23a27, #9f2230); 
+background: linear-gradient(to right, #ad3523, #b42031); 
+
+}
+
 .nav-link:hover {
     color: #a97715 !important; 
+}
+
+#search{
+     background: #1A2980;  
+    background: -webkit-linear-gradient(to right, #26D0CE, #1A2980); 
+    background: linear-gradient(to right, #26D0CE, #1A2980); 
+}
+
+#search:hover{
+
+    background: #15205d;  
+    background: -webkit-linear-gradient(to right, #158b89, #4d59a0); 
+    background: linear-gradient(to right, #119593, #444c7b); 
+    
 }
 
 
