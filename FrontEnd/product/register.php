@@ -30,6 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $password = $users->inputData($_POST['password']);
         $repeatPass = $users->inputData($_POST['confirm_password']);
         $room_id = $_POST["room"];
+        if($room_id=="Choose The Rooms"){
+            throw new Exception("Please Choose A Room");
+        }
         $img = $users->Upload($_FILES['profile_picture'], '../../BackEnd/uploads/');
         // Check if password and repeat password match
         if ($password !== $repeatPass) {

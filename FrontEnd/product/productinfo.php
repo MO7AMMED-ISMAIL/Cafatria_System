@@ -92,7 +92,6 @@
 
         $selected = $table->Select(['*'], "status = 'Available' AND name LIKE '$search'");
         $selectedProduct = $selected->fetch(PDO::FETCH_ASSOC);
-
         if (!empty($selectedProduct)) {
     ?>
             <div class="row my-5 text-center">
@@ -140,7 +139,16 @@
     <?php
             }
         } else {
-            echo "<p class='text-center'>No products found.</p>";
+            echo "<div class='container'>
+    <div class='row justify-content-center mt-5'>
+        <div class='col-md-6 text-center'>
+            <div class='alert alert-info' role='alert'>
+                <strong>Oops!</strong> It seems there are no items available.
+        Please check back later.
+            </div>
+        </div>
+    </div>
+</div>";
         }
     }
     ?>

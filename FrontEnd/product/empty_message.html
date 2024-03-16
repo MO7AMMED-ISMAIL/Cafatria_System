@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Items Message</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .no-items-container {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .no-items-icon {
+            font-size: 100px;
+            color: #6c757d;
+        }
+        .no-items-message {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 no-items-container">
+            <div class="no-items-icon">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="no-items-message">
+                <p>Oops! It seems there are no items available.</p>
+                <p>Please check back later or try adding some items.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 text-center">
+            <div class="alert alert-info" role="alert">
+                <strong>Oops!</strong> It seems there are no items available.
+                Please check back later or try adding some items.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

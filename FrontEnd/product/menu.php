@@ -112,6 +112,7 @@
 
                     //products in row of three
                     echo '<div class="row">';
+                     
                     $counter = 0;
                     foreach ($products as $product) {
                         echo '<div class="col-md-4 col-4">';
@@ -134,6 +135,7 @@
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
+
                     echo '</div>';
                 }
                 ?>
