@@ -32,6 +32,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             "profile_picture"=>$img
         ];
         $updat = $update->Update($DataUpdate,'id',$id);
+        $_SESSION['success'] = 'Admin Updated Successfully';
+
         header("location: ../admin.php");
         exit();
     }catch(Exception $e){

@@ -10,7 +10,7 @@ if(isset($_GET['id'])) {
 
         $table->Delete("id={$_GET['id']}");
 //successfully deleted
-        $_SESSION["message"]="successfully deleted";
+        $_SESSION["message"]="Product deleted successfully";
         $_SESSION["color"]="green";
         header("Location:../products.php");
     }catch (Exception $e) {

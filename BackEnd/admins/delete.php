@@ -11,6 +11,7 @@ try{
     $id = $_GET['id'];
     $delAdmin = new Table('admins');
     $delAdmin->Delete("id = $id");
+    $_SESSION['success'] = 'Admin Deleted Successfully';
     header("location: ../admin.php");
 }catch(Exception $e){
     header("location: ../404.php");

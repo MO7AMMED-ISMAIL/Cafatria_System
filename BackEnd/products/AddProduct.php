@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //setcookie("message", "successfully inserted", time() + 3600, '/');
 //setcookie("color", "green", time() + 3600, '/');
 
-        $_SESSION["message"] = "successfully inserted";
+        $_SESSION["message"] = "Product Added successfully";
         $_SESSION["color"] = "green";
 
 

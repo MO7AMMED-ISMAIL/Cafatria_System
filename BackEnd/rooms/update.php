@@ -28,6 +28,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             "ext"=>$extraData,
         ];
         $updat = $update->Update($DataUpdate,'id',$id);
+        $_SESSION['success'] = 'Room Updated Successfully';
+
         header("location: ../room.php");
         exit();
     }catch(Exception $e){

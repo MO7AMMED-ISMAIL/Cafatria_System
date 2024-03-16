@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            // 'room_id'=>$room_ext
         );
         $result = $table->Create($data);
-        $_SESSION["success"]="Successfully Inserted";
+        $_SESSION["success"]="User Added Successfully";
         header("location: ../users.php");
         exit();
     } catch (Exception $e) {

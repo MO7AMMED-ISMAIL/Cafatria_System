@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["color"]="green";
             header("Location:../products.php?add=product");
         } else {
-            $_SESSION['message']="Successfully inserted";
+            $_SESSION['message']="Category Added Successfully";
             $_SESSION["color"]="green";
             header("Location:../categories.php");
         }

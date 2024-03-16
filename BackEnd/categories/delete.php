@@ -12,7 +12,7 @@ if(isset($_GET['id'])) {
 
         $table->Delete("id={$_GET['id']}");
 //successfully deleted
-        $_SESSION["message"] = "successfully deleted";
+        $_SESSION["message"] = "Category deleted successfully";
         $_SESSION["color"] = "green";
 
         $table->Delete("id= {$_GET['id']}");

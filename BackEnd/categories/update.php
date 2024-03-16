@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
 
 
 //successfully updated
-        $_SESSION['message']="successfully updated";
+        $_SESSION['message']="deleted updated successfully";
         $_SESSION['color']="green";
         header("Location:../categories.php");
     }
