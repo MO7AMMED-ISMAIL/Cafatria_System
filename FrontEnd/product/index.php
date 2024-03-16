@@ -306,8 +306,8 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
                     <div class="form-group">
                         <div class="d-flex flex-column">
-                            <button type="submit" class="btn mb-2 text-light " id="orderButton" disabled>Order</button>
-                            <button type="button" class="btn text-light " id="removeAllProducts">Cancel</button>
+                            <button type="submit" class=" order btn btn-primary mb-2 text-light " id="orderButton" disabled>Order</button>
+                            <button type="button" class="btn btn-danger text-light " id="removeAllProducts">Cancel</button>
                         </div>
                     </div>
                 </form>

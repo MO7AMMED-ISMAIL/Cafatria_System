@@ -128,7 +128,7 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary mx-2">Search</button>
+                            <button id="search" type="submit" class="btn btn-primary mx-2 text-light">Search</button>
                             <a href="order.php" class="btn btn-danger mt-2">Clear</a>
                         </div>
 
