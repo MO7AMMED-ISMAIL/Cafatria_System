@@ -54,7 +54,7 @@ use DbClass\Table;
                             $userData = $userDataQuery->fetch(PDO::FETCH_ASSOC);
 
                             if ($userData && isset($userData['profile_picture'])) {
-                                echo '<img id="userimg" src="images/' . $userData['profile_picture'] . '" alt="User Image" class="img-fluid rounded-circle mr-2">';
+                                echo '<img id="userimg" src="../../BackEnd/uploads/' . $userData['profile_picture'] . '" alt="User Image" class="img-fluid rounded-circle mr-2">';
                             }
                             ?>
                             <!-- username -->
@@ -166,7 +166,7 @@ use DbClass\Table;
     ?>
             <div class="row my-5 text-center">
                 <div class="card mx-auto col-md-5 col-12 maincard">
-                    <img src="images/<?php echo $selectedProduct['picture']; ?>" class="card-img-top" alt="Product Image">
+                    <img src="../../BackEnd/uploads/<?php echo $selectedProduct['picture']; ?>" class="card-img-top" alt="Product Image">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $selectedProduct['name']; ?></h5>
                         <p class="card-text" style="color: #d06663; font-size: large;">Price:$ <?php echo $selectedProduct['price']; ?></p>
@@ -194,7 +194,7 @@ use DbClass\Table;
                         ?>
                             <div class="col-md-3 col-10 offset-2 offset-md-0  text-center my-5">
                                 <div class="card cardss">
-                                    <img src="images/<?php echo $row['picture']; ?>" class="card-img-top" alt="Product Image">
+                                    <img src="../../BackEnd/uploads/<?php echo $row['picture']; ?>" class="card-img-top" alt="Product Image">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $row['name']; ?></h5>
                                         <p class="card-text"style="color: #d06663; font-size: large;">Price:$ <?php echo $row['price']; ?></p>

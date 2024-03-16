@@ -63,7 +63,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                             $userData = $userDataQuery->fetch(PDO::FETCH_ASSOC);
 
                             if ($userData && isset($userData['profile_picture'])) {
-                                echo '<img id="userimg" src="images/' . $userData['profile_picture'] . '" alt="User Image" class="img-fluid rounded-circle mr-2">';
+                                echo '<img id="userimg" src="../../BackEnd/uploads/' . $userData['profile_picture'] . '" alt="User Image" class="img-fluid rounded-circle mr-2">';
                             }
                             ?>
                             <!-- username -->
@@ -184,7 +184,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                         if ($product) : ?>
                             <div class="col-md-3 col-8 offset-2 offset-md-0 my-5 my-md-0 text-center">
                                 <div class="card mb-3" style="max-width: 250px; position: relative;">
-                                    <img src="images/<?php echo $product['picture']; ?>" class="card-img-top" alt="Product Image">
+                                    <img src="../../BackEnd/uploads/<?php echo $product['picture']; ?>" class="card-img-top" alt="Product Image">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $product['name']; ?></h5>
                                         <span class="badge bg-success text-light" style="position: absolute; top: 0; right: 0;">Price: $<?php echo $product['price']; ?></span>
@@ -231,7 +231,7 @@ if (!empty($products)) {
         echo '<div class="col-md-4 col-12 my-5">';
         echo '<div class="card">';
         echo '<input type="hidden"  name="product_id" class="product-id" value="' . $product['id'] . '">';
-        echo '<img src="images/' . $product['picture'] . '" class="card-img-top" alt="Product Image">';
+        echo '<img src="../../BackEnd/uploads/' . $product['picture'] . '" class="card-img-top" alt="Product Image">';
         echo '<div class="card-body">';
         echo '<h5 class="card-title">' . $product['name'] . '</h5>';
         echo '<p class="card-text">Price:$ ' . $product['price'] . '</p>';
@@ -401,7 +401,7 @@ if (!empty($products)) {
                             html += '<div class="col-md-4">';
                             html += '<div class="card">';
                             html += '<input type="hidden" name="product_id" class="product-id" value="' + product.id + '">';
-                            html += '<img src="images/' + product.picture + '" class="card-img-top" alt="Product Image">';
+                            html += '<img src="../../BackEnd/uploads/' + product.picture + '" class="card-img-top" alt="Product Image">';
                             html += '<div class="card-body">';
                             html += '<h5 class="card-title">' + product.name + '</h5>';
                             html += '<p id="price" class="card-text">Price$: ' + product.price + '</p>';

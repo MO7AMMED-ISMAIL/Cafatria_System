@@ -56,7 +56,7 @@ $categories = $categoryDataQuery->fetchAll(PDO::FETCH_ASSOC);
                             $userData = $userDataQuery->fetch(PDO::FETCH_ASSOC);
 
                             if ($userData && isset($userData['profile_picture'])) {
-                                echo '<img id="userimg" src="images/' . $userData['profile_picture'] . '" alt="User Image" class="img-fluid rounded-circle mr-2">';
+                                echo '<img id="userimg" src="../../BackEnd/uploads/' . $userData['profile_picture'] . '" alt="User Image" class="img-fluid rounded-circle mr-2">';
                             }
                             ?>
                             <!-- username -->
@@ -180,7 +180,7 @@ $categories = $categoryDataQuery->fetchAll(PDO::FETCH_ASSOC);
                         echo '<div class="col-md-4 col-4">';
                         echo '<div class="row">';
                         echo '<div class="col-md-6 col-7">';
-                        echo '<img src="images/' . $product['picture'] . '" class="img-fluid" alt="Product Image">';
+                        echo '<img src="../../BackEnd/uploads/' . $product['picture'] . '" class="img-fluid" alt="Product Image">';
                         echo '</div>';
                         echo '<div class="col-md-6 my-md-5 ">';
                         echo '<h4>' . $product['name'] . '</h4>';
