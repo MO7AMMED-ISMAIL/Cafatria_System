@@ -19,7 +19,12 @@ if(isset($_GET['add'])){
    include "categories/AddCategoryForm.php";
 }
 elseif(isset($_GET['edit'])){
-   include "categories/editCategory.php";
+    try {
+        $table->FindById("id",$_GET['edit']);
+        include "categories/editCategory.php";
+    }catch (Exception $e){
+        include "../FrontEnd/product/empty_message.html";
+    }
 }else{
    include "categories/listCategory.php";
 }

@@ -3,58 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>No Items Message</title>
+    <title>No Data Found</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
     <style>
+        /* Centering the content vertically and horizontally */
         body {
-            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://t4.ftcdn.net/jpg/02/90/22/51/360_F_290225102_7CxXtC4GtBXoVz3XToNu4gFXSIX82cIz.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
-        .no-items-container {
-            margin-top: 50px;
+        .message-container {
             text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
-        .no-items-icon {
-            font-size: 100px;
-            color: #6c757d;
+        h1 {
+            color: #333;
         }
-        .no-items-message {
-            font-size: 24px;
-            margin-top: 20px;
-            color: #6c757d;
+        p {
+            color: #555;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3 no-items-container">
-            <div class="no-items-icon">
-                <i class="fas fa-exclamation-circle"></i>
-            </div>
-            <div class="no-items-message">
-                <p>Oops! It seems there are no items available.</p>
-                <p>Please check back later or try adding some items.</p>
-            </div>
-        </div>
+    <div class="message-container">
+        <h1>No Data Found</h1>
+        <p>There is no data available to edit.</p>
     </div>
 </div>
 
-
-<div class="container">
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-6 text-center">
-            <div class="alert alert-info" role="alert">
-                <strong>Oops!</strong> It seems there are no items available.
-                Please check back later or try adding some items.
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Font Awesome -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<!-- Bootstrap JS and dependencies (jQuery and Popper.js) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>

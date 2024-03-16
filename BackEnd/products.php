@@ -47,7 +47,13 @@ if(isset($_GET['add']) == 'product'){
    echo "</div>";
 }
 elseif(isset($_GET['edit'])){
-    include "products/editForm.php";
+    try {
+        $table->FindById("id",$_GET['edit']);
+        include "products/editForm.php";
+    }catch (Exception $e){
+        include "../FrontEnd/product/empty_message.html";
+    }
+
 }else{
     include "products/listProducts.php";
 }
