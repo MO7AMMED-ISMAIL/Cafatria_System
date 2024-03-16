@@ -59,7 +59,7 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                             $userData = $userDataQuery->fetch(PDO::FETCH_ASSOC);
 
                             if ($userData && isset($userData['profile_picture'])) {
-                                echo '<img id="userimg" src="images/' . $userData['profile_picture'] . '" alt="User Image" class="img-fluid rounded-circle mr-2">';
+                                echo '<img id="userimg" src="../../BackEnd/uploads/' . $userData['profile_picture'] . '" alt="User Image" class="img-fluid rounded-circle mr-2">';
                             }
                             ?>
                             <!-- username -->
@@ -243,7 +243,7 @@ if (isset($_GET['start']) && isset($_GET['end']) && !empty($_GET['start']) && !e
                          <div class="cart-item-details">
                              <div class="cart-item-info d-flex justify-content-start align-items-center">
                                   <div class="card shadow position-relative mb-3" style="width: 15rem;">
-                                         <img class="card-img-top" src="images/<?= $orderItem['picture'] ?>" alt="Product Name">
+                                         <img class="card-img-top" src="../../BackEnd/uploads/<?= $orderItem['picture'] ?>" alt="Product Name">
                                           <div class="card-body text-center">
                                              <h5 class="card-title">
                                               <?= $orderItem['name'] ?>
