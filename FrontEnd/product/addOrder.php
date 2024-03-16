@@ -23,6 +23,24 @@ $orderDetails['room_id'] = $_POST['room'];
 
 try {
     $lastID = $orderTable->Create($orderDetails);
+
+    // Start Add notification for admin
+    try {
+        $notificationData = array(
+            'type' => 'New order created',
+            'notifiable_id' => $lastID,
+            'notifiable_type' => 'orders',
+            'data' => json_encode(['status' => 'Processing'])
+        );
+
+        $notificationsTable = new Table("notifications");
+
+        $notificationsTable->Create($notificationData);
+    } catch (Exception $e) {
+        echo "Error inserting notification details: " . $e->getMessage();
+    }
+    // End of Add notification for admin
+
 } catch (Exception $e) {
     echo "Error inserting order details: " . $e->getMessage();
     exit();
