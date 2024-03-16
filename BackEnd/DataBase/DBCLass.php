@@ -50,7 +50,7 @@ class Table extends Database{
     }
 
     public function Select(array $columns, $condition=1){
-        $statement = "SELECT " . implode(",", $columns) . " FROM {$this->TbName} WHERE $condition ORDER BY id ASC";
+        $statement = "SELECT " . implode(",", $columns) . " FROM {$this->TbName} WHERE $condition";
         try {
             $selected = parent::connect()->query($statement);
             return $selected;
@@ -83,7 +83,7 @@ class Table extends Database{
         foreach ($secondTableColumns as $col){
             $secondRequiredColumns[]="$this->TbName"."."."$col";
         }
-        $statement="SELECT ".implode(",",$firstRequiredColumns).",".implode(",",$secondRequiredColumns)." FROM $this->TbName inner join $tableName on $condition where $condition2 ORDER BY id ASC";
+        $statement="SELECT ".implode(",",$firstRequiredColumns).",".implode(",",$secondRequiredColumns)." FROM $this->TbName inner join $tableName on $condition where $condition2";
         // echo $statement;
         try {
             $selected=parent::connect()->query($statement);
