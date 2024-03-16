@@ -8,6 +8,7 @@
     $admins = new Table('admins');
     $current = 'Admin';
     $id = 1 ;
+
     include "include/sidebar.php";
     include "include/navbar.php";
 

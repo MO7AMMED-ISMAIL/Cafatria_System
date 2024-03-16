@@ -8,6 +8,14 @@ $table = new Table("categories");
 
 
 if(isset($_GET['id'])) {
+
+    try {
+        $table->FindById("id",$_GET['id']);
+    }catch (Exception $e){
+        header("Location:../../FrontEnd/product/empty_message.html");
+        die();
+    }
+
     try {
 
         $table->Delete("id={$_GET['id']}");
