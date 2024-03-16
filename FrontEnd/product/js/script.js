@@ -45,9 +45,9 @@ selectedProductsHTML += `
     <div id="${productId}" class="selected-product" style="width:100%;padding:0; margin:0;">
         <input type="hidden" class="product-id" value="${product.product_id}">
         ${product.name} 
-        <button class="btn btn-primary" style="border-radius:20%;width:8%;padding:0; margin:0;" onclick="changeQuantity('${product.name}', 1)">+</button>
+        <button id="incr" class="btn text-light btn-primary" style="border-radius:20%;width:8%;padding:0; margin:0;" onclick="changeQuantity('${product.name}', 1)">+</button>
         ${quantitySign}${Math.abs(product.quantity)}
-        <button id="decr" class="btn btn-danger" style="border-radius:20%;width:8%;padding:0; margin:0;" onclick="changeQuantity('${product.name}', -1)">-</button>
+        <button id="decr" class="btn text-light btn-danger" style="border-radius:20%;width:8%;padding:0; margin:0;" onclick="changeQuantity('${product.name}', -1)">-</button>
         - $${totalProductPrice.toFixed(2)}
         <button class="btn btn-danger close-icon" onclick="removeProduct('${productId}')">×</button>
     </div>`;
