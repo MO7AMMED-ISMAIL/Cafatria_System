@@ -57,6 +57,7 @@
                 <form action="orders/add.php" method="post">
                     <div class="form-group">
                         <input type="hidden" class="form-control" name="token" value="<?=$_SESSION['token']?>">
+                        <input type="hidden" id="totalPriceInput" name="order_total_price">
                     </div>
                     <div class="card shadow" style="min-height: 60vh;">
                         <h5 class="card-header text-center">Order Details</h5>

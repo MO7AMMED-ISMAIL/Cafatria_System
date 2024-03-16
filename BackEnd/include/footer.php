@@ -82,8 +82,6 @@
                             <input type="text" name="quantity['${productId}']" class="col-2 form-control d-inline text-center" style="width: 15%" id="quantity_${productId}" value="${orderItems[productId].quantity}" />
                             <button class="col-2 btn btn-sm btn-success m-1" onclick="increaseQuantity('${productId}')">+</button>
                             <button class="col-2 btn btn-sm btn-warning m-1" onclick="removeProduct('${productId}')">x</button>
-                            <input type="hidden" name="order_total_price" value="${totalPrice.toFixed(2)}">
-                            
                             <input type="hidden" name="orderItems" value='${JSON.stringify(orderItems)}'>
                         </div>
                     </div>
@@ -97,7 +95,8 @@
             */
             function updateTotalPrice() {
                 totalPrice = Object.values(orderItems).reduce((acc, item) => acc + item.quantity * item.product_price, 0);
-                document.getElementById('totalPrice').innerText = `Total Price: $${totalPrice.toFixed(2)}`;
+                document.getElementById('totalPriceInput').value = totalPrice.toFixed(2);
+                document.getElementById('totalPrice').innerText = `Total Price: $ ${totalPrice.toFixed(2)}`;
             }
 
             window.increaseQuantity = function (productId) {
