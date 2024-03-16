@@ -210,43 +210,48 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
             <!-- Product Table -->
             <div class="col-md-8 col-10 my-md-0 my-5 mx-md-0 " style="padding:0%;">
                 <div id="productContainer" class="my-5">
-                    <?php
+      <?php
 
-                    $productTable = new Table('products');
+$productTable = new Table('products');
 
-                    $productQuery = $productTable->Select(['*'], 'status = "Available"');
-                    $products = $productQuery->fetchAll(PDO::FETCH_ASSOC);
+$productQuery = $productTable->Select(['*'], 'status = "Available"');
+$products = $productQuery->fetchAll(PDO::FETCH_ASSOC);
 
-                    $itemsPerPage = 9; // 3 items for row, 3 rows
-                    $numPages = ceil(count($products) / $itemsPerPage);
+if (!empty($products)) {
+    $itemsPerPage = 9; // 3 items for row, 3 rows
+    $numPages = ceil(count($products) / $itemsPerPage);
 
-                    $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 1;
-                    $startIdx = ($currentPage - 1) * $itemsPerPage;
-                    $endIdx = $startIdx + $itemsPerPage;
+    $currentPage = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $startIdx = ($currentPage - 1) * $itemsPerPage;
+    $endIdx = $startIdx + $itemsPerPage;
 
-                    echo '<div class="row">';
-                    for ($i = $startIdx; $i < $endIdx && $i < count($products); $i++) {
-                        $product = $products[$i];
-                        echo '<div class="col-md-4 col-12 my-5">';
-                        echo '<div class="card">';
-                        echo '<input type="hidden"  name="product_id" class="product-id" value="' . $product['id'] . '">';
-                        echo '<img src="images/' . $product['picture'] . '" class="card-img-top" alt="Product Image">';
-                        echo '<div class="card-body">';
-                        echo '<h5 class="card-title">' . $product['name'] . '</h5>';
-                        echo '<p class="card-text">Price:$ ' . $product['price'] . '</p>';
-                        echo '</div>';
-                        echo '</div>';
-                        echo '</div>';
-                        if (($i + 1) % 3 == 0) {
-                            echo '</div><div class="row">';
-                        }
-                    }
+    echo '<div class="row">';
+    for ($i = $startIdx; $i < $endIdx && $i < count($products); $i++) {
+        $product = $products[$i];
+        echo '<div class="col-md-4 col-12 my-5">';
+        echo '<div class="card">';
+        echo '<input type="hidden"  name="product_id" class="product-id" value="' . $product['id'] . '">';
+        echo '<img src="images/' . $product['picture'] . '" class="card-img-top" alt="Product Image">';
+        echo '<div class="card-body">';
+        echo '<h5 class="card-title">' . $product['name'] . '</h5>';
+        echo '<p class="card-text">Price:$ ' . $product['price'] . '</p>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        if (($i + 1) % 3 == 0) {
+            echo '</div><div class="row">';
+        }
+    }
 
-                    echo '</div>';
-                    ?>
-                </div>
+    echo '</div>';
+} else {
+    echo "<h1 class='text-danger'>Sorry, no products found yet😔</h1>";
+}
+?>
 
-                <div class="text-center mt-3">
+     </div>
+
+               <div class="text-center mt-3">
                     <button class="btn btn-primary " id="prevPage">Back</button>
                     <button class="btn btn-primary ml-2" id="nextPage">Next</button>
                 </div>
