@@ -493,6 +493,15 @@ background: linear-gradient(to right, #ad3523, #b42031);
    margin-top: 3.9%;
 }
 
+
+
+#sloganTextt{
+    color: rgba(237, 243, 246, 0.753);
+     font-size: 1.5em;
+     font-style: italic;
+}
+
+
 @media (max-width:500px) {
     #sloganTextt {
      
@@ -501,4 +510,6 @@ background: linear-gradient(to right, #ad3523, #b42031);
         margin-bottom:11%;
     }
 }
+
+
             
