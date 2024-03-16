@@ -14,12 +14,7 @@ try{
     $checkAdmin=$delAdmin->Select(["*"]);
 
     $_SESSION['success'] = 'Admin Deleted Successfully';
-    if($checkAdmin->rowCount()>0)
     header("location: ../admin.php");
-    else {
-        unset($_SESSION['id']);
-        header("Location:../auth/loginForm.php");
-    }
 }catch(Exception $e){
     header("location: ../404.php");
 }

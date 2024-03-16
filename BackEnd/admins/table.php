@@ -3,6 +3,11 @@
         header("location: ../404.php");
     }
 ?>
+<style>
+    .disabled-link{
+        display: none;
+    }
+</style>
 <div class="container-fluid">
     <?php
     if(isset($_SESSION['success'])){
@@ -41,7 +46,8 @@
                             <td><img src="uploads/<?=$admin['profile_picture']?>"></td>
                             <td>
                                 <a href="?edit=<?=$admin['id']?>" class="btn btn-outline-warning">Edit</a>
-                                <a href="admins/delete.php?id=<?=$admin['id']?>" class="btn btn-outline-danger">Delete</a>
+
+                                <a href="admins/delete.php?id=<?=$admin['id']?>" class="btn btn-outline-danger <?php if($admin['id']==$_SESSION['id']) echo 'disabled-link';?>">Delete</a>
                             </td>
                         </tr>
                         <?php }?>
