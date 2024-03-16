@@ -49,15 +49,18 @@
                                 <?= $user['email'] ?>
                             </td>
                             <?php
-                            $userRoom = $room->FindById('id', $user['room_id']);
-                            $userExt = $room->FindById('id', $user['room_id']);
+                            if (isset($user['room_id'])){
+                                $userRoom = $room->FindById('id', $user['room_id']);
+                            }else{
+                                $userRoom = null;
+                            }
                             ?>
                             <td>
-                                <a href=""><?= $userRoom['room_number']?></a>
+                                <?= $userRoom ? $userRoom['room_number'] : 'N/A'?>
                             </td>
 
                             <td>
-                                <?= $userExt['ext']?>
+                                <?=  $userRoom ? $userRoom['ext'] : 'N/A'?>
                             </td>
 
                             <td>
