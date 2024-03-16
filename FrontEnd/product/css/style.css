@@ -405,6 +405,9 @@ background: linear-gradient(to right, #F45C43, #EB3349);
 
 }
 
+.nav-link:hover {
+    color: #a97715 !important; 
+}
 
 
         
