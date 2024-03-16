@@ -37,7 +37,7 @@
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"><?= $notificationsTable->rowCount('notifications')?></span>
 
                     <div class="dropdown-menu dropdown-menu-end border-0 p-0 shadow rounded" aria-labelledby="notificationBox" data-bs-popper="static" style="width: 25vw">
-                        <h6 class="dropdown-header text-center text-light bg-primary rounded-top p-3 fs-4">
+                        <h6 class="dropdown-header text-center text-light bg-primary rounded-top p-2 fs-4">
                             Notifications
                         </h6>
                         <!-- Example Alert 1-->

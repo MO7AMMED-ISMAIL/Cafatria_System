@@ -39,7 +39,7 @@
                             <td><?=$room['ext']?></td>
                             <td>
                                 <a href="?edit=<?=$room['id']?>" class="btn btn-outline-primary">Edit</a>
-                                <a href="rooms/delete.php?id=<?=$room['id']?>" class="btn btn-outline-danger">Delete</a>
+                                <!--<a href="rooms/delete.php?id=<?=$room['id']?>" class="btn btn-outline-danger">Delete</a>-->
                             </td>
                         </tr>
                         <?php }?>
