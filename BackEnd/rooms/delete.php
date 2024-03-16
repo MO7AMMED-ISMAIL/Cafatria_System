@@ -11,6 +11,8 @@ try{
     $id = $_GET['id'];
     $delRoom = new Table('rooms');
     $delRoom->Delete("id = $id");
+    $_SESSION['success'] = 'Room Deleted Successfully';
+
     header("location: ../room.php");
 }catch(Exception $e){
     header("location: ../404.php");

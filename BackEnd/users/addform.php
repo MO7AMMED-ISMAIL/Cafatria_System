@@ -13,6 +13,12 @@
             <div class="text-center">
                 <h2 class="h4 text-gray-900 mb-4">Add New User</h2>
             </div>
+            <?php
+            if(isset($_SESSION['err'])){
+                echo "<div class='alert alert-danger' role='alert' id='error'>".$_SESSION['err']."</div>";
+                unset($_SESSION['err']);
+            }
+            ?>
             <form action="users/adduser.php" method="post" class="user" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="hidden" class="form-control form-control-user" name="token" value="<?=$_SESSION['token']?>">
@@ -27,7 +33,7 @@
                 <!-- email -->
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Email</span>
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="email">
+                    <input type="email" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="email">
                 </div>
 
                 <!-- Password -->
@@ -60,12 +66,6 @@
                 <button class="btn btn-secondary" type="reset">Reset</button>
             </form>
             <hr>
-            <?php
-                if(isset($_SESSION['err'])){
-                    echo "<div class='alert alert-danger' role='alert' id='error'>".$_SESSION['err']."</div>";
-                    unset($_SESSION['err']);
-                }
-            ?>
         </div>
     </div>
 </div>

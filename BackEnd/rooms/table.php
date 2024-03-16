@@ -4,6 +4,12 @@
     }
 ?>
 <div class="container-fluid">
+    <?php
+    if(isset($_SESSION['success'])){
+        echo "<div class='row mx-1 px-4 alert alert-success' role='alert' id='success'>".$_SESSION['success']."</div>";
+        unset($_SESSION['success']);
+    }
+    ?>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">

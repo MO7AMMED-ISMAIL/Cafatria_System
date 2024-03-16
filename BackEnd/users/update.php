@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
             'room_id' => $room_id,
         );
         $result = $table->Update($data, 'id', $id);
-        $_SESSION["success"]="Successfully Updated";
+        $_SESSION["success"]="User Updated Successfully";
         header('location: ../users.php');
         exit();
 

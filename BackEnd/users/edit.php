@@ -14,6 +14,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-center">Edit User</h5>
+                        <?php
+                        if(isset($_SESSION['err'])){
+                            echo "<div class='alert alert-danger' role='alert' id='error'>".$_SESSION['err']."</div>";
+                            unset($_SESSION['err']);
+                        }
+                        ?>
                         <form action="users/update.php" method="post">
                             <!-- Token -->
                             <div class="form-group">
@@ -54,13 +60,6 @@
                             <button type="submit" class="btn btn-primary mb-2">Update</button>
                             
                         </form>
-
-                        <?php
-                            if(isset($_SESSION['err'])){
-                                echo "<div class='alert alert-danger' role='alert' id='error'>".$_SESSION['err']."</div>";
-                                unset($_SESSION['err']);
-                            }
-                        ?>
                     </div>
                 </div>
             </div>

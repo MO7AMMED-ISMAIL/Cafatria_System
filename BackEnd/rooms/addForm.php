@@ -14,6 +14,12 @@
             <div class="text-center">
                 <h2 class="h4 text-gray-900 mb-4">Create New Admin</h2>
             </div>
+            <?php
+            if(isset($_SESSION['err'])){
+                echo "<div class='alert alert-danger' role='alert' id='error'>".$_SESSION['err']."</div>";
+                unset($_SESSION['err']);
+            }
+            ?>
             <form action="rooms/add.php" method="post" class="user">
                 <div class="form-group">
                     <input type="hidden" class="form-control form-control-user" name="token" value="<?=$_SESSION['token']?>">
@@ -34,12 +40,7 @@
                 <button type="submit" class="btn btn-primary d-block m-auto w-25">ADD</button>
             </form>
             <hr>
-            <?php
-                if(isset($_SESSION['err'])){
-                    echo "<div class='alert alert-danger' role='alert' id='error'>".$_SESSION['err']."</div>";
-                    unset($_SESSION['err']);
-                }
-            ?>
+
         </div>
     </div>
 </div>

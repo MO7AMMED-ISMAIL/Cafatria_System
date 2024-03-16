@@ -33,6 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             'profile_picture'=>$img,
         ];
         $admins->Create($DataInsert);
+        $_SESSION['success'] = 'Admin Added Successfully';
 
         header("location: ../admin.php");
         exit();

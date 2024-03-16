@@ -3,18 +3,15 @@
         if(!isset($_SESSION['id'])){
         header("location: ../404.php");
     }
-    if(isset($_SESSION['success'])){
-        $message = $_SESSION["success"];
-        $messageColor="green";
-        unset($_SESSION["message"]);
-        echo "<div class='alert alert-dismissible fade show' style='color: $messageColor;' role='alert'>
-            $message
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-        </div>";
-    }
 }
 ?>
 <div class="container-fluid">
+    <?php
+    if(isset($_SESSION['success'])){
+        echo "<div class='row mx-1 px-4 alert alert-success' role='alert' id='success'>".$_SESSION['success']."</div>";
+        unset($_SESSION['success']);
+    }
+    ?>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -69,7 +66,7 @@
 
                             <td>
                                 <a href="?edit=<?=$user['id']?>" class='btn btn-outline-warning btn-sm'>Edit</a>
-                                <a href='users/delet.php?id=<?=$user['id'] ?>' class='btn btn-outline-danger btn-sm'>Delete</a>
+                                <a href='users/delete.php?id=<?=$user['id'] ?>' class='btn btn-outline-danger btn-sm'>Delete</a>
                             </td>
                         </tr>
                     <?php } ?>

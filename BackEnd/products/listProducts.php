@@ -4,7 +4,7 @@ if (isset($_SESSION["message"])) {
     $message = $_SESSION["message"];
     unset($_SESSION["message"]);
     unset($_SESSION["color"]);
-    echo "<div class='alert alert-dismissible fade show' style='color: $messageColor;' role='alert'>
+    echo "<div class='alert alert-success alert-dismissible fade show' style='color: $messageColor;' role='alert'>
             $message
             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
         </div>";

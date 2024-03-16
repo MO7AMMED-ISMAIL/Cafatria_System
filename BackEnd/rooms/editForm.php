@@ -15,6 +15,12 @@
             <div class="text-center">
                 <h2 class="h4 text-gray-900 mb-4">Update Admin</h2>
             </div>
+            <?php
+            if(isset($_SESSION['err'])){
+                echo "<div class='alert alert-danger' role='alert' id='error'>".$_SESSION['err']."</div>";
+                unset($_SESSION['err']);
+            }
+            ?>
             <form action="rooms/update.php" method="post">
                 <!-- token -->
                 <div class="form-group">
@@ -40,12 +46,7 @@
                 <button class="btn btn-primary w-25 d-block m-auto" type="submit">Update</button>
             </form>
             <hr>
-            <?php
-                if(isset($_SESSION['err'])){
-                    echo "<div class='alert alert-danger' role='alert' id='error'>".$_SESSION['err']."</div>";
-                    unset($_SESSION['err']);
-                }
-            ?>
+
         </div>
     </div>
 </div>

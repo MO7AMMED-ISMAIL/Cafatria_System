@@ -27,6 +27,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             'ext'=>$extraData,
         ];
         $rooms->Create($DataInsert);
+        $_SESSION['success'] = 'Room Added Successfully';
+
         header("location: ../room.php");
         exit();
     }catch(Exception $e){
