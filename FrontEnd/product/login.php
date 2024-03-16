@@ -98,9 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <button type="submit" class="btn text-light">Login</button>
                         </div>
                         <p class="small mb-5 my-5 text-center">
-                            <a href="forgetPassword.php" class="ForgetPwd text-decoration-none" style="color:blue;">Forget Password?</a>
+                            <a href="forgetPassword.php" class="ForgetPwd text-decoration-none" >Forget Password?</a>
                             <br>
-                            <a href="registerform.php" class="ForgetPwd text-decoration-none" style="color:blue;">Sign Up</a>
+                            <a href="registerform.php" class="ForgetPwd text-decoration-none">Sign Up</a>
                         </p>
                         
                     </form>
