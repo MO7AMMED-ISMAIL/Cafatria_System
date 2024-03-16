@@ -128,3 +128,25 @@ orderForm.addEventListener('submit', function(event) {
         updateOrderForm();
     };
 });
+
+
+//slogan animation
+document.addEventListener('DOMContentLoaded', function() {
+        
+    const slogans = [
+        "Crafting Memories, One Cup at a Time",
+        "Where Every Bean Holds a Promise of Joy",
+        "Experience the Flavors of Tradition and Innovation",
+       "A Taste of Tradition, Served with Passion"
+    ];
+
+    const sloganElement = document.getElementById('sloganText');
+    let currentIndex = 0;
+
+    function changeSlogan() {
+        sloganElement.textContent = slogans[currentIndex];
+        currentIndex = (currentIndex + 1) % slogans.length;
+    }
+
+    setInterval(changeSlogan, 5000);
+});
