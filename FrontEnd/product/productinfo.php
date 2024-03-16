@@ -143,9 +143,9 @@ use DbClass\Table;
         </div>
 
         <div class="container">
-            <h1 class="display-4 my-5" style="font-style: italic; font-size: 10.7em; color: rgba(237, 243, 246, 0.753);">Cafeto</h1>
+            <h1 class="display-4 my-5" style="font-style: italic; font-size: 10.6em; color: rgba(237, 243, 246, 0.753);">Cafeto</h1>
             <div id="slogann">
-                <p id="sloganText" class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Unveiling Richness with Every Scroll, Because the Best Brews Are Worth the Search</p>
+                <p id="sloganTextt" class="lead col-12" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Unveiling Richness with Every Scroll, Because the Best Brews Are Worth the Search</p>
             </div>
         </div>
     </div>
