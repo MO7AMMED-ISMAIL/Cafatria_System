@@ -1,130 +1,128 @@
 
-//selected product at form
+document.addEventListener('DOMContentLoaded', function() {
+  
+  //slogen animation
+    const slogans = [
+        "Crafting Memories, One Cup at a Time",
+        "Where Every Bean Holds a Promise of Joy",
+        "Experience the Flavors of Tradition and Innovation",
+        "A Taste of Tradition, Served with Passion"
+    ];
 
-    document.addEventListener('DOMContentLoaded', function() {
-    const productCards = document.querySelectorAll('.card');
+    const sloganElement = document.getElementById('sloganText');
+    let currentIndex = 0;
+
+    function changeSlogan() {
+        sloganElement.textContent = slogans[currentIndex];
+        currentIndex = (currentIndex + 1) % slogans.length;
+    }
+
+    setInterval(changeSlogan, 5000);
+
+
+
+  //select products
+
+    const productContainer = document.getElementById('productContainer');
     const orderForm = document.getElementById('orderForm');
     const selectedProductsContainer = document.getElementById('selectedProducts');
-    let selectedProductsList = []; 
+    const removeAllProductsButton = document.getElementById('removeAllProducts');
+    let selectedProductsList = [];
 
-    productCards.forEach(function(card) {
-        card.addEventListener('click', function() {
+    //handle click on product cards at deleg
+    productContainer.addEventListener('click', function(event) {
+        const card = event.target.closest('.card');
+        if (card) {
             const productName = card.querySelector('.card-title').innerText;
             const productPrice = parseFloat(card.querySelector('.card-text').innerText.split(': ')[1]);
             const productId = card.querySelector('.product-id').value;
 
-            // if product is already selected
             const existingProductIndex = selectedProductsList.findIndex(product => product.name === productName);
             if (existingProductIndex !== -1) {
-
                 selectedProductsList[existingProductIndex].quantity++;
             } else {
-                // Add new one to list
-                selectedProductsList.push({product_id:productId, name: productName, price: productPrice, quantity: 1 });
+                selectedProductsList.push({ product_id: productId, name: productName, price: productPrice, quantity: 1 });
             }
 
-            
             updateOrderForm();
-        });
+        }
     });
 
-
-
-//update selected product at form
+    //update order form 
     function updateOrderForm() {
-    let totalPrice = 0;
-    let selectedProductsHTML = '';
+        let totalPrice = 0;
+        let selectedProductsHTML = '';
 
-    selectedProductsList.forEach((product, index) => {
-        const totalProductPrice = product.price * product.quantity;
-        totalPrice += totalProductPrice;
-        const quantitySign = product.quantity > 0 ? '+' : '-';
-        //ID to each product
-        const productId = `selectedProduct_${index}`;
-selectedProductsHTML += `
-    <div id="${productId}" class="selected-product" style="width:100%;padding:0; margin:0;">
-        <input type="hidden" class="product-id" value="${product.product_id}">
-        ${product.name} 
-        <button class="btn btn-primary" style="border-radius:20%;width:8%;padding:0; margin:0;" onclick="changeQuantity('${product.name}', 1)">+</button>
-        ${quantitySign}${Math.abs(product.quantity)}
-        <button id="decr" class="btn btn-danger" style="border-radius:20%;width:8%;padding:0; margin:0;" onclick="changeQuantity('${product.name}', -1)">-</button>
-        - $${totalProductPrice.toFixed(2)}
-        <button class="btn btn-danger close-icon" onclick="removeProduct('${productId}')">×</button>
-    </div>`;
+        selectedProductsList.forEach((product, index) => {
+            const totalProductPrice = product.price * product.quantity;
+            totalPrice += totalProductPrice;
+            const quantitySign = product.quantity > 0 ? '+' : '-';
+            const productId = `selectedProduct_${index}`;
+            selectedProductsHTML += `
+                <div id="${productId}" class="selected-product" style="width:100%;">
+                    <input type="hidden" class="product-id" value="${product.product_id}">
+                    ${product.name} 
+                    <button id="incr" class="btn btn-primary text-center" onclick="changeQuantity(${index}, 1)">+</button>
+                    ${quantitySign}${Math.abs(product.quantity)}
+                    <button id="decr" class="btn btn-danger text-center" onclick="changeQuantity(${index}, -1)">-</button>
+                    - $${totalProductPrice.toFixed(2)}
+                    <button class="btn btn-danger close-icon" onclick="removeProduct(${index})">×</button>
+                </div>`;
+        });
 
+        selectedProductsContainer.innerHTML = selectedProductsHTML;
+        document.getElementById('totalPrice').value = totalPrice.toFixed(2);
+        document.getElementById('orderButton').disabled = false;
+    }
+
+    //handle form submission
+    orderForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        updateOrderForm();
+
+        const selectedProductsJSON = JSON.stringify(selectedProductsList);
+        const formData = new FormData(orderForm);
+        formData.append('selectedProductsList', selectedProductsJSON);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'addOrder.php', true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                document.body.innerHTML = xhr.responseText;
+                window.location.href = "order.php";
+            } else {
+                console.error('Error:', xhr.statusText);
+            }
+        };
+        xhr.onerror = function() {
+            console.error('Request failed');
+        };
+        xhr.send(formData);
     });
 
-    selectedProductsContainer.innerHTML = selectedProductsHTML;
-    document.getElementById('totalPrice').value = totalPrice.toFixed(2);
-    document.getElementById('orderButton').disabled = false; 
-}
-
-
-// form submission
-orderForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    updateOrderForm();
-
-    // Serialize selectedProductsList into a JSON string
-    const selectedProductsJSON = JSON.stringify(selectedProductsList);
-
-    
-    const formData = new FormData(orderForm);
-
-    // Append selectedProductsList to the FormData object
-    formData.append('selectedProductsList', selectedProductsJSON);
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'addOrder.php', true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            document.body.innerHTML = xhr.responseText;
-            window.location.href = "order.php";
-        } else {
-            console.error('Error:', xhr.statusText);
-        }
-    };
-    xhr.onerror = function() {
-        console.error('Request failed');
-    };
-    xhr.send(formData);
-});
-
-
-
-
-
-
-
-    //quantity change
-    window.changeQuantity = function(name, change) {
-        const productIndex = selectedProductsList.findIndex(product => product.name === name);
-        if (productIndex !== -1) {
-            selectedProductsList[productIndex].quantity += change;
-            if (selectedProductsList[productIndex].quantity <= 0) {
-            
-                selectedProductsList.splice(productIndex, 1);
+    //change the quantity
+    window.changeQuantity = function(index, change) {
+        if (index >= 0 && index < selectedProductsList.length) {
+            selectedProductsList[index].quantity += change;
+            if (selectedProductsList[index].quantity <= 0) {
+                selectedProductsList.splice(index, 1);
             }
             updateOrderForm();
         }
     };
 
+    //remove a product
+    window.removeProduct = function(index) {
+        if (index >= 0 && index < selectedProductsList.length) {
+            selectedProductsList.splice(index, 1);
+            updateOrderForm();
+        }
+    };
 
-
-
-    // Clear all products
-    document.getElementById('removeAllProducts').addEventListener('click', function() {
+    //clear all 
+    removeAllProductsButton.addEventListener('click', function() {
         selectedProductsList = [];
         updateOrderForm();
     });
-
-
-    
-
-    // Remove product
-    window.removeProduct = function(productId) {
-        const indexToRemove = parseInt(productId.split('_')[1]);
-        selectedProductsList.splice(indexToRemove, 1);
-        updateOrderForm();
-    };
 });
+

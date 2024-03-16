@@ -42,7 +42,7 @@ window.addEventListener('scroll', function() {
     const navbar = document.getElementById('navbar');
     if (window.pageYOffset >= 100) {
         navbar.classList.add('sticky');
-        navbar.style.background="rgb(56, 45, 3)";
+        navbar.style.background="rgba(71, 44, 8, 0.816)";
     } else {
         navbar.classList.remove('sticky');
         navbar.style.background="transparent";

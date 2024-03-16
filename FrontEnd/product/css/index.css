@@ -31,3 +31,18 @@
 .list-unstyled li a:hover {
   color: #007bff; 
         }
+
+.slogen{
+
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+@media (max-width:500px) {
+    .slogen {
+
+        font-size:large;
+        font-style: italic;
+        margin-bottom:14%;
+    }
+}

@@ -134,6 +134,11 @@ class Table extends Database{
 
     public function isValidUsername($username){
         $pattern = '/^[a-zA-Z0-9_]{3,20}$/';
+//        $userNames=$this->Select(["*"],"username='{$username}'");
+//        $userNames->fetchAll(PDO::)
+//        if ($userNames){
+//            throw new Exception("user name is not unique");
+//        }
         if (!preg_match($pattern, $username)) {
             throw new Exception('Invalid username format.');
         }else{

@@ -1,7 +1,7 @@
 .mainhome {
     background-size: cover;
     width: 100%;
-    height: 99vh;
+    height:100vh;
     padding-top:1%;
     border-color: black;
     border-width: 3%;
@@ -52,7 +52,7 @@
     left: -300px; 
     width:298px;
     height: 100%;
-    background-color:rgb(56, 45, 3);
+    background-color:rgba(71, 44, 8, 0.816);
     color: #fff;
     transition: left 0.3s ease;
     z-index: 1000;
@@ -169,21 +169,26 @@ border-radius: 20px;
 
 .order-form {
 background-color: #f8f9fa;
-padding: 30px; 
-border-radius: 8px; 
-height:95%; 
+padding: 30px;
+border-radius: 8px;
+height:95%;
 display: flex; 
 flex-direction: column; 
 justify-content: space-between; 
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
 }
 
 .order-form h2 {
-margin-bottom: 20px; 
+margin-bottom: 20px;
 }
 
 .order-form .form-group {
-margin-bottom: 15px; 
+    margin-bottom: 10px;
+}
+
+.order-form .form-group label{
+    color: #d06663;
 }
 
 .order-form input[type="text"],
@@ -194,11 +199,34 @@ width: 100%;
 
 #prevPage{
 width:20%;
+background: #1d4350; 
+  background: -webkit-linear-gradient(to right, #1d4350, #a43931); 
+  background: linear-gradient(to right, #1d4350, #a43931);
 }
+#prevPage:hover{
+    width:20%;
+    background: #15313b; 
+      background: -webkit-linear-gradient(to right, #173a45, #812923); 
+      background: linear-gradient(to right, #15333d, #802922);
+    }
+
+
 
 #nextPage{
 width:20%;
+background: #1D4350; 
+background: -webkit-linear-gradient(to right, #A43931, #1D4350);  
+background: linear-gradient(to right, #A43931, #1D4350); 
+
 }
+
+#nextPage:hover{
+    width:20%;
+    background: #15313b; 
+      background: -webkit-linear-gradient(to right, #173a45, #812923); 
+      background: linear-gradient(to right, #15333d, #802922);
+    
+    }
 
 
 
@@ -308,15 +336,54 @@ margin-left: 5px;
 
 
 #decr{
-    width:3%;
+    width:8%;
+   padding: 0;
+   margin: 0;
+    border-radius:19%;
+
+    background: #e53935;  
+    background: -webkit-linear-gradient(to right, #e35d5b, #e53935);  
+    background: linear-gradient(to right, #e35d5b, #e53935); 
+    
+}
+
+#decr:hover{
+    width:8%;
    
-    border-radius: 35%;
+    border-radius:19%;
+    padding: 0;
+    margin: 0;
+    background: #af3634;  
+    background: -webkit-linear-gradient(to right, #a83230, #b83230);  
+    background: linear-gradient(to right, #c54240, #b94947); 
+    
 }
 
-.formbtn #decr{
-    width:9%;
+#incr{
+    width:8%;
+    padding: 0;
+    margin: 0;
+    background: #5389bf; 
+background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  
+background: linear-gradient(to right, #3498db, #2c3e50); 
+
 }
 
+#incr:hover{
+    width:8%;
+    padding: 0;
+    margin: 0;
+    background: #223446; 
+background: -webkit-linear-gradient(to right, #2278b1, #2c3e50);  
+background: linear-gradient(to right, #124a6f, #334a5f); 
+
+}
+
+#price{
+    color: #d06663;
+    font-size: large;
+
+}
 
 
 
@@ -369,6 +436,52 @@ margin-left: 5px;
 
 
        
+#orderButton{
+    background: #1A2980;  
+    background: -webkit-linear-gradient(to right, #26D0CE, #1A2980); 
+    background: linear-gradient(to right, #26D0CE, #1A2980); 
+    
+}
 
-       
+#orderButton:hover{
+    background: #15205d;  
+    background: -webkit-linear-gradient(to right, #158b89, #4d59a0); 
+    background: linear-gradient(to right, #119593, #444c7b); 
+    
+}
+
+  
+#removeAllProducts{
+    background: #EB3349; 
+background: -webkit-linear-gradient(to right, #F45C43, #EB3349); 
+background: linear-gradient(to right, #F45C43, #EB3349); 
+
+}
+
+#removeAllProducts:hover{
+    background: #ad1628; 
+background: -webkit-linear-gradient(to right, #b23a27, #9f2230); 
+background: linear-gradient(to right, #ad3523, #b42031); 
+
+}
+
+.nav-link:hover {
+    color: #a97715 !important; 
+}
+
+#search{
+     background: #1A2980;  
+    background: -webkit-linear-gradient(to right, #26D0CE, #1A2980); 
+    background: linear-gradient(to right, #26D0CE, #1A2980); 
+}
+
+#search:hover{
+
+    background: #15205d;  
+    background: -webkit-linear-gradient(to right, #158b89, #4d59a0); 
+    background: linear-gradient(to right, #119593, #444c7b); 
+    
+}
+
+
         

@@ -2,6 +2,7 @@
 
 session_start();
 
+
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
     $user_id = $_SESSION['user_id'];
@@ -42,19 +43,15 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
-
 </head>
 
 <body>
-
     <!--cafe name-->
     <div id="Home" class="mainhome jumbotron jumbotron-fluid bg-cover d-flex align-items-center">
         <!-- Navigation bar -->
         <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
             <div class="container-fluid">
                 <div class="row align-items-center">
-
-
                     <!-- User image and name -->
                     <div class="col-auto">
                         <div class="d-flex align-items-center">
@@ -79,8 +76,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                     </div>
 
 
-
-
                     <!-- Search input and button -->
                     <div class="col-auto ml-auto">
                         <div class="input-group d-none d-lg-flex">
@@ -93,8 +88,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
                         </div>
                     </div>
-
-
 
 
                     <!-- Nav icon  -->
@@ -134,7 +127,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
             </div>
         </nav>
 
-
         <!-- Nav drawer -->
         <div id="sideNav" class="nav-drawer d-lg-none">
             <ul class="mt-4">
@@ -162,7 +154,9 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
         <div class="container">
             <h1 class="display-4 my-5" style="font-style: italic; font-size: 10.7em; color: rgba(237, 243, 246, 0.753);">Cafeto</h1>
-            <p class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Where every cup tells a story</p>
+            <div id="slogann">
+                <p id="sloganText" class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Discover Delight, Taste the Moment: Your Café, Your Culinary Journey!</p>
+            </div>
         </div>
     </div>
 
@@ -210,9 +204,11 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
     <!-- Product section -->
     <div id="productSection" class="container mt-4 text-center" style="padding:0%; padding-top:9%;">
         <div class="row">
+            <h1 class="col-12 text-center text-light" style="padding: 1.5%; background-color: rgba(71, 44, 8, 0.816);">Order Now</h1>
+        </div>
+        <div class="row">
             <!-- Product Table -->
             <div class="col-md-8 col-10 my-md-0 my-5 mx-md-0 " style="padding:0%;">
-                <h2 class="text-light" style="font-style:italic;background-color: rgba(71, 44, 8, 0.816);">Order Now</h2>
                 <div id="productContainer" class="my-5">
                     <?php
 
@@ -237,9 +233,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                         echo '<img src="images/' . $product['picture'] . '" class="card-img-top" alt="Product Image">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $product['name'] . '</h5>';
-                        echo '<p class="card-text">Price: ' . $product['price'] . '</p>';
-                        echo '</div>';
-                        echo '<div class="card-footer">';
+                        echo '<p class="card-text">Price:$ ' . $product['price'] . '</p>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
@@ -260,7 +254,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
             </div>
 
             <!-- Order form -->
-            <div class="col-md-4  my-5 my-md-0 col-10 offset-md-0 offset-1" style=" padding-top:4%;">
+            <div class="col-md-4 my-5 my-md-0 col-10 offset-md-0 offset-3" style=" padding-top:4%;">
 
                 <form id="orderForm" class="order-form formbtn" action="addOrder.php" method="post">
                     <div class="form-group">
@@ -288,7 +282,6 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                                 echo "<option value=''>Error fetching rooms</option>";
                             }
                             ?>
-
                         </select>
                     </div>
 
@@ -301,12 +294,51 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
                     <div class="form-group">
                         <div class="d-flex flex-column">
-                            <button type="submit" class="btn btn-primary mb-2" id="orderButton" disabled>Order</button>
-                            <button type="button" class="btn btn-danger" id="removeAllProducts">Cancel</button>
+                            <button type="submit" class=" order btn btn-primary mb-2 text-light " id="orderButton" disabled>Order</button>
+                            <button type="button" class="btn btn-danger text-light " id="removeAllProducts">Cancel</button>
                         </div>
                     </div>
                 </form>
             </div>
+
+
+
+ <!--footer-->
+
+<div class="container my-5 footer-container">
+    <div class="row">
+        <h1 class="col-12 text-center" style="font-style:italic;margin-top:15%; color:rgba(43, 31, 6, 0.973);">
+            Crafting Memories, One Cup at a Time
+        </h1>
+    </div>
+    <div class="row my-5"> 
+        <div class="col-3">
+            <div class="image-container">
+                <img src="images/instagram2.jpg" alt="Instagram Image">
+            </div>
+        </div>
+        
+        <div class="col-3">
+            <div class="image-container">
+                <img src="images/instagram3.jpg" alt="Instagram Image">
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="image-container">
+                <img src="images/instagram4.jpg" alt="Instagram Image">
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="image-container">
+                <img src="images/instagram6.jpg" alt="Instagram Image">
+            </div>
+        </div>
+
+    </div>
+</div>
+  
 
 
             <!-- About Section -->
@@ -367,9 +399,7 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
                             html += '<img src="images/' + product.picture + '" class="card-img-top" alt="Product Image">';
                             html += '<div class="card-body">';
                             html += '<h5 class="card-title">' + product.name + '</h5>';
-                            html += '<p class="card-text">Price: ' + product.price + '</p>';
-                            html += '</div>';
-                            html += '<div class="card-footer">';
+                            html += '<p id="price" class="card-text">Price$: ' + product.price + '</p>';
                             html += '</div>';
                             html += '</div>';
                             html += '</div>';
@@ -406,6 +436,8 @@ $latestOrder = $latestOrderQuery->fetch(PDO::FETCH_ASSOC);
 
                     displayProducts(currentPage);
                 });
+
+
             </script>
 
             <script src="js/scriptnavimg.js"></script>

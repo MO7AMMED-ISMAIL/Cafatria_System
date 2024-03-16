@@ -74,9 +74,8 @@ $rooms = $roomTable->Select(['id', 'room_number']);
                             <input type="file" class="form-control" id="profile_picture" name="profile_picture" required>
                         </div>
 
-
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        <div class="mb-3 text-center">
+                            <button type="submit" class="btn btn-block w-50">Register</button>
                         </div>
                     </form>
                     <?php if (isset($_SESSION['err'])) : ?>
@@ -85,7 +84,7 @@ $rooms = $roomTable->Select(['id', 'room_number']);
                     <?php endif; ?>
                     <hr>
                     <div class="text-center">
-                        <a class="small" href="login.php">Already have an account? Login!</a>
+                        Already have an account?<a class="small" href="login.php"> Login!</a>
                     </div>
                 </div>
             </div>

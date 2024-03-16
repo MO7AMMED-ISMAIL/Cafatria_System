@@ -7,8 +7,6 @@
     <title>Product Info</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -19,7 +17,7 @@
         <!-- Navigation bar -->
         <nav id="navbar" class="navbar navbar-expand-lg navbar-dark" style="background-color:transparent;">
             <div class="container-fluid">
-                <div class="row align-items-center">
+                <div class="row align-items-center justify-content-end">
 
                     <!-- Navigation icon  -->
                     <div class="col-auto">
@@ -52,10 +50,6 @@
             </div>
         </nav>
 
-
-
-
-
         <!-- Nav drawer -->
         <div id="sideNav" class="nav-drawer d-lg-none">
             <ul class="mt-4">
@@ -69,13 +63,11 @@
             <button id="navClose" class="btn btn-outline-light mb-2 ml-2">Close</button>
         </div>
 
-
         <div class="container">
             <h1 class="display-4 my-5" style="font-style: italic; font-size: 10.7em; color: rgba(237, 243, 246, 0.753);">Cafeto</h1>
             <p class="lead" style="color: rgba(237, 243, 246, 0.753); font-size: 1.5em;">Where every cup tells a story</p>
         </div>
     </div>
-
 
 
     <?php
@@ -115,7 +107,7 @@
             ?>
                 <div class="related-products container my-5">
                     <div class="row">
-                        <h2 class="text-center text-light mt-5 my-5" style="background-color:rgb(56, 45, 3);">Related Products</h2>
+                        <h2 class="text-center text-light mt-5 my-5" style="background-color:rgba(71, 44, 8, 0.816);">Related Products</h2>
                     </div>
 
                     <div class="row text-center">
@@ -139,16 +131,7 @@
     <?php
             }
         } else {
-            echo "<div class='container'>
-    <div class='row justify-content-center mt-5'>
-        <div class='col-md-6 text-center'>
-            <div class='alert alert-info' role='alert'>
-                <strong>Oops!</strong> It seems there are no items available.
-        Please check back later.
-            </div>
-        </div>
-    </div>
-</div>";
+            echo "<img style='margin-left:38%;' src='images/noresult.jpg' alt='no result found'";
         }
     }
     ?>
