@@ -42,7 +42,7 @@
 </head>
 <body>
     <div class="container-fluid p-0 d-flex h-100">
-        <div id="sidebar" class="fs-4 d-flex flex-column flex-shrink-0 p-3 text-bg-info text-white offcanvas-md offcanvas-start">
+        <div id="sidebar" class="fs-5 d-flex flex-column flex-shrink-0 p-3 text-bg-info text-white offcanvas-md offcanvas-start">
             <a href="./index.php" class="navbar-brand text-center">Cafateria</a><hr>
             <ul class="mynav nav nav-pills flex-column flex-grow-1 pe-3 mb-auto">
                 <!-- Index -->
@@ -95,7 +95,7 @@
                 <li class="nav-item mb-1">
                     <a href="checks.php" class="nav-link text-white <?= $current == 'checks'? 'active' : '' ?>" aria-current="page" >
                         <i class="fa-regular fa-credit-card me-lg-2 d-none d-md-inline-block"></i>
-                        Checkout Order
+                        Checks
                     </a>
                 </li>
 
@@ -103,7 +103,7 @@
                 <li class="nav-item mb-1">
                     <a href="room.php" class="nav-link text-white <?= $current == 'Room'? 'active' : '' ?>" aria-current="page" >
                         <i class="fa-solid fa-person-shelter me-lg-2 d-none d-md-inline-block"></i>
-                        Cafetria Room
+                        Rooms
                     </a>
                 </li>
             </ul>

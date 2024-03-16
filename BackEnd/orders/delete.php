@@ -11,6 +11,8 @@ try{
     
     $delUser = new Table('orders');
     $delUser->Delete("id = $id");
+    $_SESSION['success'] = 'Order Deleted Successfully';
+
     header("location: ../order.php");
 }catch(Exception $e){
     header("location: ../404.php");

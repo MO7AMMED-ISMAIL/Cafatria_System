@@ -72,7 +72,6 @@
                 }
             }
 
-            console.log(orderItems);
             function createOrderListItem(productId) {
                 const listItem = document.createElement('div');
                 listItem.innerHTML = `

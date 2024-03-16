@@ -33,10 +33,6 @@
 
     if(isset($_GET['add']) == 'orders'){
         include "orders/addForm.php";
-    } elseif(isset($_GET['edit'])){
-        $orderId = $_GET['edit'];
-        $SelOrder = $orders->FindById('id',$orderId);
-        include "orders/editForm.php";
     } elseif(isset($_GET['show'])){
         $orderId = (int)$_GET['show'];
         $SelOrder = $orders->FindById('id',$orderId);
