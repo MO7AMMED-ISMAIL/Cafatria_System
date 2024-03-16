@@ -27,21 +27,28 @@
                     <h5 class="card-header text-center">Products</h5>
                     <div class="card-body">
                         <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4 g-4 justify-content-start align-items-center mb-3">
-                            <?php foreach($products_result as $product) {?>
-                                <div class="col product_card" data-product-id="<?=$product['id']?>" data-product-price="<?=$product['price']?>" data-product-name="<?=$product['name']?>">
-                                    <div class="card shadow position-relative" style="height:180px">
-                                        <img class="card-img-top" style="height: 15vh" src="uploads/<?=$product['picture']?>" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-center"><?=$product['name']?></h5>
-                                            <p class="text-center"></p>
-                                        </div>
-                                        <!-- Badge for each product card -->
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                            <?php
+                            try {
+                                foreach($products_result as $product) { ?>
+                                    <div class="col product_card" data-product-id="<?=$product['id']?>" data-product-price="<?=$product['price']?>" data-product-name="<?=$product['name']?>">
+                                        <div class="card shadow position-relative" style="height:180px">
+                                            <img class="card-img-top" style="height: 15vh" src="uploads/<?=$product['picture']?>" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-center"><?=$product['name']?></h5>
+                                                <p class="text-center"></p>
+                                            </div>
+                                            <!-- Badge for each product card -->
+                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
                                             <?=$product['price']?> $
                                         </span>
+                                        </div>
                                     </div>
+                                <?php }
+                            } catch (Exception $e) { ?>
+                                <div class="col product_card">
+                                    <img src="./uploads/no-data.gif" alt="" style="width: 80%; height: 50vh;">
                                 </div>
-                            <?php }?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -60,20 +67,30 @@
                                 <span class="input-group-text" id="basic-addon1">Username</span>
                                 <select class="form-control form-select" name="user_id" aria-label="Select user">
                                     <option disabled>Select User</option>
-                                    <?php foreach($users_result as $user) {?>
-                                        <option value="<?=$user['id']?>"><?=$user['username']?></option>
-                                    <?php }?>
+                                    <?php
+                                    try {
+                                        foreach ($users_result as $user) { ?>
+                                            <option value="<?=$user['id']?>"><?=$user['username']?></option>
+                                        <?php }
+                                    } catch (Exception $e) { ?>
+                                        <option value=''>Error fetching users</option>
+                                    <?php } ?>
                                 </select>
                             </div>
 
                             <!-- room -->
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Room</span>
-                                <select class="form-control form-select" name="room" aria-label="Select room number">
+                                <select class="form-control form-select" name="room_id" aria-label="Select room number">
                                     <option disabled>Select room Number</option>
-                                    <?php foreach($rooms_result as $room) {?>
-                                        <option value="<?=$room['id']?>"><?=$room['room_number']?></option>
-                                    <?php }?>
+                                    <?php
+                                    try {
+                                        foreach ($rooms_result as $room) { ?>
+                                            <option value="<?= $room['id'] ?>"><?= $room['room_number'] ?></option>
+                                        <?php }
+                                    } catch (Exception $e) { ?>
+                                        <option value=''>Error fetching rooms</option>
+                                    <?php } ?>
                                 </select>
                             </div>
 

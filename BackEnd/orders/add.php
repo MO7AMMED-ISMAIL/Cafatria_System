@@ -49,7 +49,7 @@
 
                 $order_items->Create($orderItemData);
             }
-            $_SESSION['success'] = 'Order added successfully';
+            $_SESSION['success'] = 'Order Added Successfully';
 
             header("location: ../order.php");
             exit();

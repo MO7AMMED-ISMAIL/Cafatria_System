@@ -47,16 +47,20 @@
                                 <?php if($order['status'] == 'Done') {?>
                                     <span class="badge text-bg-success"><?=$order['status']?></span>
                                 <?php } elseif ($order['status'] == 'Processing'){ ?>
-                                    <span class="badge text-bg-warning"><?=$order['status']?></span>
+                                    <span class="badge text-bg-danger"><?=$order['status']?></span>
 
                                 <?php } else { ?>
-                                    <span class="badge text-bg-danger"><?=$order['status']?></span>
+                                    <span class="badge text-bg-warning"><?=$order['status']?></span>
                                 <?php } ?>
                             </td>
                             <td>
                                 <a class="btn btn-outline-success" href="?show=<?=$order['id']?>">Show</a>
                                 <?php if ($order['status'] == 'Processing') {?>
                                     <a class="btn btn-outline-danger" href="orders/delete.php?order_id=<?=$order['id']?>">Cancel</a>
+                                    <a class="btn btn-outline-warning" href="orders/update.php?order_id=<?=$order['id']?>">Deliver</a>
+                                <?php }?>
+                                <?php if ($order['status'] == 'Out For Delivery') {?>
+                                    <a class="btn btn-outline-warning" href="orders/update.php?order_id=<?=$order['id']?>">Complete</a>
                                 <?php }?>
                             </td>
                         </tr>
@@ -67,7 +71,6 @@
                             <img src="./uploads/no-data.gif" alt="" style="width: 80%; height: 50vh;">
                         </td>
                     </tr>
-
                 <?php } ?>
                 </tbody>
             </table>

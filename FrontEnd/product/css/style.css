@@ -483,5 +483,22 @@ background: linear-gradient(to right, #ad3523, #b42031);
     
 }
 
+.lince{
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    border:2px solid rgb(75, 50, 7);
+}
 
-        
+#productNameInputt{
+   margin-top: 3.9%;
+}
+
+@media (max-width:500px) {
+    #sloganTextt {
+     
+        font-size:large;
+        font-style: italic;
+        margin-bottom:11%;
+    }
+}
+            
